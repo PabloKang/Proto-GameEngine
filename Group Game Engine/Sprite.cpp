@@ -1,7 +1,7 @@
 #include "Sprite.h"
 
 
-// Sprite object constructor
+// Sprite object constructor yo yo yo
 Sprite::Sprite(int w, int h, SDL_Renderer* ren)
 {
 	renderer = ren;
