@@ -1,3 +1,9 @@
+
+
+
+
+
+
 #include "SceneManager.h"
 
 SceneManager::SceneManager(int windowHeight, int windowLength) :windowHeight(windowHeight), windowLength(windowLength){
@@ -27,4 +33,5 @@ Scene SceneManager::getScene(int x, int y){
 
 Scene SceneManager::getSceneFromCoords(int x, int y){
 	return scenes[x / windowLength][y / windowHeight];
+
 }
