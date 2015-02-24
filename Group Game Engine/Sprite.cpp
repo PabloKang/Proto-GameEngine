@@ -181,3 +181,22 @@ void Sprite::show(std::string sequence)
 		sequenceIndex++;
 	}
 }
+
+// addFrameToSequence returns the number of frames in the sequence after the add
+void Sprite::addSoundToSequence(std::string seqName, Mix_Chunk soundChunk)
+{
+	if (soundSequenceMap.find(seqName) == soundSequenceMap.end()) {
+		Mix_Chunk chunks;
+		soundSequenceMap.insert(std::pair<std::string, Mix_Chunk>(seqName, chunks));
+	}
+	soundSequenceMap[seqName].push_back(soundChunk);
+
+	return soundSequenceMap[seqName].size();
+
+}
+
+// play(string) plays the sound named by the parameter string
+void Sprite::play(std::string sound)
+{
+
+}
