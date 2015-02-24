@@ -1,18 +1,13 @@
 #pragma once
 
-#include "SDL.h"
-#include <SDL_mixer.h>
-#include <vector>
-#include <map>
-
-
-enum directions { LEFT, RIGHT, UP, DOWN };
+#include "Star Hornet.h"
 
 
 class Sprite
 {
 public:
-	Sprite(int width, int height, SDL_Renderer* ren);
+	Sprite();
+	Sprite(SDL_Rect rect);
 	~Sprite(void);
 
 	// Sprite position
@@ -21,6 +16,7 @@ public:
 	void movey(int delta);
 	int getX();
 	int getY();
+
 	// Sprite rotation ///////////////////////////////////////
 	void autoCenter();
 	void setCenter(SDL_Point centerPoint);
@@ -28,11 +24,13 @@ public:
 	void rotate(double deltaAngle);
 	void setAngle(double specificAngle);
 	double getAngle();
+
 	// Sprite scaling ////////////////////////////////////////
 	void changeScale(double deltaScaleX, double deltaScaleY);
 	void setScale(double specificScaleX, double specificScaleY);
 	double getScaleX();
 	double getScaleY();
+
 	// Sprite flipping ///////////////////////////////////////
 	void setFlip(SDL_RendererFlip flipType = SDL_FLIP_NONE);
 	SDL_RendererFlip getFlip();
@@ -48,12 +46,6 @@ public:
 
 	// show(string) cycles through all frames in the specified sequence, one per call
 	void show(std::string sequence);
-
-	// addFrameToSequence returns the number of frames in the sequence after the add
-	void addSoundToSequence(std::string seqName, Mix_Chunk soundChunk);
-
-	// play(string) plays the sound named by the parameter string
-	void play(std::string sound);
 
 
 // The private part of the class is given as a hint or suggestion.
@@ -77,9 +69,7 @@ private:
 	std::vector<frame> frames;
 
 	std::map<std::string, std::vector<int>> frameSequenceMap;
-	std::map<std::string, Mix_Chunk> soundSequenceMap;
+
 	int sequenceIndex;		// shared by all sequences; it would be better to have
 							// one for each sequence
-
-
 };

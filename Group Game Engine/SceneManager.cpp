@@ -1,10 +1,5 @@
+#include "Star Hornet.h"
 
-
-
-
-
-
-#include "SceneManager.h"
 
 SceneManager::SceneManager(int windowHeight, int windowLength) :windowHeight(windowHeight), windowLength(windowLength){
 	for (int i = 0; i < 3; i++){

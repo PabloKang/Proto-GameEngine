@@ -1,19 +1,26 @@
-#include "Sprite.h"
+#include "Star Hornet.h"
 
 
-// Sprite object constructor yo yo yo
-Sprite::Sprite(int w, int h, SDL_Renderer* ren)
+// Sprite object constructors
+Sprite::Sprite()
 {
-	renderer = ren;
-
-	spriteRect.h = h;
-	spriteRect.w = w;
-	spriteRect.x = 0;
-	spriteRect.y = 0;
+	SDL_Rect sRect;
+	sRect.h = 0;
+	sRect.w = 0;
+	sRect.x = 0;
+	sRect.y = 0;
+	Sprite(sRect);
+}
+Sprite::Sprite(SDL_Rect rect)
+{
+	spriteRect.h = rect.h;
+	spriteRect.w = rect.w;
+	spriteRect.x = rect.x;
+	spriteRect.y = rect.y;
 
 	sequenceIndex = 0;
-	center.x = w / 2.0;
-	center.y = h / 2.0;
+	center.x = rect.w / 2.0;
+	center.y = rect.h / 2.0;
 	angle = 0;
 	scaleX = 1;
 	scaleY = 1;
@@ -180,23 +187,4 @@ void Sprite::show(std::string sequence)
 		show(frameSequenceMap[sequence].at(sequenceIndex));
 		sequenceIndex++;
 	}
-}
-
-// addFrameToSequence returns the number of frames in the sequence after the add
-void Sprite::addSoundToSequence(std::string seqName, Mix_Chunk soundChunk)
-{
-	if (soundSequenceMap.find(seqName) == soundSequenceMap.end()) {
-		Mix_Chunk chunks;
-		soundSequenceMap.insert(std::pair<std::string, Mix_Chunk>(seqName, chunks));
-	}
-	soundSequenceMap[seqName].push_back(soundChunk);
-
-	return soundSequenceMap[seqName].size();
-
-}
-
-// play(string) plays the sound named by the parameter string
-void Sprite::play(std::string sound)
-{
-
 }
