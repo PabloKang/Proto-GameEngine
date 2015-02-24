@@ -38,7 +38,15 @@ SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren){
 }
 
 
-int main(int argc, char **argv){
+
+bool Engine::init()
+{
+
+}
+
+
+
+int Engine::exec(int argc, char **argv){
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		std::ostringstream debugMsg;
