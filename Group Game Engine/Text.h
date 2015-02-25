@@ -1,13 +1,12 @@
 #pragma once
-#include <iostream>
-#include <SDL.h>
-#include "SDL_ttf.h"
+
+#include "Star Hornet.h"
 
 
 class Text
 {
 public:
-	Text(SDL_Renderer* renderer, std::string fontName, int fontSize = 10, bool visible = true);
+	Text();
 	~Text();
 
 private:

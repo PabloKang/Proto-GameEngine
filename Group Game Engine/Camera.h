@@ -1,4 +1,7 @@
-#include "Scene.h"
+#pragma once
+
+#include "Star Hornet.h"
+
 
 class Camera{
 public:

@@ -1,8 +1,7 @@
-#include <iostream>
-#include <vector>
-//#include "SDL.h"
-//#include "Engine.h"
-#include "Scene.h"
+#pragma once
+
+#include "Star Hornet.h"
+
 
 class SceneManager{
 public:
