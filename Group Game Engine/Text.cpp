@@ -1,3 +1,5 @@
+#include "Star Hornet.h"
+
 #include <iostream>
 #include <sstream>
 #include <SDL.h>
@@ -54,7 +56,7 @@ void Text::write(std::string text)
 	int pos = 0;
 	pos = text.find_last_of("\n");
 	if (pos > 0)
-	{
+{
 		text.erase(pos);
 		nextY += 12;
 	}

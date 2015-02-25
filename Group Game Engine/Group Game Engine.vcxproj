@@ -72,19 +72,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="Star Hornet.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Resources.h" />
+    <ClInclude Include="Star Hornet.h" />
     <ClInclude Include="Text.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\Sprites\cloudy_starfield_bg.jpg" />
+    <Image Include="..\Resources\Sprites\explosion.png" />
+    <Image Include="..\Resources\Sprites\hornet_body.gif" />
+    <Image Include="..\Resources\Sprites\hornet_body_large.gif" />
+    <Image Include="..\Resources\Sprites\hornet_body_small.gif" />
+    <Image Include="..\Resources\Sprites\hornet_body_spritesheet.gif" />
+    <Image Include="..\Resources\Sprites\hornet_thrust_spritesheet.gif" />
+    <Image Include="..\Resources\Sprites\hornet_turret.gif" />
+    <Image Include="..\Resources\Sprites\hornet_turret_small.gif" />
+    <Image Include="..\Resources\Sprites\rocket.gif" />
+    <Image Include="..\Resources\Sprites\rocketLock.png" />
+    <Image Include="..\Resources\Sprites\rocket_spritesheet.gif" />
+    <Image Include="..\Resources\Sprites\rocket_trail.gif" />
+    <Image Include="..\Resources\Sprites\smoke.gif" />
+    <Image Include="..\Resources\Sprites\SpaceHolder.gif" />
+    <Image Include="..\Resources\Sprites\turret_bullet.gif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
