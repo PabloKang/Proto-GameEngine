@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #include "SceneManager.h"
 
 SceneManager::SceneManager(int windowHeight, int windowLength) :windowHeight(windowHeight), windowLength(windowLength){
