@@ -11,12 +11,14 @@ Sprite::Sprite()
 	sRect.y = 0;
 	Sprite(sRect);
 }
-Sprite::Sprite(SDL_Rect rect)
+Sprite::Sprite(SDL_Rect rect, SDL_Renderer* renderer)
 {
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
 	spriteRect.y = rect.y;
+
+	this->renderer = renderer;
 
 	sequenceIndex = 0;
 	center.x = rect.w / 2.0;
@@ -29,7 +31,7 @@ Sprite::Sprite(SDL_Rect rect)
 }
 
 
-void Sprite::setPos(int x, int y)
+void Sprite::setPos(double x, double y)
 {
 	spriteRect.x = x;
 	spriteRect.y = y;
@@ -38,12 +40,12 @@ void Sprite::setPos(int x, int y)
 
 
 // Sprite position functions
-void Sprite::movex(int delta)
+void Sprite::movex(double delta)
 {
 	spriteRect.x += delta;
 }
 
-void Sprite::movey(int delta)
+void Sprite::movey(double delta)
 {
 	spriteRect.y += delta;
 }
@@ -175,7 +177,7 @@ void Sprite::show(int frameIndex)
 
 
 // show(string) cycles through all frames in the specified sequence, one per call
-void Sprite::show(std::string sequence)
+void Sprite::show(std::string sequence, SDL_Renderer& renderer)
 {
 	if (sequence == "default"){
 		show(frameSequenceMap[sequence].at(facing));
@@ -184,7 +186,7 @@ void Sprite::show(std::string sequence)
 		if (sequenceIndex >= frameSequenceMap[sequence].size() - 1) {
 			sequenceIndex = 0;
 		}
-		show(frameSequenceMap[sequence].at(sequenceIndex));
+		show(frameSequenceMap[sequence].at(sequenceIndex), renderer);
 		sequenceIndex++;
 	}
 }

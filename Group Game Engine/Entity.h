@@ -12,17 +12,19 @@ public:
 
 	// Properties
 	SDL_Rect rect;
-	float speed;
+	//float speed;
 	float angle;
+	int health;
 
 	// Constructor/Destructor
-	Entity(int entityID, std::string entityType, int xPos = 0, int yPos = 0, int width = 0, int height = 0);
+	Entity(int entityID, std::string entityType, int health, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
+
 	~Entity();
 
 	// Primary Functions
 	void update();
-	void draw(SDL_Renderer& renderer);
-	void move(float move_x, float move_y, float angle);
+	void draw(std::string sequence);
+	void move(double move_x, double move_y, double angle);
 
 private:
 	Sprite sprite;
