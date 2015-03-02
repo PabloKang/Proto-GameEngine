@@ -1,6 +1,5 @@
-#include <iostream>
-#include <SDL.h>
-#include "Scene.h"
+#include "Star Hornet.h"
+
 
 /*Scene::Scene()
 {

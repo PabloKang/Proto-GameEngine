@@ -1,85 +1,60 @@
-#include <iostream>
-#include <sstream>
-#include <Windows.h>
-#include <SDL.h>
-#include "res_path.h"
-#include "cleanup.h"
-#include "SDL_image.h"
-#include "Sprite.h"
-
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 900;
+#include "Star Hornet.h"
 
 
-/**
-* Log an SDL error with some error message to the output stream of our choice
-* @param os The output stream to write the message to
-* @param msg The error message to write, format will be msg error: SDL_GetError()
-*/
-void logSDLError(std::ostream &os, const std::string &msg){
-	os << msg << " error: " << SDL_GetError() << std::endl;
-	std::ostringstream errMsg;
-	errMsg << " error: " << SDL_GetError() << std::endl;
-	OutputDebugString(errMsg.str().c_str());
+Engine::Engine(SDL_Window* win, SDL_Renderer *ren)
+{
+	window = win;
+	renderer = ren;
 }
 
-/**
-* Loads an image into a texture on the rendering device
-* @param file The image file to load
-* @param ren The renderer to load the texture onto
-* @return the loaded texture, or nullptr if something went wrong.
-*/
-SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren){
-	SDL_Texture *texture = IMG_LoadTexture(ren, file.c_str());
-	if (texture == nullptr){
-		logSDLError(std::cout, "LoadTexture");
-	}
-	return texture;
+Engine::~Engine() {}
+
+
+bool Engine::init()
+{
+
+
+	return true;
 }
 
 
-int main(int argc, char **argv){
 
+int Engine::exec(){
+
+	// TODO - All initialization code below needs to be moved to the init() function
+	//        so that any failed initialization exits the game in the Star Hornet.cpp launcher.
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		std::ostringstream debugMsg;
 		debugMsg << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		OutputDebugString(debugMsg.str().c_str());
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		return 1;
+		return false;
 	}
 
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
 		logSDLError(std::cout, "IMG_Init");
 		SDL_Quit();
-		return 1;
+		return false;
 	}
 
-	////Initialize SDL
-	//if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
-	//{
-	//	logSDLError(std::cout, "VIDEO/AUDIO_Init");
-	//	SDL_Quit();
-	//	return 1;
-	//}
-
-	SDL_Window *window = SDL_CreateWindow("Sprite Demo", 800, 100, SCREEN_WIDTH,
-		SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == nullptr){
 		logSDLError(std::cout, "CreateWindow");
 		SDL_Quit();
-		return 1;
+		return false;
 	}
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
 	if (renderer == nullptr){
 		logSDLError(std::cout, "CreateRenderer");
 		cleanup(window);
 		SDL_Quit();
-		return 1;
+		return false;
 	}
 
-	const std::string resPath = getResourcePath("SpriteDemo");
+	resPath = getResourcePath("SpriteDemo");
 
+
+	// TODO - All texture loading below needs to be done by the init function of the
+	//        SpriteManager.  All code before game While needs to be changed.
 	// Load texture for background
 	SDL_Texture *background = loadTexture(resPath + "castle.png", renderer);
 	if (background == nullptr){

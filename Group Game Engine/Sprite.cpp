@@ -1,19 +1,26 @@
-#include "Sprite.h"
+#include "Star Hornet.h"
 
 
-// Sprite object constructor yo yo yo
-Sprite::Sprite(int w, int h, SDL_Renderer* ren)
+// Sprite object constructors
+Sprite::Sprite()
 {
-	renderer = ren;
-
-	spriteRect.h = h;
-	spriteRect.w = w;
-	spriteRect.x = 0;
-	spriteRect.y = 0;
+	SDL_Rect sRect;
+	sRect.h = 0;
+	sRect.w = 0;
+	sRect.x = 0;
+	sRect.y = 0;
+	Sprite(sRect);
+}
+Sprite::Sprite(SDL_Rect rect)
+{
+	spriteRect.h = rect.h;
+	spriteRect.w = rect.w;
+	spriteRect.x = rect.x;
+	spriteRect.y = rect.y;
 
 	sequenceIndex = 0;
-	center.x = w / 2.0;
-	center.y = h / 2.0;
+	center.x = rect.w / 2.0;
+	center.y = rect.h / 2.0;
 	angle = 0;
 	scaleX = 1;
 	scaleY = 1;
