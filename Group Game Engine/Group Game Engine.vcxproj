@@ -77,6 +77,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Resources.cpp" />
@@ -89,6 +91,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Resources.h" />
