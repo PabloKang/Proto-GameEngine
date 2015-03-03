@@ -8,15 +8,18 @@ public:
 	SpriteManager();
 	~SpriteManager();
 
-	Sprite getSprite(std::string type);
+	//returns the number index it is added on map
+	int add_texture(std::string name, SDL_Texture* texture);
 
-	void update_all();
+	SDL_Texture* get_texture(std::string type);
+
+
 
 
 private:
 	SDL_Renderer* renderer;
 	int numberofsprites;
-	std::map<std::string, Sprite>; //types of sprite : Sprite class
+	std::map<std::string, SDL_Texture*> TextureMap; //types of sprite : Sprite class . /// Map of textures
 
 
 
