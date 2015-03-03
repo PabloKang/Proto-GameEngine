@@ -14,6 +14,9 @@ public:
 	SDL_Rect rect;
 	float speed;
 	float angle;
+	int curHealth;
+	int maxHealth;
+	bool visible;
 
 	// Constructor/Destructor
 	Entity(int entityID, std::string entityType, int xPos = 0, int yPos = 0, int width = 0, int height = 0);
