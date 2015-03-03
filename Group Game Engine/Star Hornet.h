@@ -29,6 +29,11 @@
 
 enum directions { LEFT, RIGHT, UP, DOWN };
 
+struct Hardware {
+public:
+	SDL_Renderer renderer;
+};
+
 
 /**
 * Log an SDL error with some error message to the output stream of our choice

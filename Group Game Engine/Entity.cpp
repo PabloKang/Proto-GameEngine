@@ -1,19 +1,46 @@
 #include "Star Hornet.h"
 
 
-Entity::Entity(int entityID, std::string entityType, int health, double xPos, double yPos, double width, double height)//Sprite sprite;
+Entity::Entity()
+{
+}
+
+
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, double xPos, double yPos, double width, double height)//Sprite sprite;
 {
 	id = entityID;
 	type = entityType;
-	this->health = health;
+
+	spritesheet = sprsht;
+
 	rect.h = height;
 	rect.w = width;
 	rect.x = xPos;
 	rect.y = yPos;
 
-	this->sprite = //globalspritemap[entityType]; preloaded spritemap of all sprites we needed so we don't have to reload
-					//and make the frames all over again for each individual entity
-					//or this->sprite = sprite;
+	//globalspritemap[entityType]; preloaded spritemap of all sprites we needed so we don't have to reload
+	//and make the frames all over again for each individual entity
+	//or this->sprite = sprite;
+	sprite = Sprite(rect, ren);
+}
+
+
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, SDL_Rect info)//Sprite sprite;
+{
+	id = entityID;
+	type = entityType;
+
+	spritesheet = sprsht;
+
+	rect.h = info.h;
+	rect.w = info.w;
+	rect.x = info.x;
+	rect.y = info.y;
+
+	//globalspritemap[entityType]; preloaded spritemap of all sprites we needed so we don't have to reload
+	//and make the frames all over again for each individual entity
+	//or this->sprite = sprite;
+	sprite = Sprite(info, ren);
 }
 
 
@@ -26,10 +53,6 @@ void Entity::draw(std::string sequence){
 }
 
 void Entity::update(){
-	//send out message to messenger accordingly ex. to pop it from the entity list
-	if (health <= 0){
-
-	}
 	//CheckPosition
 	if (rect.x < 0 || //scene x boundary
 		rect.x + rect.w > 300 //scene x2 boundary
@@ -46,7 +69,7 @@ void Entity::update(){
 }
 
 void Entity::move(double move_x, double move_y, double angle){
-	sprite.movex(move_x);
-	sprite.movey(move_y);
+	sprite.movex(move_x * speed);
+	sprite.movey(move_y * speed);
 	sprite.rotate(angle);
 }
