@@ -7,13 +7,13 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(SDL_Rect rect);
+	Sprite(SDL_Rect rect, SDL_Renderer* renderer);
 	~Sprite(void);
 
 	// Sprite position
-	void setPos(int x, int y);
-	void movex(int delta);
-	void movey(int delta);
+	void setPos(double x, double y);
+	void movex(double delta);
+	void movey(double delta);
 	int getX();
 	int getY();
 
@@ -63,8 +63,8 @@ private:
 	struct frame
 	{
 		SDL_Texture* texture;
-		int x;
-		int y;
+		double x;
+		double y;
 	};
 	std::vector<frame> frames;
 

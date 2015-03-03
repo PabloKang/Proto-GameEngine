@@ -6,6 +6,8 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <queue>
+#include <string>
 #include <SDL.h>
 
 // SDL includes
@@ -24,9 +26,16 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "Entity.h"
-
+#include "MessageManager.h"
+#include "Message.h"
+#include "SpriteManager.h"
 
 enum directions { LEFT, RIGHT, UP, DOWN };
+
+struct Hardware {
+public:
+	SDL_Renderer renderer;
+};
 
 
 /**

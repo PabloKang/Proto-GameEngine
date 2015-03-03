@@ -11,12 +11,14 @@ Sprite::Sprite()
 	sRect.y = 0;
 	Sprite(sRect);
 }
-Sprite::Sprite(SDL_Rect rect)
+Sprite::Sprite(SDL_Rect rect, SDL_Renderer* ren)
 {
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
 	spriteRect.y = rect.y;
+
+	renderer = ren;
 
 	sequenceIndex = 0;
 	center.x = rect.w / 2.0;
@@ -29,7 +31,7 @@ Sprite::Sprite(SDL_Rect rect)
 }
 
 
-void Sprite::setPos(int x, int y)
+void Sprite::setPos(double x, double y)
 {
 	spriteRect.x = x;
 	spriteRect.y = y;
@@ -38,12 +40,12 @@ void Sprite::setPos(int x, int y)
 
 
 // Sprite position functions
-void Sprite::movex(int delta)
+void Sprite::movex(double delta)
 {
 	spriteRect.x += delta;
 }
 
-void Sprite::movey(int delta)
+void Sprite::movey(double delta)
 {
 	spriteRect.y += delta;
 }
