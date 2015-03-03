@@ -28,7 +28,7 @@ void Entity::draw(std::string sequence){
 void Entity::update(){
 	//send out message to messenger accordingly ex. to pop it from the entity list
 	if (health <= 0){
-
+		
 	}
 	//CheckPosition
 	if (rect.x < 0 || //scene x boundary
