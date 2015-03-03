@@ -7,15 +7,16 @@ class MessageManager
 public:
 
 	// Engine Constructors
-	MessageManager(Message *messages);
+	MessageManager();
 	~MessageManager();
 
-	Message getMessage(Scene item);
+	int getTopMessage();
 
 	// Engine Functions
-	void interpret_all(int *message_ids);
+	void interpret_all();
 
-private:
-	Message * messages;
-	int *message_ids;
+	// returns message that was sent for debugging purposes
+	Message send_to(Message message, std::queue<Message> class_queue);
+
+	std::priority_queue<Message> messages;
 };

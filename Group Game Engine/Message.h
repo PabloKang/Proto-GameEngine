@@ -8,9 +8,10 @@ public:
 	Message(int message_id);
 	~Message();
 
-	// Used in interpret_all
-	int interpret();
-private:
+	// Used in interpret_all this will send_to the priority queue in the manager
+	int interpret(MessageManager main_queue);
+
 	int message_id;
+
 };
 

@@ -5,8 +5,8 @@ Message::Message(int message_id)
 {
 }
 
-int Message::interpret()
+int Message::interpret(MessageManager main_queue)
 {
-	return this->message_id;
+	main_queue.messages.push(*this);
 }
 

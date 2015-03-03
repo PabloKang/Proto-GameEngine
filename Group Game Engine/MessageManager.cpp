@@ -1,18 +1,30 @@
 #include "Star Hornet.h"
 
 
-MessageManager::MessageManager(Message *message)
+MessageManager::MessageManager()
 {
-	messages = message;
 }
 
-Message MessageManager::getMessage(Scene item)
+int MessageManager::getTopMessage()
 {
-	return this->messages[0];
+	return messages.top().message_id;
+}
+
+
+Message MessageManager::send_to(Message message, std::queue<Message> class_queue)
+{
+	class_queue.push(message);
 }
 
 // Engine Functions
-void MessageManager::interpret_all(int *message_ids)
+void MessageManager::interpret_all()
 {
-
+	std::queue<Message> queue_from_class;
+	while (!messages.empty())
+	{
+		if (messages.top().message_id == 1010101){
+			send_to(messages.top(), queue_from_class);
+		}
+		messages.pop();
+	}
 }
