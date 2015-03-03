@@ -74,11 +74,13 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Resources.cpp" />

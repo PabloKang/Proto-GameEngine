@@ -5,10 +5,9 @@
 class MessageManager
 {
 public:
-	std::string resPath;
 
 	// Engine Constructors
-	MessageManager(SceneManager scenes);
+	MessageManager(Message *messages);
 	~MessageManager();
 
 	Message getMessage(Scene item);
@@ -17,5 +16,6 @@ public:
 	void interpret_all(int *message_ids);
 
 private:
-	SceneManager scenes;
+	Message * messages;
+	int *message_ids;
 };
