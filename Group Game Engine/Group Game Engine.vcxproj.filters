@@ -104,7 +104,11 @@
     <ClInclude Include="Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="SpriteManager.h">
+=======
     <ClInclude Include="Ship.h">
+>>>>>>> 34e872a90141bbb233c74a79e016687d2046e78f
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
