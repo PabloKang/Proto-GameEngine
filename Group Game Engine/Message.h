@@ -9,6 +9,8 @@ public:
 	~Message();
 
 	// Used in interpret_all
-	int interpret(int message_id);
+	int interpret();
+private:
+	int message_id;
 };
 
