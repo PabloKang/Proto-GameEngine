@@ -24,7 +24,8 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "Entity.h"
-
+#include "MessageManager.h"
+#include "Message.h"
 
 enum directions { LEFT, RIGHT, UP, DOWN };
 
