@@ -6,6 +6,8 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <queue>
+#include <string>
 #include <SDL.h>
 
 // SDL includes
@@ -28,6 +30,11 @@
 #include "Message.h"
 
 enum directions { LEFT, RIGHT, UP, DOWN };
+
+struct Hardware {
+public:
+	SDL_Renderer renderer;
+};
 
 
 /**

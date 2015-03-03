@@ -11,14 +11,14 @@ Sprite::Sprite()
 	sRect.y = 0;
 	Sprite(sRect);
 }
-Sprite::Sprite(SDL_Rect rect, SDL_Renderer* renderer)
+Sprite::Sprite(SDL_Rect rect, SDL_Renderer* ren)
 {
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
 	spriteRect.y = rect.y;
 
-	this->renderer = renderer;
+	renderer = ren;
 
 	sequenceIndex = 0;
 	center.x = rect.w / 2.0;
@@ -177,7 +177,7 @@ void Sprite::show(int frameIndex)
 
 
 // show(string) cycles through all frames in the specified sequence, one per call
-void Sprite::show(std::string sequence, SDL_Renderer& renderer)
+void Sprite::show(std::string sequence)
 {
 	if (sequence == "default"){
 		show(frameSequenceMap[sequence].at(facing));
@@ -186,7 +186,7 @@ void Sprite::show(std::string sequence, SDL_Renderer& renderer)
 		if (sequenceIndex >= frameSequenceMap[sequence].size() - 1) {
 			sequenceIndex = 0;
 		}
-		show(frameSequenceMap[sequence].at(sequenceIndex), renderer);
+		show(frameSequenceMap[sequence].at(sequenceIndex));
 		sequenceIndex++;
 	}
 }
