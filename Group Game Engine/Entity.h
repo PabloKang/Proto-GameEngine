@@ -11,18 +11,22 @@ public:
 	std::string type;
 
 	// Properties
+	SDL_Texture* spritesheet;
 	SDL_Rect rect;
-	//float speed;
+	bool alive = true;
+	float speed;
 	float angle;
-	int health;
 
 	// Constructor/Destructor
-	Entity(int entityID, std::string entityType, int health, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
+	Entity();
+	Entity(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
+	Entity(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, SDL_Rect info);
 
 	~Entity();
 
 	// Primary Functions
 	void update();
+	bool isAlive();
 	void draw(std::string sequence);
 	void move(double move_x, double move_y, double angle);
 

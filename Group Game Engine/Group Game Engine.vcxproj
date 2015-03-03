@@ -74,15 +74,17 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
-    <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Star Hornet.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
@@ -93,6 +95,7 @@
     <ClInclude Include="MessageManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Ship.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SoundPlayer.h" />

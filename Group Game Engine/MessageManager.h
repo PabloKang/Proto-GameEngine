@@ -5,17 +5,18 @@
 class MessageManager
 {
 public:
-	std::string resPath;
 
 	// Engine Constructors
-	MessageManager(SceneManager scenes);
+	MessageManager();
 	~MessageManager();
 
-	Message getMessage(Scene item);
+	int getTopMessage();
 
 	// Engine Functions
-	void interpret_all(int *message_ids);
+	void interpret_all();
 
-private:
-	SceneManager scenes;
+	// returns message that was sent for debugging purposes
+	Message send_to(Message message, std::queue<Message> class_queue);
+
+	std::priority_queue<Message> messages;
 };
