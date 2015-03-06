@@ -1,12 +1,13 @@
 #include "Star Hornet.h"
 #include "Message.h"
 
-Message::Message(int message_id)
+Message::Message(int message_id, int time_send)
+: time_to_send{ time_send }
 {
 }
 
-int Message::interpret()
+int Message::interpret(MessageManager main_queue)
 {
-	return this->message_id;
+	main_queue.messages.push(*this);
 }
 

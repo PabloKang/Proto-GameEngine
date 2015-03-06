@@ -19,11 +19,12 @@ Entity::Entity()
 }
 
 
-Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, double xPos, double yPos, double width, double height)//Sprite sprite;
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, double xPos, double yPos, double width, double height)//Sprite sprite;
 {
 	id = entityID;
 	type = entityType;
-
+	this->visible = visible;
+	this->collide = collide;
 	spritesheet = sprsht;
 
 	rect.h = height;
@@ -79,6 +80,10 @@ void Entity::update(){
 	{
 		//rotate or flip accordingly if we want it to stay in the scene or make it stop in the next scene
 	}
+}
+
+bool Entity::isAlive(){
+	return alive;
 }
 
 void Entity::move(double move_x, double move_y, double angle){

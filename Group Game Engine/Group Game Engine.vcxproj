@@ -82,10 +82,10 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
-    <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Star Hornet.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
@@ -104,6 +104,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Star Hornet.h" />
     <ClInclude Include="Text.h" />
   </ItemGroup>

@@ -8,6 +8,8 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <queue>
+#include <string>
 #include <SDL.h>
 
 // SDL includes
