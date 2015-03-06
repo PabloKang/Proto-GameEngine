@@ -1,5 +1,9 @@
-#pragma once
-#include "SDL_mixer.h"
+#ifndef SOUNDPLAYER_H
+#define SOUNDPLAYER_H
+
+#include "Star Hornet.h"
+
+
 class SoundPlayer
 {
 public:
@@ -26,3 +30,5 @@ private:
 
 
 };
+
+#endif

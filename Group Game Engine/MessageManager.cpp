@@ -1,5 +1,6 @@
 #include "Star Hornet.h"
-
+#include "MessageManager.h"
+#include "Message.h"
 
 MessageManager::MessageManager(Message *message)
 {

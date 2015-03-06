@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MESSAGE_H
+#define MESSAGE_H
 
 #include "Star Hornet.h"
 
@@ -14,3 +15,4 @@ private:
 	int message_id;
 };
 
+#endif

@@ -1,5 +1,5 @@
 #include "Star Hornet.h"
-
+#include "Sprite.h"
 
 // Sprite object constructors
 Sprite::Sprite()

@@ -1,12 +1,25 @@
 #include "Star Hornet.h"
-
+#include "Entity.h"
+#include "Engine.h"
 
 Entity::Entity()
 {
+	id = -1;
+	type = "null";
+
+	rect.h = 0;
+	rect.w = 0;
+	rect.x = 0;
+	rect.y = 0;
+
+	speed = 0;
+	angle = 0;
+
+	sprite = Sprite(rect, hardware.renderer);
 }
 
 
-Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, double xPos, double yPos, double width, double height)//Sprite sprite;
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, double xPos, double yPos, double width, double height)//Sprite sprite;
 {
 	id = entityID;
 	type = entityType;
@@ -18,14 +31,14 @@ Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Re
 	rect.x = xPos;
 	rect.y = yPos;
 
-	//globalspritemap[entityType]; preloaded spritemap of all sprites we needed so we don't have to reload
-	//and make the frames all over again for each individual entity
-	//or this->sprite = sprite;
-	sprite = Sprite(rect, ren);
+	speed = 0;
+	angle = 0;
+
+	sprite = Sprite(rect, hardware.renderer);
 }
 
 
-Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, SDL_Rect info)//Sprite sprite;
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Rect info)//Sprite sprite;
 {
 	id = entityID;
 	type = entityType;
@@ -37,10 +50,10 @@ Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Re
 	rect.x = info.x;
 	rect.y = info.y;
 
-	//globalspritemap[entityType]; preloaded spritemap of all sprites we needed so we don't have to reload
-	//and make the frames all over again for each individual entity
-	//or this->sprite = sprite;
-	sprite = Sprite(info, ren);
+	speed = 0;
+	angle = 0;
+
+	sprite = Sprite(info, hardware.renderer);
 }
 
 

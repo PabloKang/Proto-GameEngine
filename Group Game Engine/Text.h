@@ -1,9 +1,5 @@
-#pragma once
-
-#include <iostream>
-#include <SDL.h>
-#include "SDL_ttf.h"
-
+#ifndef TEXT_H
+#define TEXT_H
 
 #include "Star Hornet.h"
 
@@ -36,3 +32,5 @@ private:
 	void yikes(const std::string &message); // for error conditions
 
 };
+
+#endif

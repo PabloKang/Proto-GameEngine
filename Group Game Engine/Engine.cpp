@@ -1,10 +1,11 @@
 #include "Star Hornet.h"
-
+#include "Engine.h"
+#include "Ship.h"
 
 Engine::Engine(SDL_Window* win, SDL_Renderer *ren)
 {
-	window = win;
-	renderer = ren;
+	hardware.window = win;
+	hardware.renderer = ren;
 }
 
 Engine::~Engine() {}
@@ -12,17 +13,8 @@ Engine::~Engine() {}
 
 bool Engine::init()
 {
+	resPath = getResourcePath("Group Game Engine");
 
-
-	return true;
-}
-
-
-
-int Engine::exec(){
-
-	// TODO - All initialization code below needs to be moved to the init() function
-	//        so that any failed initialization exits the game in the Star Hornet.cpp launcher.
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		std::ostringstream debugMsg;
 		debugMsg << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -37,88 +29,26 @@ int Engine::exec(){
 		return false;
 	}
 
-	if (window == nullptr){
+	if (hardware.window == nullptr){
 		logSDLError(std::cout, "CreateWindow");
 		SDL_Quit();
 		return false;
 	}
 
-	if (renderer == nullptr){
+	if (hardware.renderer == nullptr){
 		logSDLError(std::cout, "CreateRenderer");
-		cleanup(window);
+		cleanup(hardware.window);
 		SDL_Quit();
 		return false;
 	}
 
-	resPath = getResourcePath("SpriteDemo");
+	return true;
+}
 
 
-	// TODO - All texture loading below needs to be done by the init function of the
-	//        SpriteManager.  All code before game While needs to be changed.
-	// Load texture for background
-	SDL_Texture *background = loadTexture(resPath + "castle.png", renderer);
-	if (background == nullptr){
-		cleanup(background, renderer, window);
-		IMG_Quit();
-		SDL_Quit();
-		return 1;
-	}
 
-	Sprite* spriteBG = new Sprite(SCREEN_WIDTH, SCREEN_HEIGHT, renderer);
-	spriteBG->setPos(0,0);
-	spriteBG->setScale(1.1, 1.1);
-	int bgFrame = spriteBG->makeFrame(background, 0, 0);
-
-	// Load spritesheet texture for player sprite
-	SDL_Texture *spritesheet = loadTexture(resPath + "link.png", renderer);
-	if (spritesheet == nullptr){
-		cleanup(spritesheet, renderer, window);
-		IMG_Quit();
-		SDL_Quit();
-		return 1;
-	}
-
-	// Create the player sprite
-	Sprite* sprite1 = new Sprite(90, 90, renderer);
-
-	// Add frames into sprite1
-	sprite1->addFrameToSequence("default", sprite1->makeFrame(spritesheet, 0, 0));	// Default left
-	sprite1->addFrameToSequence("default", sprite1->makeFrame(spritesheet, 0, 90));	// Default right
-	sprite1->addFrameToSequence("default", sprite1->makeFrame(spritesheet, 0, 180));// Default up
-	sprite1->addFrameToSequence("default", sprite1->makeFrame(spritesheet, 0, 270));// Default down
-
-	sprite1->addFrameToSequence("walk left", sprite1->makeFrame(spritesheet, 90, 0));
-	sprite1->addFrameToSequence("walk left", sprite1->makeFrame(spritesheet, 180, 0));
-	sprite1->addFrameToSequence("walk left", sprite1->makeFrame(spritesheet, 270, 0));
-	sprite1->addFrameToSequence("walk left", sprite1->makeFrame(spritesheet, 360, 0));
-
-	sprite1->addFrameToSequence("walk right", sprite1->makeFrame(spritesheet, 90, 90));
-	sprite1->addFrameToSequence("walk right", sprite1->makeFrame(spritesheet, 180, 90));
-	sprite1->addFrameToSequence("walk right", sprite1->makeFrame(spritesheet, 270, 90));
-	sprite1->addFrameToSequence("walk right", sprite1->makeFrame(spritesheet, 360, 90));
-
-	sprite1->addFrameToSequence("walk up", sprite1->makeFrame(spritesheet, 90, 180));
-	sprite1->addFrameToSequence("walk up", sprite1->makeFrame(spritesheet, 180, 180));
-	sprite1->addFrameToSequence("walk up", sprite1->makeFrame(spritesheet, 270, 180));
-	sprite1->addFrameToSequence("walk up", sprite1->makeFrame(spritesheet, 360, 180));
-
-	sprite1->addFrameToSequence("walk down", sprite1->makeFrame(spritesheet, 90, 270));
-	sprite1->addFrameToSequence("walk down", sprite1->makeFrame(spritesheet, 180, 270));
-	sprite1->addFrameToSequence("walk down", sprite1->makeFrame(spritesheet, 270, 270));
-	sprite1->addFrameToSequence("walk down", sprite1->makeFrame(spritesheet, 360, 270));
-
-	// Load sound files
-	Mix_Chunk *walkingSound = NULL;
-	walkingSound = Mix_LoadWAV("21_sound_effects_and_music/scratch.wav");
-	if (walkingSound == NULL)
-	{
-		printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-	}
-
-
-	int x = SCREEN_WIDTH / 2 ;
-	int y = SCREEN_HEIGHT / 2;
-	sprite1->setPos(x, y);
+int Engine::exec()
+{
 
 	SDL_Event e;
 	bool quit = false;
@@ -128,6 +58,8 @@ int Engine::exec(){
 	// MAIN GAME LOOP -----------------------------------------
 	while (!quit){
 
+		Ship player = Ship();
+
 		// Poll all events in event queue
 		while (SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT){
@@ -135,83 +67,18 @@ int Engine::exec(){
 			}
 			// Check all one-time keypress events
 			if (e.type == SDL_KEYDOWN){
-				if (e.key.keysym.sym == SDLK_ESCAPE)
-				{
+				if (e.key.keysym.sym == SDLK_ESCAPE){
 					quit = true;
 				}
-				if (e.key.keysym.sym == SDLK_r)
-				{
-					sprite1->setAngle(0.0);
-				}
-				if (e.key.keysym.sym == SDLK_KP_1)
-				{
-					sprite1->setScale(1.0, 1.0);
-				}
-			}
-			if (e.type == SDL_KEYUP){
-				spriteFrameSequence = "default";
 			}
 		}
-
-		// Continuous-response (held down) keys
-		if (currentKeyStates[SDL_SCANCODE_A])
-		{
-			sprite1->movex(-4);
-			spriteFrameSequence = "walk left";
-			Mix_PlayChannel(-1, walkingSound, 0);
-		}
-		if (currentKeyStates[SDL_SCANCODE_D])
-		{
-			sprite1->movex(4);
-			spriteFrameSequence = "walk right";
-		}
-		if (currentKeyStates[SDL_SCANCODE_W])
-		{
-			sprite1->movey(-4);
-			spriteFrameSequence = "walk up";
-		}
-		if (currentKeyStates[SDL_SCANCODE_S])
-		{
-			sprite1->movey(4);
-			spriteFrameSequence = "walk down";
-		}
-		// Rotating
-		if (currentKeyStates[SDL_SCANCODE_Q])
-		{
-			sprite1->rotate(-5);
-		}
-		if (currentKeyStates[SDL_SCANCODE_E])
-		{
-			sprite1->rotate(5);
-		}
-		// Scaling
-		if (currentKeyStates[SDL_SCANCODE_LEFT])
-		{
-			sprite1->changeScale(-0.05, 0.00);
-		}
-		if (currentKeyStates[SDL_SCANCODE_RIGHT])
-		{
-			sprite1->changeScale(0.05, 0.00);
-		}
-		if (currentKeyStates[SDL_SCANCODE_UP])
-		{
-			sprite1->changeScale(0.00, 0.05);
-		}
-		if (currentKeyStates[SDL_SCANCODE_DOWN])
-		{
-			sprite1->changeScale(0.00, -0.05);
-		}
-
 
 		//Render the scene
-		SDL_RenderClear(renderer);
-		spriteBG->show(bgFrame);
-		sprite1->show(spriteFrameSequence.c_str());
-		SDL_RenderPresent(renderer);
+		SDL_RenderClear(hardware.renderer);
+		SDL_RenderPresent(hardware.renderer);
 	}
 
-	cleanup(background, spritesheet, renderer, window);
-	Mix_FreeChunk(walkingSound);
+	cleanup(hardware.renderer, hardware.window);
 	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();

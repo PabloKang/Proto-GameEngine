@@ -1,9 +1,23 @@
+#include "Star Hornet.h"
 #include "Ship.h"
+#include "Entity.h"
 
 
-Ship::Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, double xPos = 0, double yPos = 0, double width = 0, double height = 0)
+Ship::Ship()
 {
-	Entity(entityID, entityType, sprtsht, ren, xPos, yPos, width, height);
+	Entity();
+	curHealth = 100;
+	maxHealth = 100;
+
+	maxBoost = 100;
+	curBoost = 0;
+	boostTime = 0;
+}
+
+
+Ship::Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, double xPos, double yPos, double width, double height)
+{
+	Entity(entityID, entityType, sprtsht, xPos, yPos, width, height);
 
 	curHealth = 100;
 	maxHealth = 100;
@@ -14,9 +28,16 @@ Ship::Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Rende
 }
 
 
-Ship::Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, SDL_Rect info)
+Ship::Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Rect info)
 {
-	Entity(entityID, entityType, sprtsht, ren, info);
+	Entity(entityID, entityType, sprtsht, info);
+
+	curHealth = 100;
+	maxHealth = 100;
+
+	maxBoost = 100;
+	curBoost = 0;
+	boostTime = 0;
 }
 
 
@@ -28,37 +49,6 @@ Ship::~Ship()
 // Primary Functions
 void Ship::update()
 {
+	// Get movement input
 	control();
-}
-
-
-void Ship::control()
-{
-	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-	// Forward momentum
-	if (currentKeyStates[SDL_SCANCODE_W]){
-		speed += 5;
-	}
-	if (currentKeyStates[SDL_SCANCODE_S]){
-		speed -= 5;
-	}
-	// Rotating
-	if (currentKeyStates[SDL_SCANCODE_A]){
-		angle++;
-	}
-	if (currentKeyStates[SDL_SCANCODE_D]){
-		angle--;
-	}
-	// Boosting
-	if (currentKeyStates[SDL_SCANCODE_Q] && boostTime >= 50 && curBoost > -8){
-		curBoost = curBoost - 12;
-		boostTime -= 55;
-	}
-	else if (curBoost < 0) { curBoost = curBoost + 0.25f; }
-	if (currentKeyStates[SDL_SCANCODE_E] && boostTime >= 50 && curBoost > -8){
-		curBoost = curBoost + 12;
-		boostTime -= 55;
-	}
-	else if (curBoost > 0) { curBoost = curBoost - 0.25f; }
-	if (boostTime < maxBoost) boostTime += 0.2f;
 }

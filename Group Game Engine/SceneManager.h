@@ -1,7 +1,8 @@
-#pragma once
+#ifndef SCENEMANAGER_H
+#define SCENEMANAGER_H
 
 #include "Star Hornet.h"
-
+#include "Scene.h"
 
 class SceneManager{
 public:
@@ -18,6 +19,7 @@ private:
 	int windowLength;
 	int mapHeight; //windowHeight * 3
 	int mapLength; //windowLength * 3
-	int scenes[3][3];
+	Scene scenes[3][3];
 };
 
+#endif

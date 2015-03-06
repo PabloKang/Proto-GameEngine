@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
 
 #include "Star Hornet.h"
 
@@ -73,3 +74,5 @@ private:
 	int sequenceIndex;		// shared by all sequences; it would be better to have
 							// one for each sequence
 };
+
+#endif

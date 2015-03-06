@@ -1,7 +1,9 @@
-#pragma once
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include "Star Hornet.h"
-
+#include "Entity.h"
+#include "Scene.h"
 
 class Camera{
 public:
@@ -16,3 +18,5 @@ private:
 	std::pair<int, int> sceneIndex;
 	Scene currentScene;
 };
+
+#endif

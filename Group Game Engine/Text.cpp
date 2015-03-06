@@ -1,10 +1,4 @@
 #include "Star Hornet.h"
-
-#include <iostream>
-#include <sstream>
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
 #include "Text.h"
 
 

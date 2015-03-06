@@ -1,8 +1,5 @@
 #include "Star Hornet.h"
-
-
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 900;
+#include "Engine.h"
 
 
 int main(int argc, char **argv)

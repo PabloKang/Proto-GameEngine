@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RESOURCES_H
+#define RESOURCES_H
 
 #include "Star Hornet.h"
 
@@ -19,3 +20,4 @@ private:
 
 };
 
+#endif

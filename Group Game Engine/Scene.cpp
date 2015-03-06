@@ -1,25 +1,29 @@
 #include "Star Hornet.h"
+#include "Scene.h"
+#include "Entity.h"
 
 
-/*Scene::Scene()
+Scene::Scene()
 {
-std::vector<Entity>
-}
-don't need this?*/
 
-Scene::Scene(std::vector<Entity> entity)//constructor assuming that there's a preexists vector of entities. 
+}
+
+//constructor assuming that there's a preexists vector of entities. 
+Scene::Scene(std::vector<Entity> entity)
 {
 	std::copy(entity.begin(), entity.end(), entities.begin());
 }
 
-int Scene::getSize()//get the amount of entities in the scene. not sure if his is needed. 
+//get the amount of entities in the scene. not sure if his is needed. 
+int Scene::getSize()
 {
 	return entities.size();
 }
 
-void Scene::addEntity(Entity entity)//adds on entities onto the scene. 
+//adds on entities onto the scene. 
+void Scene::addEntity(Entity entity)
 {
-	entities.push_back(entity);
+	entities.insert(entity.id, entity);
 }
 
 

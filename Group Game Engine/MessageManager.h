@@ -1,6 +1,9 @@
-#pragma once
+#ifndef MESSAGEMANAGER_H
+#define MESSAGEMANAGER_H
 
 #include "Star Hornet.h"
+#include "Message.h"
+#include "Scene.h"
 
 class MessageManager
 {
@@ -19,3 +22,5 @@ private:
 	Message * messages;
 	int *message_ids;
 };
+
+#endif

@@ -1,11 +1,17 @@
-#pragma once
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include "Star Hornet.h"
 
+// GAME HARDWARE
+struct Hardware 
+{
+public:
+	SDL_Window *window;
+	SDL_Renderer* renderer;
+};
 
-// GAME WINDOW AND RENDERER
-SDL_Window* window;
-SDL_Renderer *renderer;
+Hardware hardware;
 
 
 class Engine
@@ -24,3 +30,5 @@ public:
 	bool	init();
 	int		exec();
 };
+
+#endif
