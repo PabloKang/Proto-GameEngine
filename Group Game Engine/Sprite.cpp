@@ -4,16 +4,17 @@
 // Sprite object constructors
 Sprite::Sprite()
 {
-	SDL_Rect sRect;
-	sRect.h = 0;
-	sRect.w = 0;
-	sRect.x = 0;
-	sRect.y = 0;
-
-	Sprite(NULL, sRect);
+	sequenceIndex = 0;
+	angle = 0;
+	scaleX = 1;
+	scaleY = 1;
+	flip = SDL_FLIP_NONE;
+	facing = DOWN;
 }
-Sprite::Sprite(Hardware* hrd, SDL_Rect rect)
+Sprite::Sprite(Hardware* hrd, SDL_Rect rect, int lvl)
 {
+	Sprite();
+
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
@@ -21,14 +22,10 @@ Sprite::Sprite(Hardware* hrd, SDL_Rect rect)
 
 	hardware = hrd;
 
-	sequenceIndex = 0;
 	center.x = rect.w / 2.0;
 	center.y = rect.h / 2.0;
-	angle = 0;
-	scaleX = 1;
-	scaleY = 1;
-	flip = SDL_FLIP_NONE;
-	facing = DOWN;
+
+	layer = lvl;
 }
 
 
