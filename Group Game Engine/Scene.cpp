@@ -9,13 +9,6 @@ Scene::Scene()
 }
 
 
-//constructor assuming that there's a preexists vector of entities. 
-Scene::Scene(std::vector<Entity> entity)
-{
-	std::copy(entity.begin(), entity.end(), entities.begin());
-}
-
-
 //will update the scene. goes through the scene that it's currently in and calls entity.update 
 //	to see whether or not the entity is alive. if it's not, remove it. else, render i. //unsure as to what to pass.
 //	do we need to clear first since this might be doing the rendering?
