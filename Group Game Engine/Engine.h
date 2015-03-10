@@ -1,6 +1,8 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "cleanup.h"
+
 #include "Star Hornet.h"
 #include "SceneManager.h"
 #include "Scene.h"

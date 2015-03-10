@@ -22,8 +22,8 @@ Sprite::Sprite(Hardware* hrd, SDL_Rect rect)
 	hardware = hrd;
 
 	sequenceIndex = 0;
-	center.x = rect.w / 2.0;
-	center.y = rect.h / 2.0;
+	center.x = rect.w / 2;
+	center.y = rect.h / 2;
 	angle = 0;
 	scaleX = 1;
 	scaleY = 1;
@@ -34,20 +34,20 @@ Sprite::Sprite(Hardware* hrd, SDL_Rect rect)
 
 void Sprite::setPos(double x, double y)
 {
-	spriteRect.x = x;
-	spriteRect.y = y;
+	spriteRect.x = (int) x;
+	spriteRect.y = (int) y;
 }
 
 
 // Sprite position functions
 void Sprite::moveX(double delta)
 {
-	spriteRect.x += delta;
+	spriteRect.x += (int) delta;
 }
 
 void Sprite::moveY(double delta)
 {
-	spriteRect.y += delta;
+	spriteRect.y += (int) delta;
 }
 
 int Sprite::getX()
@@ -161,8 +161,8 @@ int Sprite::addFrameToSequence(std::string seqName, int frameIndex)
 void Sprite::draw(int frameIndex)
 {
 	SDL_Rect dst;
-	dst.h = spriteRect.h * scaleY;
-	dst.w = spriteRect.w * scaleX;
+	dst.h = (int) spriteRect.h * scaleY;
+	dst.w = (int) spriteRect.w * scaleX;
 	dst.x = spriteRect.x;
 	dst.y = spriteRect.y;
 
