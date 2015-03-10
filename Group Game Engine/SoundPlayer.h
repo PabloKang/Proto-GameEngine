@@ -2,6 +2,7 @@
 #define SOUNDPLAYER_H
 
 #include "Star Hornet.h"
+#include "SoundManager.h"
 
 
 class SoundPlayer

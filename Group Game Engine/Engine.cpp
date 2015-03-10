@@ -1,11 +1,22 @@
 #include "Star Hornet.h"
 #include "Engine.h"
-#include "Ship.h"
+#include "SceneManager.h"
 
-Engine::Engine(SDL_Window* win, SDL_Renderer *ren)
+#define RESOURCE_PATH "Group Game Engine"
+
+
+Engine::Engine(Hardware hrdware)
 {
-	hardware.window = win;
-	hardware.renderer = ren;
+	hardware = hrdware;
+}
+
+Engine::Engine(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height)
+{
+	hardware.window			= win;
+	hardware.renderer		= ren;
+	hardware.resPath		= res;
+	hardware.screenWidth	= width;
+	hardware.screenHeight	= height;
 }
 
 Engine::~Engine() {}
@@ -13,8 +24,6 @@ Engine::~Engine() {}
 
 bool Engine::init()
 {
-	resPath = getResourcePath("Group Game Engine");
-
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		std::ostringstream debugMsg;
 		debugMsg << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -46,10 +55,9 @@ bool Engine::init()
 }
 
 
-
 int Engine::exec()
 {
-
+	SceneManager sceneManager = SceneManager();
 	SDL_Event e;
 	bool quit = false;
 	std::string spriteFrameSequence = "default";
@@ -58,7 +66,6 @@ int Engine::exec()
 	// MAIN GAME LOOP -----------------------------------------
 	while (!quit){
 
-		Ship player = Ship();
 
 		// Poll all events in event queue
 		while (SDL_PollEvent(&e)){

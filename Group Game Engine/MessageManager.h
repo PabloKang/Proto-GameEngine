@@ -5,6 +5,7 @@
 #include "Message.h"
 #include "Scene.h"
 
+
 class MessageManager
 {
 public:
@@ -22,6 +23,9 @@ public:
 	Message send_to(Message message, std::queue<Message> class_queue);
 
 	std::priority_queue<Message> messages;
+
+private:
+	long timeStamp;
 };
 
 #endif

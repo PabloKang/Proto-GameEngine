@@ -9,16 +9,17 @@ Sprite::Sprite()
 	sRect.w = 0;
 	sRect.x = 0;
 	sRect.y = 0;
-	Sprite(sRect);
+
+	Sprite(NULL, sRect);
 }
-Sprite::Sprite(SDL_Rect rect, SDL_Renderer* ren)
+Sprite::Sprite(Hardware* hrd, SDL_Rect rect)
 {
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
 	spriteRect.y = rect.y;
 
-	renderer = ren;
+	hardware = hrd;
 
 	sequenceIndex = 0;
 	center.x = rect.w / 2.0;
@@ -38,14 +39,13 @@ void Sprite::setPos(double x, double y)
 }
 
 
-
 // Sprite position functions
-void Sprite::movex(double delta)
+void Sprite::moveX(double delta)
 {
 	spriteRect.x += delta;
 }
 
-void Sprite::movey(double delta)
+void Sprite::moveY(double delta)
 {
 	spriteRect.y += delta;
 }
@@ -158,7 +158,7 @@ int Sprite::addFrameToSequence(std::string seqName, int frameIndex)
 
 
 // show(int) renders the frame with the specified frameIndex
-void Sprite::show(int frameIndex)
+void Sprite::draw(int frameIndex)
 {
 	SDL_Rect dst;
 	dst.h = spriteRect.h * scaleY;
@@ -172,21 +172,21 @@ void Sprite::show(int frameIndex)
 	clip.x = frames[frameIndex].x; 
 	clip.y = frames[frameIndex].y;
 
-	SDL_RenderCopyEx(renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
+	SDL_RenderCopyEx(hardware->renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
 }
 
 
 // show(string) cycles through all frames in the specified sequence, one per call
-void Sprite::show(std::string sequence)
+void Sprite::draw(std::string sequence)
 {
 	if (sequence == "default"){
-		show(frameSequenceMap[sequence].at(facing));
+		draw(frameSequenceMap[sequence].at(facing));
 	}
 	else {
 		if (sequenceIndex >= frameSequenceMap[sequence].size() - 1) {
 			sequenceIndex = 0;
 		}
-		show(frameSequenceMap[sequence].at(sequenceIndex));
+		draw(frameSequenceMap[sequence].at(sequenceIndex));
 		sequenceIndex++;
 	}
 }

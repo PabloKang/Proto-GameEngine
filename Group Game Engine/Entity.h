@@ -6,43 +6,35 @@
 #include "SoundManager.h"
 #include "SoundPlayer.h"
 
-class Entity
+class Entity : public Sprite
 {
 public:
 	// Identification
-	int id;
-	std::string type;
+	int			entityID;
+	std::string entityType;
 
 	// Properties
-	SDL_Texture* spritesheet;
-	SDL_Rect rect;
-	bool alive = true;
+	SDL_Rect hitBox;
 	float speed;
-	float angle;
+	bool alive;
+	bool visible;
+	bool collidable;
 
 	// Constructor/Destructor
 	Entity();
-	Entity(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
-	Entity(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Renderer* ren, SDL_Rect info);
-
+	Entity(int id, std::string type, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR);
 	~Entity();
 
-	// Primary Functions
-	void update();
-	bool isAlive();
-	bool onScreen();
-	bool canCollide();
-	void playSound(std::string sound);
+	// Overridden Functions
+	virtual void update();
 	void draw(std::string sequence);
-	void move(double move_x, double move_y, double angle);
+
+	// Unique Functions
+	void playSound(std::string sound);
+	void move(double deltaX, double deltaY, double deltaAngle);
 
 private:
-	Sprite sprite;
-	bool collide;
-	bool alive = true;
-	bool visible;
-	SoundPlayer sp;
-	SoundManager* sm;
+	SDL_Texture* spritesheet;
 };
 
 #endif

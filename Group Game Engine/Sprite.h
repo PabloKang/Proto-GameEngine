@@ -8,13 +8,13 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(SDL_Rect rect, SDL_Renderer* renderer);
+	Sprite(Hardware* hrd, SDL_Rect rect);
 	~Sprite(void);
 
 	// Sprite position
 	void setPos(double x, double y);
-	void movex(double delta);
-	void movey(double delta);
+	void moveX(double delta);
+	void moveY(double delta);
 	int getX();
 	int getY();
 
@@ -36,23 +36,14 @@ public:
 	void setFlip(SDL_RendererFlip flipType = SDL_FLIP_NONE);
 	SDL_RendererFlip getFlip();
 
-	// makeFrame returns the unique index of the frame
 	int makeFrame(SDL_Texture* texture, int x, int y);
-
-	// addFrameToSequence returns the number of frames in the sequence after the add
 	int addFrameToSequence(std::string seqName, int frameIndex);
-
-	// show(int) renders the frame with the specified frameIndex
-	void show(int frameIndex);
-
-	// show(string) cycles through all frames in the specified sequence, one per call
-	void show(std::string sequence);
+	void draw(int frameIndex);
+	void draw(std::string sequence);
 
 
-// The private part of the class is given as a hint or suggestion.
-// In homework 3 you can make any modifications you want to the class's innards.
-private:
-	SDL_Renderer* renderer;
+	// PUBLIC VARIABLES //////////////////////////////////////
+	Hardware* hardware;		// Hardware access
 	SDL_Rect spriteRect;	// The rectangle bounding the sprite and defining its position
 	SDL_Point center;
 	double angle;
@@ -61,6 +52,8 @@ private:
 	SDL_RendererFlip flip;
 	directions facing;
 
+	// PRIVATE VARIABLES ////////////////////////////////////
+private:
 	struct frame
 	{
 		SDL_Texture* texture;

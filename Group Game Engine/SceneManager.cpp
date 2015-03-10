@@ -2,16 +2,18 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-SceneManager::SceneManager(int windowHeight, int windowLength) :windowHeight(windowHeight), windowLength(windowLength){
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			this->scenes[i][j] = Scene();
-		}
-	}
-	mapHeight = 3 * windowHeight;
-	mapLength = 3 * windowLength;
 
+SceneManager::SceneManager()
+{ 
+	hardware = NULL; 
 }
+
+
+SceneManager::SceneManager(Hardware* hrd)
+{
+	hardware = hrd;
+}
+
 
 SceneManager::~SceneManager(){
 
@@ -23,11 +25,7 @@ SceneManager::~SceneManager(){
 
 }*/
 
-Scene SceneManager::getScene(int x, int y){
-	return scenes[x][y];
-}
-
-Scene SceneManager::getSceneFromCoords(int x, int y){
-	return scenes[x / windowLength][y / windowHeight];
-
+Scene& SceneManager::getScene(std::string name)
+{
+	return scenes.at(name);
 }

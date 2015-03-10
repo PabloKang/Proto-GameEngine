@@ -10,8 +10,7 @@ class Ship :
 {
 public:
 	Ship();
-	Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
-	Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Rect info);
+	Ship(int entityID, std::string entityType, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR);
 	~Ship();
 
 	virtual void control();

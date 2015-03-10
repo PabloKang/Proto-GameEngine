@@ -6,20 +6,15 @@
 
 class SceneManager{
 public:
-	SceneManager(int windowHeight, int windowLength);
+	SceneManager();
+	SceneManager(Hardware* hrdwr);
 	~SceneManager();
 
-	//void changeSize();
-	Scene getScene(int x, int y);
-	Scene getSceneFromCoords(int x, int y);
+	Scene& getScene(std::string name);
 
 private:
-	int numOfScenes;
-	int windowHeight;
-	int windowLength;
-	int mapHeight; //windowHeight * 3
-	int mapLength; //windowLength * 3
-	Scene scenes[3][3];
+	Hardware* hardware;
+	std::map<std::string, Scene> scenes;
 };
 
 #endif
