@@ -12,14 +12,17 @@ public:
 	~SoundManager();
 	void init();
 	int getAvailableChannel();
-	Mix_Chunk getMix_Chunk(std::string);
+
 	bool channelInUse(int);
 	void freeChannel(int);
+	void loadSound(std::string soundname, std::string filename);
+	Mix_Chunk* findSound(std::string soundname);
 private:
 	std::set<int> availableChannels;
 	std::set<int> usedChannels;
 
-	std::map<std::string, Mix_Chunk> fileMap;
+	std::map<std::string, Mix_Chunk*> fileMap;
 };
+
 
 #endif
