@@ -1,6 +1,6 @@
-#include "Star Hornet.h"
 #include "Entity.h"
-#include "Engine.h"
+
+
 
 Entity::Entity()
 {

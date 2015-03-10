@@ -4,7 +4,7 @@
 
 SoundManager::SoundManager()
 {
-	for (int i = 1; i < 16; i++)
+	for (int i = 1; i < 64; i++)
 	{
 		availableChannels.insert(i);
 
@@ -13,7 +13,6 @@ SoundManager::SoundManager()
 
 SoundManager::~SoundManager()
 {}
-
 
 void SoundManager::init()
 {
@@ -54,4 +53,36 @@ void SoundManager::freeChannel(int channel)
 {
 	usedChannels.erase(usedChannels.find(channel));
 	availableChannels.insert(channel);
+}
+
+void SoundManager::loadSound(std::string soundname, std::string filename)
+{
+	Mix_Chunk* soundchunk = Mix_LoadWAV(filename.c_str());
+	if (soundchunk == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+	else
+	{
+		fileMap.emplace(std::pair<std::string, Mix_Chunk*>(soundname, soundchunk));
+	}
+}
+
+Mix_Chunk* SoundManager::findSound(std::string soundname)
+{
+	std::cout << "fileMap size " << fileMap.size() << std::endl;
+	//std::cout << "soundmanager soundstring " << soundname << "\n";
+	if (fileMap.find(soundname) != fileMap.end())
+	{
+		return fileMap.find(soundname)->second;
+	}
+	else{
+		std::cout << "mymap contains:\n";
+		for (std::map<std::string, Mix_Chunk*>::iterator it = fileMap.begin(); it != fileMap.end(); ++it)
+			std::cout << it->first << " => " << it->second << '\n';
+
+		printf("Failed to find sound effect!  %s\n", soundname.c_str());
+		//std::cout << "soundmanager error soundstring " << soundname << "\n";
+	}
+	return nullptr;
 }

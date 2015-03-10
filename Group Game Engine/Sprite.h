@@ -58,8 +58,8 @@ private:
 	struct frame
 	{
 		SDL_Texture* texture;
-		double x;
-		double y;
+		int x;
+		int y;
 	};
 	std::vector<frame> frames;
 

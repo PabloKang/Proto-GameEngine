@@ -1,4 +1,3 @@
-#include "Star Hornet.h"
 #include "Camera.h"
 
 Camera::Camera(int sceneX, int sceneY, int height, int width){
