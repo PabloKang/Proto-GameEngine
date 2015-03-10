@@ -1,6 +1,7 @@
 #include "Star Hornet.h"
 #include "SoundPlayer.h"
-#include <iostream>
+#include "SoundManager.h"
+
 
 SoundPlayer::SoundPlayer(SoundManager* sm) :sm(sm)
 {

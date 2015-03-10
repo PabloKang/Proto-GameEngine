@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
 
 #include "Star Hornet.h"
 
@@ -11,7 +12,7 @@ public:
 	//returns the number index it is added on map
 	int add_texture(std::string name, SDL_Texture* texture);
 
-	SDL_Texture* get_texture(std::string type);
+	SDL_Texture& get_texture(std::string type);
 
 
 
@@ -27,3 +28,5 @@ private:
 
 
 };
+
+#endif

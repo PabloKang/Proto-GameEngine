@@ -8,6 +8,7 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <set>
 #include <queue>
 #include <string>
 #include <SDL.h>
@@ -22,8 +23,21 @@
 
 enum directions { LEFT, RIGHT, UP, DOWN };
 
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 900;
+
+// GAME HARDWARE
+struct Hardware
+{
+public:
+	SDL_Window*		window;
+	SDL_Renderer*	renderer;
+	std::string		resPath;
+	int				screenWidth;
+	int				screenHeight;
+
+	Hardware(){}
+	Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height) 
+		: window(win), renderer(ren), resPath(res), screenWidth(width), screenHeight(height){}
+};
 
 
 /**

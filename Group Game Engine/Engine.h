@@ -2,28 +2,22 @@
 #define ENGINE_H
 
 #include "Star Hornet.h"
-
-// GAME HARDWARE
-struct Hardware 
-{
-public:
-	SDL_Window *window;
-	SDL_Renderer* renderer;
-};
-
-Hardware hardware;
+#include "SceneManager.h"
+#include "Scene.h"
 
 
+// ENGINE CLASS
 class Engine
 {
 public:
-	std::string resPath;
-
 	// Engine State Data
-
+	Hardware		hardware;
+	SceneManager	sceneManager;
+	Scene			currentScene;
 
 	// Engine Constructors
-	Engine(SDL_Window* win, SDL_Renderer *ren);
+	Engine(Hardware hrdware);
+	Engine(SDL_Window* win, SDL_Renderer *ren, std::string res, int width, int height);
 	~Engine();
 
 	// Engine Functions

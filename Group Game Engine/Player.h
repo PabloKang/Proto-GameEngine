@@ -9,8 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(int entityID, std::string entityType, SDL_Texture* sprtsht, double xPos = 0, double yPos = 0, double width = 0, double height = 0);
-	Player(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Rect info);
+	Player(int entityID, std::string entityType, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR);
 	~Player();
 
 	void control();

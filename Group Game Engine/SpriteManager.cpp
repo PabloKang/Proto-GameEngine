@@ -18,7 +18,7 @@ int SpriteManager::add_texture(std::string name, SDL_Texture* texture)
 	return numberofsprites++;
 }
 
-*SDL_Texture SpriteManager::get_texture(std::string type)
+SDL_Texture& SpriteManager::get_texture(std::string type)
 {
 	return *TextureMap[type];
 }

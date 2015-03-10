@@ -8,43 +8,52 @@ Scene::Scene()
 
 }
 
+
 //constructor assuming that there's a preexists vector of entities. 
 Scene::Scene(std::vector<Entity> entity)
 {
 	std::copy(entity.begin(), entity.end(), entities.begin());
 }
 
+
+//will update the scene. goes through the scene that it's currently in and calls entity.update 
+//	to see whether or not the entity is alive. if it's not, remove it. else, render i. //unsure as to what to pass.
+//	do we need to clear first since this might be doing the rendering?
+void Scene::update()
+{
+
+}
+
+
+void Scene::draw()
+{
+
+}
+
+
 //get the amount of entities in the scene. not sure if his is needed. 
-int Scene::getSize()
+int Scene::size()
 {
 	return entities.size();
 }
 
-//adds on entities onto the scene. 
+
+//adds an entity onto the scene. 
 void Scene::addEntity(Entity entity)
 {
-	entities.insert(entity.id, entity);
+	entities.insert(std::pair<int,Entity>(entity.entityID, entity));
 }
 
 
-void update_scene(){//will update the scene. goes through the scene that it's currently in and calls entity.update 
-	//to see whether or not the entity is alive. if it's not, remove it. else, render i. //unsure as to what to pass.
-	//do we need to clear first since this might be doing the rendering?
-	for (int i = entities.begin(); i != entities.end(); i++)
-	{
-		if (i.update() == 1)
-			Entity.draw("is this correct?");//if the entity.update comes out true, then that means it's alive. call draw->show to render i.
-		else
-			entities.erase(i);
-	}
+//removes an entity onto the scene. 
+void Scene::delEntity(int id)
+{
+	entities.erase(id);
 }
-/*don't think this is needed anymore with update_scene
 
-void Scene::delEntity(Entity entity){
-	for (int i = 0; i < entities.size(); i++){
-		if (entity.id() == entities[i].id()){
-			entities.erase(entities.begin() + i);
-		}
 
-	}
-}*/
+//removes an entity onto the scene.
+Entity& Scene::getEntity(int id)
+{
+	return entities.at(id);
+}

@@ -2,6 +2,7 @@
 #define MESSAGE_H
 
 #include "Star Hornet.h"
+//#include "MessageManager.h"
 
 
 class Message{
@@ -10,7 +11,7 @@ public:
 	~Message();
 
 	// Used in interpret_all this will send_to the priority queue in the manager
-	int interpret(MessageManager main_queue);
+	//int interpret(MessageManager main_queue);
 
 	int message_id;
 

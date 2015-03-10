@@ -1,6 +1,4 @@
-#include "Star Hornet.h"
 #include "Player.h"
-
 
 
 Player::Player()
@@ -15,22 +13,9 @@ Player::Player()
 }
 
 
-Player::Player(int entityID, std::string entityType, SDL_Texture* sprtsht, double xPos, double yPos, double width, double height)
+Player::Player(int entityID, std::string entityType, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR)
 {
-	Entity(entityID, entityType, sprtsht, xPos, yPos, width, height);
-
-	curHealth = 100;
-	maxHealth = 100;
-
-	maxBoost = 100;
-	curBoost = 0;
-	boostTime = 0;
-}
-
-
-Player::Player(int entityID, std::string entityType, SDL_Texture* sprtsht, SDL_Rect info)
-{
-	Entity(entityID, entityType, sprtsht, info);
+	Entity(entityID, entityType, sprtsht, hrd, spriteR, hitBoxR);
 
 	curHealth = 100;
 	maxHealth = 100;
