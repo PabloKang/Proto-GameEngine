@@ -39,7 +39,7 @@ Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Re
 }
 
 
-Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Rect info)//Sprite sprite;
+Entity::Entity(int entityID, std::string entityType, SDL_Texture* sprsht, SDL_Renderer* ren, SDL_Rect info)//Sprite sprite;
 {
 	id = entityID;
 	type = entityType;
@@ -84,6 +84,18 @@ void Entity::update(){
 
 bool Entity::isAlive(){
 	return alive;
+}
+
+void Entity::playSound(std::string sound){
+
+}
+
+bool Entity::onScreen(){
+	return visible;
+}
+
+bool Entity::canCollide(){
+	return collide;
 }
 
 void Entity::move(double move_x, double move_y, double angle){

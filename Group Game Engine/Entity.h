@@ -32,6 +32,9 @@ public:
 	bool isAlive();
 	bool onScreen();
 	bool canCollide();
+	void switchVisible();
+	void switchCollide();
+	void switchAlive();
 	void playSound(std::string sound);
 	void draw(std::string sequence);
 	void move(double move_x, double move_y, double angle);
