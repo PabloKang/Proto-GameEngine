@@ -28,6 +28,11 @@ Sprite::Sprite(Hardware* hrd, SDL_Rect rect, int lvl)
 	layer = lvl;
 }
 
+Sprite::~Sprite()
+{
+
+}
+
 
 void Sprite::setPos(double x, double y)
 {

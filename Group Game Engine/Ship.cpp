@@ -39,3 +39,9 @@ void Ship::update()
 	// Get movement input
 	control();
 }
+
+
+void Ship::control()
+{
+
+}

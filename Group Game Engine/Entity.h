@@ -2,12 +2,13 @@
 #define ENTITY_H
 
 #include "Star Hornet.h"
-#include "Engine.h"
 #include "Sprite.h"
 #include "SoundManager.h"
 #include "SoundPlayer.h"
 
-class Entity : public Sprite
+
+class Entity 
+	: public Sprite
 {
 public:
 	// Identification

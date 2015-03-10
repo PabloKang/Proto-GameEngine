@@ -9,6 +9,12 @@ Scene::Scene()
 }
 
 
+Scene::~Scene()
+{
+
+}
+
+
 //will update the scene. goes through the scene that it's currently in and calls entity.update 
 //	to see whether or not the entity is alive. if it's not, remove it. else, render i. //unsure as to what to pass.
 //	do we need to clear first since this might be doing the rendering?
