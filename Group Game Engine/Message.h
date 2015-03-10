@@ -15,7 +15,8 @@ public:
 
 	int message_id;
 
-	int time_to_send;
+private:
+	long timeStamp;
 	// add time and/or delay to send message 
 };
 
