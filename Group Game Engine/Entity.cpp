@@ -40,21 +40,3 @@ void Entity::move(double deltaX, double deltaY, double deltaAngle){
 	moveY(deltaY * speed);
 	rotate(deltaAngle);
 }
-
-void Entity::playSound(std::string sound){
-
-}
-
-bool Entity::onScreen(){
-	return visible;
-}
-
-bool Entity::canCollide(){
-	return collide;
-}
-
-void Entity::move(double move_x, double move_y, double angle){
-	sprite.movex(move_x * speed);
-	sprite.movey(move_y * speed);
-	sprite.rotate(angle);
-}

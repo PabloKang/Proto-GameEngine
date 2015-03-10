@@ -27,13 +27,6 @@ public:
 
 	// Overridden Functions
 	virtual void update();
-	bool isAlive();
-	bool onScreen();
-	bool canCollide();
-	void switchVisible();
-	void switchCollide();
-	void switchAlive();
-	void playSound(std::string sound);
 	void draw(std::string sequence);
 
 	// Unique Functions
