@@ -19,15 +19,15 @@ public:
 	void setTarget(Sprite target);
 	void update();
 	void queueSprite(Sprite s);
-	Sprite popSprite(Sprite s);
+	Sprite popSprite();
 	int queueSize();
 	Sprite queuePeek;
 private:
-	int x, int y, width, height;
+	int x, y, width, height;
 	bool targetLock;
-	Sprite * target;
+	Sprite target;
 	//Scene currentScene; unnecesary now?
-	std::priority_queue<Sprite, Sprite.layer> queue;
+	//std::priority_queue<Sprite, Sprite.layer> queue;
 };
 
 #endif
