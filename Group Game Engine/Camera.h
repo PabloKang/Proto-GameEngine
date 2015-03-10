@@ -4,19 +4,30 @@
 #include "Star Hornet.h"
 #include "Entity.h"
 #include "Scene.h"
+#include "Sprite.h"
+#include <queue>
 
 class Camera{
 public:
-	Camera(int sceneX = 1, int sceneY = 1);
+
+	Camera(int sceneX = 1, int sceneY = 1, int width = 640, int height = 480);
 	~Camera();
 
 	void renderEntities();
-	bool isEntityOnScr(Entity entity);
-	void changeScene(int sceneX, int sceneY);
-
+	//bool isEntityOnScr(Entity entity);
+	void changeCoord(int sceneX, int sceneY);
+	void setTarget(Sprite target);
+	void update();
+	void queueSprite(Sprite s);
+	Sprite popSprite();
+	int queueSize();
+	Sprite queuePeek;
 private:
-	std::pair<int, int> sceneIndex;
-	Scene currentScene;
+	int x, y, width, height;
+	bool targetLock;
+	Sprite target;
+	//Scene currentScene; unnecesary now?
+	//std::priority_queue<Sprite, Sprite.layer> queue;
 };
 
 #endif

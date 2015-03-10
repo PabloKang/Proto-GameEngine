@@ -8,7 +8,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(Hardware* hrd, SDL_Rect rect);
+	Sprite(Hardware* hrd, SDL_Rect rect, int lvl);
 	~Sprite(void);
 
 	// Sprite position
@@ -51,6 +51,7 @@ public:
 	double scaleY;
 	SDL_RendererFlip flip;
 	directions facing;
+	int layer;
 
 	// PRIVATE VARIABLES ////////////////////////////////////
 private:
