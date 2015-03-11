@@ -29,7 +29,10 @@ void Scene::update()
 			if (it->first != it2->first)//comparison of sprite IDs. I'm assuming they're unique. If it's the same, don't check.
 				//if it's equal, check coordinates for collisions with any other sprites. If there's collisions, remove collisions from the scene. 
 			{
-				if (it->second.getX() == it2->second.getX() && it->second.getY() == it2->second.getY())
+				if ((it->second.getX() == it2->second.getX() && it->second.getY() == it2->second.getY()) 
+					|| it->second.getX() < sceneWidth || it->second.getY() < sceneHeight 
+					|| it->second.getX() > sceneWidth || it->second.getX() > sceneHeight)
+					//assuming that sceneHeight/Width are of the whole window size. if they go off the map, they die
 					//checking if the coordinates are the same. 
 				{
 					//if (it->second.objectID == 1)
