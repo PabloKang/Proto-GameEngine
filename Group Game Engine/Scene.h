@@ -9,7 +9,7 @@ class Scene{
 public:
 	// Constructors & Destructors
 	Scene();
-	Scene(int sceneWidth, int sceneHeight);//I'm assuming this is to declare the size of the window?
+	Scene(int sceneWidth, int sceneHeight, std::string sceneName);//I'm assuming this is to declare the size of the window?
 
 	~Scene();
 

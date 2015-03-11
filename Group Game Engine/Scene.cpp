@@ -8,7 +8,7 @@ Scene::Scene(){
 }
 
 //change everytyhing to using a map.
-Scene::Scene(int sceneWidth, int sceneHeight) : sceneWidth(sceneWidth), sceneHeight(sceneHeight){}
+Scene::Scene(int sceneWidth, int sceneHeight, std::string sceneName) : sceneWidth(sceneWidth), sceneHeight(sceneHeight), sceneName(sceneName){}
 //constructor now takes in the sceneWidth and sceneHeight so that it could be initialized correctly. 
 //I'm not sure what these are needed for since I don't really use it throughout. 
 
@@ -37,7 +37,7 @@ void Scene::update()
 				{
 					//if (it->second.objectID == 1)
 					//{	
-					//	//call messenger for ship death
+					//	//call messenger for ship death or lose hp
 					//}
 					//else if (it->second.objectID == 2)
 					//{
