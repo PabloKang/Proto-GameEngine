@@ -2,7 +2,6 @@
 #define ENTITY_H
 
 #include "Star Hornet.h"
-#include "Engine.h"
 #include "Sprite.h"
 #include "SoundManager.h"
 #include "SoundPlayer.h"
