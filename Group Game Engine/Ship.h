@@ -3,7 +3,7 @@
 
 #include "Star Hornet.h"
 #include "Entity.h"
-#include "Sprite.h"
+
 
 class Ship :
 	public Entity

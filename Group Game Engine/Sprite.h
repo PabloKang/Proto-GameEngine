@@ -9,7 +9,7 @@ class Sprite
 public:
 	Sprite();
 	Sprite(Hardware* hrd, SDL_Rect rect, int lvl);
-	~Sprite(void);
+	~Sprite();
 
 	// Sprite position
 	void setPos(double x, double y);

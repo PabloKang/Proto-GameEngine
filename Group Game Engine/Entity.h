@@ -6,7 +6,9 @@
 #include "SoundManager.h"
 #include "SoundPlayer.h"
 
-class Entity : public Sprite
+
+class Entity 
+	: public Sprite
 {
 public:
 	// Identification

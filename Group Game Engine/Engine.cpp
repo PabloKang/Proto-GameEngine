@@ -1,3 +1,4 @@
+#include "cleanup.h"
 #include "Star Hornet.h"
 #include "Engine.h"
 #include "SceneManager.h"
