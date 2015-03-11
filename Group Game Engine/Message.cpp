@@ -2,7 +2,7 @@
 
 
 Message::Message(int message_id, int time_send)
-: time_to_send{ time_send }
+//: time_to_send{ time_send }
 {
 }
 

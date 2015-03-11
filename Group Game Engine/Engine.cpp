@@ -7,7 +7,6 @@
 
 void logSDLError(std::ostream &os, const std::string &msg);
 
-
 Engine::Engine(Hardware hrdware)
 {
 	hardware = hrdware;

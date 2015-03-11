@@ -2,11 +2,20 @@
 #include "Scene.h"
 #include "Entity.h"
 
+Scene::Scene(){
+	sceneWidth = 0;
+	sceneHeight = 0;
+}
+
 //change everytyhing to using a map.
 Scene::Scene(int sceneWidth, int sceneHeight) : sceneWidth(sceneWidth), sceneHeight(sceneHeight){}
 //constructor now takes in the sceneWidth and sceneHeight so that it could be initialized correctly. 
 //I'm not sure what these are needed for since I don't really use it throughout. 
 
+
+Scene::~Scene(){
+
+}
 
 //i need a way to determine what types of objects they are in order to display specific messages. 
 //Maybe add in an objectID? 1/2/3 for Ship, Bullets, Rocks/Enemy objects? 
@@ -23,18 +32,18 @@ void Scene::update()
 				if (it->second.getX() == it2->second.getX() && it->second.getY() == it2->second.getY())
 					//checking if the coordinates are the same. 
 				{
-					if (it->second.objectID == 1)
-					{	
-						//call messenger for ship death
-					}
-					else if (it->second.objectID == 2)
-					{
-						//call messenger for bullet death
-					}
-					else
-					{	
-						//call messenger for rock/enemy death.
-					}
+					//if (it->second.objectID == 1)
+					//{	
+					//	//call messenger for ship death
+					//}
+					//else if (it->second.objectID == 2)
+					//{
+					//	//call messenger for bullet death
+					//}
+					//else
+					//{	
+					//	//call messenger for rock/enemy death.
+					//}
 					delSprite(it->first);//remove no matter what
 				}
 					//removing the spirte by ID from the map. 
@@ -63,7 +72,7 @@ void Scene::draw()
 
 void Scene::addSprite(Sprite sprite)
 {
-	sprites.insert(std::pair<int, Sprite>(sprite.spriteID, sprite));
+	//sprites.insert(std::pair<int, Sprite>(sprite.spriteID, sprite));
 }//adds a sprite into the mapping. Uses it's spriteID in order to map it. 
 
 void Scene::delSprite(int id)
