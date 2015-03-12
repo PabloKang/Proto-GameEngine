@@ -16,12 +16,18 @@ public:
 	// Functions
 	void update();
 	void draw();
-//	int	 size();
+	//	int	 size();
 	void	addSprite(Sprite sprite);
 	void	delSprite(int id);
-//multimapversion	void	delSprite(Sprite sprite);
+
 	Sprite& getSprite(int id); //Don't need this i think?
-	void collisionDetection(std::pair<Sprite, Entity*> pair);
+	//void collisionDetection(std::pair<Sprite, Entity*> pair);
+	void collisionDetection();
+	void addEntity(std::string name, Entity entity);
+	void delEntity(std::string name, Entity entity);
+	//std::vectors in case it's better to have it in the .h
+	std::vector<Entity> shipEnts;
+	std::vector<Entity> bulEnts;
 
 	// Public Variables
 	std::string sceneName;
@@ -30,10 +36,8 @@ public:
 
 	// Map of all entities in the scene
 	std::map<int, Sprite> sprites;
-	std::map<int, Entity*> entities;
-	//std::multimap<int, Sprite> sprites;
-	//the ints will be 1-3
-	//1 will be the player, 2 will be the player projectiles(bullets), 3 will be enemies/boulders?
+	std::map<std::string, std::vector<Entity>> entities;
+
 };
 
 #endif

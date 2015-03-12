@@ -1,10 +1,15 @@
 #include "Star Hornet.h"
 #include "Scene.h"
-#include "Entity.h"
+
 
 Scene::Scene(){
 	sceneWidth = 0;
 	sceneHeight = 0;
+	//local declarations if that's better. I declared it in the .h though. 
+	//std::vector<Entity> shipEnts;
+	//std::vector<Entity> bulEnts;
+	entities.insert(std::pair<std::string, std::vector<Entity>>("Ships", shipEnts));
+	entities.insert(std::pair<std::string, std::vector<Entity>>("Bullets", bulEnts));
 }
 
 //change everytyhing to using a map.
@@ -17,55 +22,57 @@ Scene::~Scene(){
 
 }
 
-
-void collisionDetection(std::pair<Sprite, Entity*> pair)
+void Scene::addEntity(std::string name, Entity entity)
 {
-	
+	entities.at(name).push_back(entity);
+}
+void Scene::delEntity(std::string name, Entity entity)
+{
+	for (std::vector<Entity>::iterator it = entities.at(name).begin(); it != entities.at(name).end(); it++)
+	{
+		if (it->entityID == entity.entityID)
+		{
+			entities.at(name).erase(it);
+			break;//so it doesn't erase more than one if there's a possible collision in entity ids
+		}
+
+	}
+}
+void Scene::collisionDetection()//std::pair<Sprite, Entity*> pair)//don't think i need the parameters
+{
+	for (int i = 0; i < entities.at("Ships").size(); i++)
+	{
+		for (int j = 0; j < entities.at("Bullets").size(); j++)
+		{
+			int shipLeft = entities.at("Ships").at(i).hitBox.x, shipRight = entities.at("Ships").at(i).hitBox.x + entities.at("Ships").at(i).hitBox.w,
+				shipTop = entities.at("Ships").at(i).hitBox.y, shipBottom = entities.at("Ships").at(i).hitBox.y + entities.at("Ships").at(i).hitBox.h,
+				bulletLeft = entities.at("Bullets").at(j).hitBox.x, bulletRight = entities.at("Bullets").at(j).hitBox.x + entities.at("Bullets").at(j).hitBox.w,
+				bulletTop = entities.at("Bullets").at(j).hitBox.y, bulletBottom = entities.at("Bullets").at(j).hitBox.y + entities.at("Bullets").at(j).hitBox.h;
+			if (shipBottom <= bulletTop || shipTop >= bulletBottom || shipRight <= bulletLeft || shipLeft >= bulletRight)
+			{
+				//there's a collision so call message and take damage. 
+				//TODO
+			}
+		}
+	}
 
 }
 
 //i need a way to determine what types of objects they are in order to display specific messages. 
 //Maybe add in an objectID? 1/2/3 for Ship, Bullets, Rocks/Enemy objects? 
 //I did it assuming that i'll there will be an objectID in order to distinguish between the two. 
-void Scene::update()
+void Scene::update()//goes through the sprites map and calls draw on it. 
 {//goes through the sprites and calls all of the updates for them. call the updates for entities instead?
 	for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 	{
-		for (std::map<int, Sprite>::iterator it2 = sprites.begin(); it2 != sprites.end(); it2++)
-		{
-			if (it->first != it2->first)//comparison of sprite IDs. I'm assuming they're unique. If it's the same, don't check.
-				//if it's equal, check coordinates for collisions with any other sprites. If there's collisions, remove collisions from the scene. 
-			{
-				if ((it->second.getX() == it2->second.getX() && it->second.getY() == it2->second.getY()) 
-					|| it->second.getX() < sceneWidth || it->second.getY() < sceneHeight 
-					|| it->second.getX() > sceneWidth || it->second.getX() > sceneHeight)
-					//assuming that sceneHeight/Width are of the whole window size. if they go off the map, they die
-					//checking if the coordinates are the same. 
-				{
-					//if (it->second.objectID == 1)
-					//{	
-					//	//call messenger for ship death or lose hp
-					//}
-					//else if (it->second.objectID == 2)
-					//{
-					//	//call messenger for bullet death
-					//}
-					//else
-					//{	
-					//	//call messenger for rock/enemy death.
-					//}
-					delSprite(it->first);//remove no matter what
-				}
-					//removing the spirte by ID from the map. 
-				
-			}
-		}
+		//it->second.draw("default");//don't know what styring to put in
 	}
+	//call hrdware.camera.draw()
 }
 
 
 void Scene::draw()
-{
+{//goes through the entities and calls the update on it. 
 	//not really sure as to how you want me to do this anymore. I'm assuming this was goign to render everything.
 	//sprite has two draw functions, but I don't believe that I can use either without some more context. 
 	//i've tried going through the code and other cpps, but here's nothing really helpful hat I could find. 
@@ -95,24 +102,3 @@ Sprite& Scene::getSprite(int id)
 {
 	return sprites.at(id);
 }//get a sprite given it's ID in the mapping
-
-
-//the rest is just testing for multimaps. Multimaps may have been easier, but the deletion was confusing. 
-/*adding for multimap
-void Scene::addSprite(Sprite sprite)
-{
-sprites.insert(std::pair<int, Sprite>(sprite.objectID, sprite));
-}
-//i'd need objectID to be between 1-3 in order to distinguish between the different types.
-*/
-
-/*trying to use multimap
-//removes an entity onto the scene.
-void Scene::delSprite(Sprite sprite)
-{
-std::multimap<int, Sprite>::iterator it = sprites.find(sprite.objectID);
-for (it; )
-}
-*/
-
-
