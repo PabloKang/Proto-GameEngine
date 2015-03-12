@@ -6,18 +6,20 @@
 #define RESOURCE_PATH "Group Game Engine"
 
 
-Engine::Engine(Hardware hrdware)
+Engine::Engine(Hardware* hrdware)
 {
 	hardware = hrdware;
 }
 
 Engine::Engine(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height)
 {
-	hardware.window			= win;
-	hardware.renderer		= ren;
-	hardware.resPath		= res;
-	hardware.screenWidth	= width;
-	hardware.screenHeight	= height;
+	hardware->window		= win;
+	hardware->renderer		= ren;
+	hardware->resPath		= res;
+	hardware->screenWidth	= width;
+	hardware->screenHeight	= height;
+
+	sceneManager = SceneManager(hardware);
 }
 
 Engine::~Engine() {}
@@ -39,18 +41,20 @@ bool Engine::init()
 		return false;
 	}
 
-	if (hardware.window == nullptr){
+	if (hardware->window == nullptr){
 		logSDLError(std::cout, "CreateWindow");
 		SDL_Quit();
 		return false;
 	}
 
-	if (hardware.renderer == nullptr){
+	if (hardware->renderer == nullptr){
 		logSDLError(std::cout, "CreateRenderer");
-		cleanup(hardware.window);
+		cleanup(hardware->window);
 		SDL_Quit();
 		return false;
 	}
+
+	// TODO - Load protoScene into sceneManager here.
 
 	return true;
 }
@@ -58,7 +62,10 @@ bool Engine::init()
 
 int Engine::exec()
 {
-	SceneManager sceneManager = SceneManager();
+	// TODO - Find out why window disappears unless initialized here instead of in Star Hornet.cpp
+	//hardware.window = SDL_CreateWindow("Star Hornet", 0, 0, 1024, 900, SDL_WINDOW_SHOWN);
+	//hardware.renderer = SDL_CreateRenderer(hardware.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
 	SDL_Event e;
 	bool quit = false;
 	std::string spriteFrameSequence = "default";
@@ -67,11 +74,11 @@ int Engine::exec()
 	// MAIN GAME LOOP -----------------------------------------
 	while (!quit){
 
-
 		// Poll all events in event queue
 		while (SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT){
 				quit = true;
+				break;
 			}
 			// Check all one-time keypress events
 			if (e.type == SDL_KEYDOWN){
@@ -82,11 +89,11 @@ int Engine::exec()
 		}
 
 		//Render the scene
-		SDL_RenderClear(hardware.renderer);
-		SDL_RenderPresent(hardware.renderer);
+		SDL_RenderClear(hardware->getRenderer());
+		SDL_RenderPresent(hardware->getRenderer());
 	}
 
-	cleanup(hardware.renderer, hardware.window);
+	cleanup(hardware->renderer, hardware->window);
 	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();

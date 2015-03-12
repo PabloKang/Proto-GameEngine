@@ -19,12 +19,12 @@ SceneManager::~SceneManager(){
 
 }
 
-void SceneManager::addScene(int sceneWidth, int sceneHeight, std::string name)
+void SceneManager::addScene(Scene* scene)
 {
-	scenes.insert(std::pair<std::string, Scene>(name, Scene(sceneWidth, sceneHeight, name)));
+	scenes.insert(std::pair<std::string, Scene*>(scene->sceneName, scene));
 }
 
-Scene& SceneManager::getScene(std::string name)
+Scene* SceneManager::getScene(std::string name)
 {
 	return scenes.at(name);
 }

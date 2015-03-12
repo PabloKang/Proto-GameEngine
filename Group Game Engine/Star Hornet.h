@@ -36,7 +36,15 @@ public:
 
 	Hardware(){}
 	Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height) 
-		: window(win), renderer(ren), resPath(res), screenWidth(width), screenHeight(height){}
+	{
+		window = win;
+		renderer = ren;
+		resPath = res;
+		screenWidth = width;
+		screenHeight = height;
+	}
+
+	SDL_Renderer* getRenderer() { return renderer; }
 };
 
 

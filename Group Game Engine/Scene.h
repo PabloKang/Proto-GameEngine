@@ -2,7 +2,7 @@
 #define SCENE_H
 
 #include "Star Hornet.h"
-#include "Sprite.h"
+#include "Entity.h"
 
 
 class Scene{
