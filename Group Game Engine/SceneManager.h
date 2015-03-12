@@ -9,7 +9,7 @@ public:
 	SceneManager();
 	SceneManager(Hardware* hrdwr);
 	~SceneManager();
-
+	void addScene(int sceneWidth, int sceneHeight, std::string name);//need to know the size of the scene unless it's goign to be 1 scene, so the whole window.
 	Scene& getScene(std::string name);
 
 private:
