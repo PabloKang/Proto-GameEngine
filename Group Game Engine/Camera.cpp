@@ -87,7 +87,7 @@ void Camera::queueSprite(Sprite s){
 //void camera::draw(){
 //	while (!queue.empty()){
 //		Sprite * temp = queue.pop();
-//		SDL_RenderCopyEx(temp->getRenderer(), temp->frame.getTexture(), temp->frame.getTexture(), temp->getRect(), temp->getAngle(), temp->getCenter(), temp->getFlip());
+//		temp.draw();
 //
 //	}
 //

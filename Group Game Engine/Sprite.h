@@ -4,6 +4,7 @@
 #include "Star Hornet.h"
 
 
+
 class Sprite
 {
 public:
@@ -40,6 +41,7 @@ public:
 	int addFrameToSequence(std::string seqName, int frameIndex);
 	void draw(int frameIndex);
 	void draw(std::string sequence);
+	void addToCamera();
 
 
 	// PUBLIC VARIABLES //////////////////////////////////////

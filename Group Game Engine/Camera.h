@@ -4,8 +4,7 @@
 #include "Star Hornet.h"
 #include "Entity.h"
 #include "Scene.h"
-#include "Sprite.h"
-#include <queue>
+
 
 class Camera{
 public:

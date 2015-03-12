@@ -1,4 +1,3 @@
-#include "Star Hornet.h"
 #include "Sprite.h"
 
 // Sprite object constructors
@@ -191,4 +190,10 @@ void Sprite::draw(std::string sequence)
 		draw(frameSequenceMap[sequence].at(sequenceIndex));
 		sequenceIndex++;
 	}
+}
+
+
+void Sprite::addToCamera()
+{
+
 }

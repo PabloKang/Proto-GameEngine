@@ -20,3 +20,10 @@ int main(int argc, char **argv)
 		return game.exec();
 }
 
+
+void logSDLError(std::ostream &os, const std::string &msg){
+	os << msg << " error: " << SDL_GetError() << std::endl;
+	std::ostringstream errMsg;
+	errMsg << " error: " << SDL_GetError() << std::endl;
+	OutputDebugString(errMsg.str().c_str());
+}

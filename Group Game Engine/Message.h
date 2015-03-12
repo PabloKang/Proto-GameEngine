@@ -7,14 +7,11 @@
 
 class Message{
 public:
-	Message(int message_id, int time_send = 0);
+	Message();
 	~Message();
 
-	// Used in interpret_all this will send_to the priority queue in the manager
-	//int interpret(MessageManager main_queue);
-
-	int message_id;
-
+	void setTimeStamp(long time);
+	long getTimeStamp();
 private:
 	long timeStamp;
 	// add time and/or delay to send message 
