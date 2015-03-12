@@ -11,12 +11,13 @@ class Engine
 {
 public:
 	// Engine State Data
-	Hardware*		hardware;
+	Hardware		hardware;
 	SceneManager	sceneManager;
 	Scene			currentScene;
 
 	// Engine Constructors
 	Engine(Hardware* hrd);
+	Engine(std::string res, int width, int height);
 	Engine(SDL_Window* win, SDL_Renderer *ren, std::string res, int width, int height);
 	~Engine();
 

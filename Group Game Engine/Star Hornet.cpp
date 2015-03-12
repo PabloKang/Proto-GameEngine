@@ -8,11 +8,12 @@
 
 int main(int argc, char **argv)
 {
-	SDL_Window		*window		= SDL_CreateWindow("Star Hornet", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	SDL_Renderer	*renderer	= SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	Hardware		*hardware	= new Hardware(window, renderer, RESOURCE_PATH, SCREEN_WIDTH, SCREEN_HEIGHT);
+	//SDL_Window		*window		= SDL_CreateWindow("Star Hornet", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	//SDL_Renderer	*renderer	= SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	//Hardware		*hardware	= new Hardware(window, renderer, RESOURCE_PATH, SCREEN_WIDTH, SCREEN_HEIGHT);
 	
-	Engine game(hardware);
+	//Engine game(hardware);
+	Engine game(RESOURCE_PATH, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	if ( !game.init() )
 		return 1; 

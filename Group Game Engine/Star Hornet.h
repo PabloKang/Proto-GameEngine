@@ -25,7 +25,7 @@ enum message_type {USER_INPUT, COLLISION, INTERACTION};
 
 
 // GAME HARDWARE
-struct Hardware
+class Hardware
 {
 public:
 	SDL_Window*		window;

@@ -8,18 +8,29 @@
 
 Engine::Engine(Hardware* hrdware)
 {
-	hardware = hrdware;
+	hardware = *hrdware;
+	sceneManager = SceneManager(&hardware);
+}
+
+Engine::Engine(std::string res, int width, int height)
+{
+	// TODO - Find out why window disappears unless initialized here instead of in Star Hornet.cpp
+	hardware.window = SDL_CreateWindow("Star Hornet", 0, 0, 1024, 900, SDL_WINDOW_SHOWN);
+	hardware.renderer = SDL_CreateRenderer(hardware.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	hardware.resPath = res;
+	hardware.screenWidth = width;
+	hardware.screenHeight = height;
+	sceneManager = SceneManager(&hardware);
 }
 
 Engine::Engine(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height)
 {
-	hardware->window		= win;
-	hardware->renderer		= ren;
-	hardware->resPath		= res;
-	hardware->screenWidth	= width;
-	hardware->screenHeight	= height;
-
-	sceneManager = SceneManager(hardware);
+	hardware.window			= win;
+	hardware.renderer		= ren;
+	hardware.resPath		= res;
+	hardware.screenWidth	= width;
+	hardware.screenHeight	= height;
+	sceneManager = SceneManager(&hardware);
 }
 
 Engine::~Engine() {}
@@ -41,15 +52,15 @@ bool Engine::init()
 		return false;
 	}
 
-	if (hardware->window == nullptr){
+	if (hardware.window == nullptr){
 		logSDLError(std::cout, "CreateWindow");
 		SDL_Quit();
 		return false;
 	}
 
-	if (hardware->renderer == nullptr){
+	if (hardware.renderer == nullptr){
 		logSDLError(std::cout, "CreateRenderer");
-		cleanup(hardware->window);
+		cleanup(hardware.window);
 		SDL_Quit();
 		return false;
 	}
@@ -62,10 +73,6 @@ bool Engine::init()
 
 int Engine::exec()
 {
-	// TODO - Find out why window disappears unless initialized here instead of in Star Hornet.cpp
-	//hardware.window = SDL_CreateWindow("Star Hornet", 0, 0, 1024, 900, SDL_WINDOW_SHOWN);
-	//hardware.renderer = SDL_CreateRenderer(hardware.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
 	SDL_Event e;
 	bool quit = false;
 	std::string spriteFrameSequence = "default";
@@ -89,11 +96,11 @@ int Engine::exec()
 		}
 
 		//Render the scene
-		SDL_RenderClear(hardware->getRenderer());
-		SDL_RenderPresent(hardware->getRenderer());
+		SDL_RenderClear(hardware.getRenderer());
+		SDL_RenderPresent(hardware.getRenderer());
 	}
 
-	cleanup(hardware->renderer, hardware->window);
+	cleanup(hardware.renderer, hardware.window);
 	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
