@@ -38,13 +38,6 @@ Engine::~Engine() {}
 
 bool Engine::init()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
-		std::ostringstream debugMsg;
-		debugMsg << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		OutputDebugString(debugMsg.str().c_str());
-		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		return false;
-	}
 
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
 		logSDLError(std::cout, "IMG_Init");
