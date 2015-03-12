@@ -19,11 +19,6 @@ SceneManager::~SceneManager(){
 
 }
 
-/*void SceneManager::changeSize(){
-
-
-
-}*/
 void SceneManager::addScene(int sceneWidth, int sceneHeight, std::string name)
 {
 	scenes.insert(std::pair<std::string, Scene>(name, Scene(sceneWidth, sceneHeight, name)));

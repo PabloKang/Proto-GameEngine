@@ -17,11 +17,18 @@ Scene::~Scene(){
 
 }
 
+
+void collisionDetection(std::pair<Sprite, Entity*> pair)
+{
+	
+
+}
+
 //i need a way to determine what types of objects they are in order to display specific messages. 
 //Maybe add in an objectID? 1/2/3 for Ship, Bullets, Rocks/Enemy objects? 
 //I did it assuming that i'll there will be an objectID in order to distinguish between the two. 
 void Scene::update()
-{
+{//goes through the sprites and calls all of the updates for them. call the updates for entities instead?
 	for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 	{
 		for (std::map<int, Sprite>::iterator it2 = sprites.begin(); it2 != sprites.end(); it2++)
