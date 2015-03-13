@@ -31,11 +31,10 @@ public:
 
 	Message& getTopMessage();
 
-	// Engine Functions
-	void interpret_all();
-
-	// returns message that was sent for debugging purposes
+	// Queue functionality
 	void send_to(Message message);
+
+	void pop();
 
 private:
 	message_queue messages;
