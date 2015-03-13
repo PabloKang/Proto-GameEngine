@@ -205,3 +205,23 @@ void Sprite::addToCamera()
 {
 
 }
+
+
+bool Sprite::operator == (const Sprite& rhs) const{
+	return id == rhs.id;
+}
+bool Sprite::operator != (const Sprite& rhs) const{
+	return !(*this == rhs);
+}
+bool Sprite::operator <= (const Sprite& rhs) const{
+	return layer <= rhs.layer;
+}
+bool Sprite::operator < (const Sprite& rhs) const{
+	return layer < rhs.layer;
+}
+bool Sprite::operator >= (const Sprite& rhs) const{
+	return rhs <= *this;
+}
+bool Sprite::operator >(const Sprite& rhs) const{
+	return rhs < *this;
+}

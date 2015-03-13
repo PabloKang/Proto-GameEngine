@@ -4,15 +4,16 @@
 #include "Star Hornet.h"
 #include "Sprite.h"
 
+typedef std::priority_queue<Sprite, std::vector<Sprite>, SpriteCompare> render_queue;
+
 
 class Camera{
 public:
 
 	Camera();
+	Camera(SDL_Window* win, SDL_Renderer* ren, int w, int h);
 	~Camera();
 
-	bool init();
-	bool init(SDL_Window* win, SDL_Renderer* ren, int w = 640, int h = 480);
 	void update();
 	void draw();
 
@@ -29,7 +30,7 @@ public:
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	std::priority_queue<Sprite, int> drawQueue;
+	render_queue drawQueue;
 
 private:
 	void fillDisplayMode(SDL_DisplayMode& currDis);

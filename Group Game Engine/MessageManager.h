@@ -9,7 +9,7 @@
 #include "Message.h"
 #include "Scene.h"
 
-struct Compare : public std::binary_function<Message&, Message&, bool>
+struct MessageCompare : public std::binary_function<Message&, Message&, bool>
 {
 	bool operator()(const Message& lhs, const Message& rhs) const
 	{
@@ -17,7 +17,7 @@ struct Compare : public std::binary_function<Message&, Message&, bool>
 	}
 };
 
-typedef std::priority_queue<Message, std::vector<Message>, Compare> mypq_type;
+typedef std::priority_queue<Message, std::vector<Message>, MessageCompare> message_queue;
 
 
 
@@ -38,7 +38,7 @@ public:
 	void send_to(Message message);
 
 private:
-	mypq_type  messages;
+	message_queue messages;
 	long timeStamp;
 };
 

@@ -15,10 +15,13 @@ void Message::setTimeStamp(long timeStam)
 {
 	timeStamp = timeStam;
 }
+
+
 long Message::getTimeStamp() const
 {
 	return timeStamp;
 }
+
 
 std::string Message::getStringMessage() const
 {
@@ -34,23 +37,18 @@ bool Message::operator == (const Message& rhs) const{
 
 	return true;
 }
-
 bool Message::operator != (const Message& rhs) const{
 	return !(*this == rhs);
 }
-
 bool Message::operator <= (const Message& rhs) const{
 	return timeStamp <= rhs.getTimeStamp();
 }
-
 bool Message::operator < (const Message& rhs) const{
 	return timeStamp < rhs.getTimeStamp();
 }
-
 bool Message::operator >= (const Message& rhs) const{
 	return rhs <= *this;
 }
-
 bool Message::operator > (const Message& rhs) const{
 	return rhs < *this;
 }

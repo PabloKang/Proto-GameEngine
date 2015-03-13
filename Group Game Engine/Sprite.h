@@ -57,6 +57,14 @@ public:
 	directions	facing;
 	SDL_RendererFlip flip;
 
+	// OVERLOADED OPERATORS
+	virtual bool operator == (const Sprite& rhs) const;
+	virtual bool operator != (const Sprite& rhs) const;
+	virtual bool operator <= (const Sprite& rhs) const;
+	virtual bool operator <  (const Sprite& rhs) const;
+	virtual bool operator >= (const Sprite& rhs) const;
+	virtual bool operator >  (const Sprite& rhs) const;
+
 	// PRIVATE VARIABLES ////////////////////////////////////
 private:
 	struct frame
@@ -71,6 +79,15 @@ private:
 
 	int sequenceIndex;		// shared by all sequences; it would be better to have
 							// one for each sequence
+};
+
+
+struct SpriteCompare : public std::binary_function<Sprite&, Sprite&, bool>
+{
+	bool operator()(const Sprite& lhs, const Sprite& rhs) const
+	{
+		return lhs < rhs;
+	}
 };
 
 #endif

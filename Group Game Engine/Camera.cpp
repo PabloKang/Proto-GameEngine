@@ -1,15 +1,7 @@
-#include "cleanup.h"
 #include "Camera.h"
 
 
-Camera::Camera(){
-}
-
-Camera::~Camera(){
-}
-
-
-bool Camera::init()
+Camera::Camera()
 {
 	// Find current display settings and set window size
 	SDL_DisplayMode current;
@@ -21,30 +13,17 @@ bool Camera::init()
 	SDL_Window		*win = SDL_CreateWindow("Star Hornet", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 	SDL_Renderer	*ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	return init(win, ren, screenWidth, screenHeight);
+	Camera(win, ren, screenWidth, screenHeight);
 }
 
-
-bool Camera::init(SDL_Window* win, SDL_Renderer* ren, int w, int h)
+Camera::Camera(SDL_Window* win, SDL_Renderer* ren, int w, int h)
 {
 	displayArea = { 0, 0, w, h };
-
 	window = win;
-	if (window == nullptr)
-	{
-		logSDLError(std::cout, "CreateWindow");
-		SDL_Quit();
-		return false;
-	}
-
 	renderer = ren;
-	if (renderer == nullptr)
-	{
-		logSDLError(std::cout, "CreateRenderer");
-		cleanup(window);
-		SDL_Quit();
-		return false;
-	}
+}
+
+Camera::~Camera(){
 }
 
 
