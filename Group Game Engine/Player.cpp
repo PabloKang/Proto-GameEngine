@@ -53,18 +53,24 @@ void Player::control(const Uint8* currentKeyStates)
 {
 
 	// Forward momentum
-	if (currentKeyStates[SDL_SCANCODE_W]){
-		speed += 5;
+	if (currentKeyStates[SDL_SCANCODE_W] && !currentKeyStates[SDL_SCANCODE_S] && speed < 7){
+		speed += 0.2f;
 	}
-	if (currentKeyStates[SDL_SCANCODE_S]){
-		speed -= 5;
+	else if (currentKeyStates[SDL_SCANCODE_S] && !currentKeyStates[SDL_SCANCODE_W] && speed > -3){
+		speed -= 0.2f;
+	}
+	else if (!currentKeyStates[SDL_SCANCODE_W] && !currentKeyStates[SDL_SCANCODE_S]) {
+		if (speed > 0)
+			speed -= 0.02f;
+		else if (speed < 0)
+			speed += 0.02f;
 	}
 	// Rotating
 	if (currentKeyStates[SDL_SCANCODE_A]){
-		angle++;
+		rotate(-2);
 	}
 	if (currentKeyStates[SDL_SCANCODE_D]){
-		angle--;
+		rotate(2);
 	}
 	// Boosting
 	if (currentKeyStates[SDL_SCANCODE_Q] && boostTime >= 50 && curBoost > -8){

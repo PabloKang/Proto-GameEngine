@@ -28,6 +28,8 @@ public:
 	void queueSprite(Sprite& s);
 	//Sprite& popSprite();
 
+	int width;
+	int height;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	render_queue drawQueue;

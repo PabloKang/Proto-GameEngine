@@ -39,7 +39,6 @@ void Entity::move(){
 
 	moveX(cos(angleRad) * speed);
 	moveY(sin(angleRad) * speed);
-	rotate(angle);
 }
 
 

@@ -6,16 +6,16 @@ Camera::Camera()
 	// Find current display settings and set window size
 	SDL_DisplayMode current;
 	fillDisplayMode(current);
-	int screenWidth = current.w * WIDTH_RATIO;
-	int screenHeight = current.h * HEIGHT_RATIO;
+	width = current.w * WIDTH_RATIO;
+	height = current.h * HEIGHT_RATIO;
 
 	// Create all game hardware and set engine
-	SDL_Window		*win = SDL_CreateWindow("Star Hornet", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+	SDL_Window		*win = SDL_CreateWindow("Star Hornet", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	SDL_Renderer	*ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	//Camera(win, ren, screenWidth, screenHeight);
 
-	displayArea = { 0, 0, screenWidth, screenHeight };
+	displayArea = { 0, 0, width, height };
 	window = win;
 	renderer = ren;
 }
