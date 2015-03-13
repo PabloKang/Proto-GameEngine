@@ -2,31 +2,41 @@
 #define CAMERA_H
 
 #include "Star Hornet.h"
-#include "Entity.h"
-#include "Scene.h"
+#include "Sprite.h"
 
 
 class Camera{
 public:
 
-	Camera(int sceneX = 1, int sceneY = 1, int width = 640, int height = 480);
+	Camera();
 	~Camera();
 
-	void renderEntities();
-	//bool isEntityOnScr(Entity entity);
-	void changeCoord(int sceneX, int sceneY);
-	void setTarget(Sprite target);
+	bool init();
+	bool init(SDL_Window* win, SDL_Renderer* ren, int w = 640, int h = 480);
 	void update();
+	void draw();
+
+	void moveCameraRight(int deltaX);
+	void moveCameraLeft(int deltaX);
+	void moveCameraUp(int deltaY);
+	void moveCameraDown(int deltaY);
+	void setCameraPos(int x, int y);
+
+	void setTarget(Sprite* target);
+	bool isInDisplay(Sprite s);
 	void queueSprite(Sprite s);
 	Sprite popSprite();
-	int queueSize();
-	Sprite queuePeek;
+
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	std::priority_queue<Sprite, int> drawQueue;
+
 private:
-	int x, y, width, height;
+	void fillDisplayMode(SDL_DisplayMode& currDis);
+
+	SDL_Rect displayArea;
 	bool targetLock;
-	Sprite target;
-	//Scene currentScene; unnecesary now?
-	//std::priority_queue<Sprite, Sprite.layer> queue;
+	Sprite* target;
 };
 
 #endif

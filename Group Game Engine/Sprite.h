@@ -2,14 +2,14 @@
 #define SPRITE_H
 
 #include "Star Hornet.h"
-
+class Camera;
 
 
 class Sprite
 {
 public:
 	Sprite();
-	Sprite(Hardware* hrd, SDL_Rect rect, int lvl);
+	Sprite(int sID, int lvl, SDL_Rect rect, Camera* cam);
 	~Sprite();
 
 	// Sprite position
@@ -39,21 +39,23 @@ public:
 
 	int makeFrame(SDL_Texture* texture, int x, int y);
 	int addFrameToSequence(std::string seqName, int frameIndex);
+	virtual void update();
 	void draw(int frameIndex);
 	void draw(std::string sequence);
 	void addToCamera();
 
 
 	// PUBLIC VARIABLES //////////////////////////////////////
-	Hardware* hardware;		// Hardware access
-	SDL_Rect spriteRect;	// The rectangle bounding the sprite and defining its position
-	SDL_Point center;
-	double angle;
-	double scaleX;
-	double scaleY;
+	Camera*		camera;		// Camera access
+	int			id;
+	SDL_Rect	spriteRect;	// The rectangle bounding the sprite and defining its position
+	SDL_Point	center;
+	int			layer;
+	double		angle;
+	double		scaleX;
+	double		scaleY;
+	directions	facing;
 	SDL_RendererFlip flip;
-	directions facing;
-	int layer;
 
 	// PRIVATE VARIABLES ////////////////////////////////////
 private:

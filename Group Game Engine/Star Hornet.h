@@ -20,32 +20,29 @@
 #include "SDL_mixer.h"
 
 
+#define RESOURCE_PATH	"Group Game Engine"
+#define WIDTH_RATIO		0.75
+#define HEIGHT_RATIO	0.75
+
+
 enum directions { LEFT, RIGHT, UP, DOWN };
 enum message_type {USER_INPUT, COLLISION, INTERACTION};
 
 
-// GAME HARDWARE
-class Hardware
-{
-public:
-	SDL_Window*		window;
-	SDL_Renderer*	renderer;
-	std::string		resPath;
-	int				screenWidth;
-	int				screenHeight;
-
-	Hardware(){}
-	Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height) 
-	{
-		window = win;
-		renderer = ren;
-		resPath = res;
-		screenWidth = width;
-		screenHeight = height;
-	}
-
-	SDL_Renderer* getRenderer() { return renderer; }
-};
+//// GAME HARDWARE
+//class Hardware
+//{
+//public:
+//	SDL_Window*		window;
+//	SDL_Renderer*	renderer;
+//	std::string		resPath;
+//	int				screenWidth;
+//	int				screenHeight;
+//
+//	Hardware();
+//	Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height);
+//	~Hardware();
+//};
 
 
 /**

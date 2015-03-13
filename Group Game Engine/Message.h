@@ -12,6 +12,8 @@ public:
 
 	void setTimeStamp(long time);
 	long getTimeStamp();
+
+	int id;
 private:
 	long timeStamp;
 	// add time and/or delay to send message 

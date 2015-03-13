@@ -13,16 +13,9 @@ Player::Player()
 }
 
 
-Player::Player(int entityID, std::string entityType, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR)
+Player::Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam)
 {
-	Entity(entityID, entityType, sprtsht, hrd, spriteR, hitBoxR);
-
-	curHealth = 100;
-	maxHealth = 100;
-
-	maxBoost = 100;
-	curBoost = 0;
-	boostTime = 0;
+	Ship(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, cam);
 }
 
 

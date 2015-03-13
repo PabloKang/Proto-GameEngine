@@ -1,17 +1,15 @@
-#include "Star Hornet.h"
 #include "SceneManager.h"
-#include "Scene.h"
 
 
 SceneManager::SceneManager()
 { 
-	hardware = NULL; 
+	camera = NULL; 
 }
 
 
-SceneManager::SceneManager(Hardware* hrd)
+SceneManager::SceneManager(Camera* cam) : camera(cam)
 {
-	hardware = hrd;
+
 }
 
 

@@ -1,7 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Star Hornet.h"
 #include "Sprite.h"
 #include "SoundManager.h"
 #include "SoundPlayer.h"
@@ -12,28 +11,31 @@ class Entity
 {
 public:
 	// Identification
-	int			entityID;
 	std::string entityType;
 
 	// Properties
 	SDL_Rect hitBox;
-	float speed;
-	bool alive;
-	bool visible;
-	bool collidable;
+	float	speed;
+	int		maxHealth;
+	int		curHealth;
+	bool	alive;
+	bool	visible;
+	bool	collidable;
 
 	// Constructor/Destructor
 	Entity();
-	Entity(int id, std::string type, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR);
+	Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam);
 	~Entity();
 
 	// Overridden Functions
-	virtual void update();
 	void draw(std::string sequence);
 
 	// Unique Functions
 	void playSound(std::string sound);
 	void move(double deltaX, double deltaY, double deltaAngle);
+
+	// Virtual Functions
+	virtual void initFrames();
 
 private:
 	SDL_Texture* spritesheet;

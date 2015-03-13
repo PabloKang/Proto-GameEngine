@@ -1,64 +1,96 @@
+#include "cleanup.h"
 #include "Camera.h"
 
-Camera::Camera(int sceneX, int sceneY, int height, int width){
-	this->x = sceneX;
-	this->y = sceneY;
-	this->height = height;
-	this->width = width;
-	//currentScene = getScene(sceneX, sceneY);
+
+Camera::Camera(){
 }
 
 Camera::~Camera(){
-
 }
 
 
-//bool Camera::isEntityOnScr(Entity entity){
-//	//return getSceneFromCoords(entity.rect.x, entity.rect.y) == currentScene; //need entity, is the coords called x and y or something else?
-//	//also is comparison of two class objects without an overloaded equality operator going to work? all we need to check is if the pointers are to the same object
-//	return true;
-//}
+bool Camera::init()
+{
+	// Find current display settings and set window size
+	SDL_DisplayMode current;
+	fillDisplayMode(current);
+	int screenWidth = current.w * WIDTH_RATIO;
+	int screenHeight = current.h * HEIGHT_RATIO;
+
+	// Create all game hardware and set engine
+	SDL_Window		*win = SDL_CreateWindow("Star Hornet", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+	SDL_Renderer	*ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+	return init(win, ren, screenWidth, screenHeight);
+}
+
+
+bool Camera::init(SDL_Window* win, SDL_Renderer* ren, int w, int h)
+{
+	displayArea = { 0, 0, w, h };
+
+	window = win;
+	if (window == nullptr)
+	{
+		logSDLError(std::cout, "CreateWindow");
+		SDL_Quit();
+		return false;
+	}
+
+	renderer = ren;
+	if (renderer == nullptr)
+	{
+		logSDLError(std::cout, "CreateRenderer");
+		cleanup(window);
+		SDL_Quit();
+		return false;
+	}
+}
+
+
+bool Camera::isInDisplay(Sprite s){
+
+	int entLeft = s.spriteRect.x,
+		entRight = s.spriteRect.x + s.spriteRect.w,
+		entTop = s.spriteRect.y,
+		entBottom = s.spriteRect.y + s.spriteRect.h,
+		camLeft = displayArea.x,
+		camRight = displayArea.x + displayArea.w,
+		camTop = displayArea.y,
+		camBottom = displayArea.y + displayArea.h;
+
+	if ((entRight > camLeft && entLeft < camRight) && (entBottom > camTop && entTop < camBottom))
+	{
+		return true;
+	}
+	return false;
+}
 
 //changes the camera's current coordinates. this sets the
-void Camera::changeCoord(int sceneX, int sceneY){
-	this->x = sceneX;
-	this->y = sceneY;
-
-	this->targetLock = 0;
-	//currentScene = getScene(sceneX, sceneY);
-
+void Camera::setCameraPos(int x, int y){
+	displayArea.x = x;
+	displayArea.y = y;
 }
 
 //adds a target for the camera to lock on with its coordinates
-void Camera::setTarget(Sprite target){
-	this->target = target;
+void Camera::setTarget(Sprite* lock){
+	target = lock;
 }
 
 
 //call this function in a for loop? once per tick?
 void Camera::update(){
-	if (this->targetLock){
-		this->x = target.spriteRect.x;
-		this->y = target.spriteRect.y;
-		this->targetLock = 1;
+	if (targetLock){
+		setCameraPos(target->spriteRect.x, target->spriteRect.y);
 	}
-	else{
-		//we dont want to do anything if camera is not locked
-	}
-
 }
 
 
 //add sprite to queue with priority based on Sprite.layer. low priority (lower number for layer) gets precidence
 void Camera::queueSprite(Sprite s){
-	if (s.spriteRect.x < 0 || s.spriteRect.x > this->width){
-		return;
+	if (isInDisplay(s)) {
+		drawQueue.push(s);
 	}
-	if (s.spriteRect.y < 0 || s.spriteRect.y > this->height){
-		return;
-	}
-
-	//queue.push(s);
 }
 
 
@@ -93,3 +125,16 @@ void Camera::queueSprite(Sprite s){
 //
 //
 //}
+
+
+void Camera::fillDisplayMode(SDL_DisplayMode& currDis)
+{
+	for (int i = 0; i < SDL_GetNumVideoDisplays(); ++i){
+		int should_be_zero = SDL_GetCurrentDisplayMode(i, &currDis);
+
+		if (should_be_zero != 0)
+			SDL_Log("Could not get display mode for video display #%d: %s", i, SDL_GetError());
+		else // On success, print the current display mode.
+			SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz. \n", i, currDis.w, currDis.h, currDis.refresh_rate);
+	}
+}

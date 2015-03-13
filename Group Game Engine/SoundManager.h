@@ -5,7 +5,6 @@
 
 
 class SoundManager
-
 {
 public:
 	SoundManager();

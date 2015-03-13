@@ -4,7 +4,7 @@
 
 Entity::Entity()
 {
-	entityID = -1;
+	id = -1;
 	entityType = "null";
 
 	spritesheet = NULL;
@@ -15,9 +15,10 @@ Entity::Entity()
 }
 
 
-Entity::Entity(int id, std::string type, SDL_Texture* sprtsht, Hardware* hrd, SDL_Rect spriteR, SDL_Rect hitBoxR)//Sprite sprite;
+Entity::Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam)//Sprite sprite;
 {
-	entityID = id;
+	Sprite(entID, lvl, spriteR, cam);
+
 	entityType = type;
 
 	spritesheet = sprtsht;
@@ -31,12 +32,14 @@ Entity::~Entity()
 }
 
 
-void Entity::update(){
-}
-
-
 void Entity::move(double deltaX, double deltaY, double deltaAngle){
 	moveX(deltaX * speed);
 	moveY(deltaY * speed);
 	rotate(deltaAngle);
+}
+
+
+void Entity::initFrames()
+{
+
 }

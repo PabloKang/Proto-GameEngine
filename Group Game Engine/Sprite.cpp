@@ -1,4 +1,6 @@
 #include "Sprite.h"
+#include "Camera.h"
+
 
 // Sprite object constructors
 Sprite::Sprite()
@@ -10,24 +12,30 @@ Sprite::Sprite()
 	flip = SDL_FLIP_NONE;
 	facing = DOWN;
 }
-Sprite::Sprite(Hardware* hrd, SDL_Rect rect, int lvl)
+Sprite::Sprite(int sID, int lvl, SDL_Rect rect, Camera* cam)
 {
 	Sprite();
+
+	id = sID;
+	layer = lvl;
 
 	spriteRect.h = rect.h;
 	spriteRect.w = rect.w;
 	spriteRect.x = rect.x;
 	spriteRect.y = rect.y;
-
-	hardware = hrd;
-
 	center.x = rect.w / 2.0;
 	center.y = rect.h / 2.0;
 
-	layer = lvl;
+	camera = cam;
 }
 
 Sprite::~Sprite()
+{
+
+}
+
+
+void Sprite::update()
 {
 
 }
@@ -173,7 +181,7 @@ void Sprite::draw(int frameIndex)
 	clip.x = frames[frameIndex].x; 
 	clip.y = frames[frameIndex].y;
 
-	SDL_RenderCopyEx(hardware->renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
+	SDL_RenderCopyEx(camera->renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
 }
 
 

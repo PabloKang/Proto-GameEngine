@@ -2,6 +2,7 @@
 #define ENGINE_H
 
 #include "Star Hornet.h"
+#include "Camera.h"
 #include "SceneManager.h"
 #include "Scene.h"
 
@@ -11,14 +12,13 @@ class Engine
 {
 public:
 	// Engine State Data
-	Hardware		hardware;
+	Camera			camera;
 	SceneManager	sceneManager;
 	Scene			currentScene;
+	std::string		resPath;
 
 	// Engine Constructors
-	Engine(Hardware* hrd);
-	Engine(std::string res, int width, int height);
-	Engine(SDL_Window* win, SDL_Renderer *ren, std::string res, int width, int height);
+	Engine();
 	~Engine();
 
 	// Engine Functions
