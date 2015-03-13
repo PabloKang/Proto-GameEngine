@@ -5,6 +5,7 @@
 
 
 class SoundManager
+
 {
 public:
 	SoundManager();
@@ -15,6 +16,7 @@ public:
 	bool channelInUse(int);
 	void freeChannel(int);
 	void loadSound(std::string soundname, std::string filename);
+	void freeSound(std::string soundname);
 	Mix_Chunk* findSound(std::string soundname);
 private:
 	std::set<int> availableChannels;
