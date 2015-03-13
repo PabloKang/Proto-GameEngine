@@ -3,13 +3,23 @@
 
 Player::Player()
 {
-	Ship();
+
 }
 
 
-Player::Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
+Player::Player(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
-	Ship(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, ren);
+	id = entID;
+	layer = lvl;
+	entityType = entType;
+	spritesheet = sprtsht;
+	spriteRect = spriteR;
+	hitBox = hitBoxR;
+	center.x = spriteRect.w / 2.0;
+	center.y = spriteRect.h / 2.0;
+
+	renderer = ren;
+
 	initFrames();
 }
 

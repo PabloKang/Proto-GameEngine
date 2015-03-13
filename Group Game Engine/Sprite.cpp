@@ -16,17 +16,18 @@ Sprite::Sprite()
 // Sprite object constructors
 Sprite::Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(ren)
 {
-	Sprite();
-
 	id = sID;
 	layer = lvl;
-
-	spriteRect.h = rect.h;
-	spriteRect.w = rect.w;
-	spriteRect.x = rect.x;
-	spriteRect.y = rect.y;
+	spriteRect = rect;
 	center.x = rect.w / 2.0;
 	center.y = rect.h / 2.0;
+
+	sequenceIndex = 0;
+	angle = 0;
+	scaleX = 1;
+	scaleY = 1;
+	flip = SDL_FLIP_NONE;
+	facing = DOWN;
 }
 
 Sprite::~Sprite()

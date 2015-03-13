@@ -35,14 +35,15 @@ Scene::~Scene(){
 void Scene::init(Camera* cam)
 {
 	camera = cam;
-
+	std::cout << sprites.size();
 	// Initialize all textures:
-	//spriteManager.add_texture("hornet", spriteManager.loadTexture("C://Users//Big//Documents//_Class Material//ICS 161//SDL//MyProjects//Group Game Engine//Resources//Sprites//hornet_body_small.gif", camera->renderer));
-	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer));
+	//spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer));
 
 
-	// Initialize all entities:
-	Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	//// Initialize all entities:
+	//Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	Player hornet = Player(0, 1, "Ship", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 }
 

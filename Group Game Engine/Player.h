@@ -17,12 +17,6 @@ public:
 	void update();
 	void draw();
 
-	int maxHealth;
-	int curHealth;
-	int maxBoost;
-	int curBoost;
-	float boostTime;
-
 	Sprite sprite_hull;
 	Sprite sprite_turret;
 };

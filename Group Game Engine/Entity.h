@@ -37,6 +37,8 @@ public:
 	// Virtual Functions
 	virtual void initFrames();
 
+	// Gets and Sets
+
 
 	SDL_Texture* spritesheet;
 };

@@ -5,27 +5,30 @@
 
 Ship::Ship()
 {
-	Entity();
-
-	curHealth = 100;
-	maxHealth = 100;
-
 	maxBoost = 100;
 	curBoost = 0;
 	boostTime = 0;
 }
 
 
-Ship::Ship(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
+Ship::Ship(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
-	Entity(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, ren);
+	id = entID;
+	layer = lvl;
+	entityType = entType;
+	spritesheet = sprtsht;
+	spriteRect = spriteR;
+	hitBox = hitBoxR;
+	center.x = spriteRect.w / 2.0;
+	center.y = spriteRect.h / 2.0;
 
 	curHealth = 100;
 	maxHealth = 100;
-
 	maxBoost = 100;
 	curBoost = 0;
 	boostTime = 0;
+
+	renderer = ren;
 }
 
 
