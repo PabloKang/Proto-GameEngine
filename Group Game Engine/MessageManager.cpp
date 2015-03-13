@@ -17,3 +17,8 @@ void MessageManager::send_to(Message message)
 {
 	messages.push(message);
 }
+
+void MessageManager::pop()
+{
+	messages.pop();
+}
