@@ -7,6 +7,10 @@ SoundPlayer::SoundPlayer(SoundManager* sm) :sm(sm)
 	soundchannel = sm->getAvailableChannel();
 	soundvolume = 255;
 }
+SoundPlayer::~SoundPlayer()
+{
+	sm->freeChannel(soundchannel);
+}
 
 void SoundPlayer::playSound(std::string soundstring, int repeat)
 {
