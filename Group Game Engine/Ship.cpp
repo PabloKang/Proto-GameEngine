@@ -29,6 +29,8 @@ Ship::Ship(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Re
 	boostTime = 0;
 
 	renderer = ren;
+
+	type = SHIP;
 }
 
 

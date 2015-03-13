@@ -35,6 +35,7 @@ public:
 private:
 	Camera* camera;
 	SpriteManager spriteManager;
+	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 };
 
 #endif

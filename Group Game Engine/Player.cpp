@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <math.h>
 
 
 Player::Player()
@@ -20,6 +21,8 @@ Player::Player(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SD
 
 	renderer = ren;
 
+	type = PLAYER;
+
 	initFrames();
 }
 
@@ -36,17 +39,19 @@ void Player::initFrames()
 
 
 // Primary Functions
-void Player::update()
+
+void Player::update(const Uint8* currentKeyStates)
 {
 	// Get movement input
-	control();
+	control(currentKeyStates);
+	move();
 }
 
 
 
-void Player::control()
+void Player::control(const Uint8* currentKeyStates)
 {
-	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+
 	// Forward momentum
 	if (currentKeyStates[SDL_SCANCODE_W]){
 		speed += 5;

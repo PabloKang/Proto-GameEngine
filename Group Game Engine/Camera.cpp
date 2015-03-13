@@ -76,20 +76,7 @@ void Camera::queueSprite(Sprite& s){
 	}
 }
 
-
-////returns top sprite in queue, else returns NULL if queue is empty
-//Sprite& Camera::popSprite(){
-//	Sprite temp;
-//	if (!drawQueue.empty()){
-//		Sprite temp = drawQueue.top();
-//		drawQueue.pop();
-//	}
-//	return temp;
-//}
-
-
-//DONT KNOW WHAT TO PUT FOR 3RD VARIABLE. DESTINATION RECTANGLE PLEASE FILL IN
-//NEED SPRIET CLASS TO ADD getTexture, getRenderer, getRect, 
+ 
 void Camera::draw(){
 	while (!drawQueue.empty()){
 		Sprite& temp = drawQueue.top();

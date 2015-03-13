@@ -28,6 +28,8 @@ Sprite::Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(re
 	scaleY = 1;
 	flip = SDL_FLIP_NONE;
 	facing = DOWN;
+
+	type = SPRITE;
 }
 
 Sprite::~Sprite()
@@ -75,7 +77,7 @@ int Sprite::getY()
 void Sprite::autoCenter()
 {
 	center.x = spriteRect.w / 2;
-	center.y = spriteRect.w / 2;
+	center.y = spriteRect.h / 2;
 
 }
 

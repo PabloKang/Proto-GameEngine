@@ -52,7 +52,7 @@ std::string Scene::exec()
 {
 	SDL_Event e;
 	bool quit = false;
-	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+
 
 	// MAIN GAME LOOP -----------------------------------------
 	while (!quit){
@@ -70,11 +70,13 @@ std::string Scene::exec()
 				}
 			}
 		}
-
-		//Render the scene
-		update();
-	
+		// Clear the renderer
 		SDL_RenderClear(camera->renderer);
+		// Render the scene
+		update();
+
+		std::cout << sprites.at(0).getX() << " " << sprites.at(0).getY() << std::endl;
+
 		SDL_RenderPresent(camera->renderer);
 	}
 	return "NULL";
@@ -141,7 +143,14 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 		collisionDetection();
 		for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 		{
-			it->second.update();
+			if (it->second.type == PLAYER) {
+				Sprite * sprite = &it->second;
+				Player * player = static_cast<Player*>(sprite);
+				player->update(currentKeyStates);
+			}
+			else {
+				it->second.update();
+			}
 			camera->queueSprite(it->second);
 		}
 		camera->draw();

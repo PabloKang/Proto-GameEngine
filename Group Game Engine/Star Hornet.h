@@ -25,6 +25,8 @@
 
 enum directions { LEFT, RIGHT, UP, DOWN };
 enum message_type {USER_INPUT, COLLISION, INTERACTION};
+enum sprite_type { SPRITE, ENTITY, SHIP, PLAYER };
+
 
 /**
 * Log an SDL error with some error message to the output stream of our choice
