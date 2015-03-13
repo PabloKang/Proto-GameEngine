@@ -1,5 +1,5 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#ifndef SPRITEMANAGER_H
+#define SPRITEMANAGER_H
 
 #include "Star Hornet.h"
 

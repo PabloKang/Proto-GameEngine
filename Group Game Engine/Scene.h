@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include "Star Hornet.h"
+#include "SpriteManager.h"
 #include "Entity.h"
 
 
@@ -35,6 +36,7 @@ public:
 
 private:
 	Camera* camera;
+	SpriteManager spriteManager;
 };
 
 #endif

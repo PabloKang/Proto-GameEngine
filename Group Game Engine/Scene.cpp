@@ -1,4 +1,6 @@
 #include "Scene.h"
+#include "Camera.h"
+#include "Player.h"
 
 
 Scene::Scene(){
@@ -11,7 +13,7 @@ Scene::Scene(){
 }
 
 //change everytyhing to using a map.
-Scene::Scene(Camera* cam) : sceneName("NULL"), camera(cam)
+Scene::Scene(Camera* cam) : sceneName("Scene"), camera(cam)
 {
 	Scene();
 }
@@ -24,12 +26,39 @@ Scene::~Scene(){
 
 void Scene::init()
 {
-
+	//Player hornet = Player(0, 1, "Ship", SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam);
+	//sprites.insert
 }
 
 
 std::string Scene::exec()
 {
+	SDL_Event e;
+	bool quit = false;
+	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+
+	// MAIN GAME LOOP -----------------------------------------
+	while (!quit){
+
+		// Poll all events in event queue
+		while (SDL_PollEvent(&e)){
+			if (e.type == SDL_QUIT){
+				quit = true;
+				break;
+			}
+			// Check all one-time keypress events
+			if (e.type == SDL_KEYDOWN){
+				if (e.key.keysym.sym == SDLK_ESCAPE){
+					quit = true;
+				}
+			}
+		}
+
+		//Render the scene
+
+		SDL_RenderClear(camera->renderer);
+		SDL_RenderPresent(camera->renderer);
+	}
 	return "NULL";
 }
 
@@ -44,7 +73,7 @@ void Scene::addCollidable(Entity* entity)
 
 void Scene::delCollidable(std::string type, int entID)
 {
-	for (int i = 0; i < collidables.at(type).size(); i++)
+	for (unsigned int i = 0; i < collidables.at(type).size(); i++)
 	{
 		if (collidables.at(type).at(i)->id == entID)
 		{
@@ -57,9 +86,9 @@ void Scene::delCollidable(std::string type, int entID)
 
 void Scene::collisionDetection()
 {
-	for (int i = 0; i < collidables.at("Ship").size(); i++)
+	for (unsigned int i = 0; i < collidables.at("Ship").size(); i++)
 	{
-		for (int j = 0; j < collidables.at("Bullet").size(); j++)
+		for (unsigned int j = 0; j < collidables.at("Bullet").size(); j++)
 		{
 			Entity* currShip = collidables.at("Ship").at(i);
 			Entity* currBull = collidables.at("Bullet").at(j);

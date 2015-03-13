@@ -49,9 +49,11 @@ bool Engine::init()
 
 int Engine::exec()
 {
+	std::string sceneName = "NULL";
+
+
 	SDL_Event e;
 	bool quit = false;
-	std::string spriteFrameSequence = "default";
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
 	// MAIN GAME LOOP -----------------------------------------
