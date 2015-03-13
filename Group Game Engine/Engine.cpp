@@ -8,7 +8,6 @@
 Engine::Engine()
 {
 	resPath = RESOURCE_PATH;
-	camera = Camera();
 	sceneManager = SceneManager(&camera);
 }
 
@@ -78,7 +77,6 @@ int Engine::exec()
 		SDL_RenderClear(camera.renderer);
 		SDL_RenderPresent(camera.renderer);
 	}
-	SDL_Delay(5000);
 	cleanup(camera.renderer, camera.window);
 	Mix_Quit();
 	IMG_Quit();

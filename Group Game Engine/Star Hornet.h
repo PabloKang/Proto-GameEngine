@@ -29,22 +29,6 @@ enum directions { LEFT, RIGHT, UP, DOWN };
 enum message_type {USER_INPUT, COLLISION, INTERACTION};
 
 
-//// GAME HARDWARE
-//class Hardware
-//{
-//public:
-//	SDL_Window*		window;
-//	SDL_Renderer*	renderer;
-//	std::string		resPath;
-//	int				screenWidth;
-//	int				screenHeight;
-//
-//	Hardware();
-//	Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height);
-//	~Hardware();
-//};
-
-
 /**
 * Log an SDL error with some error message to the output stream of our choice
 * @param os The output stream to write the message to
