@@ -1,10 +1,9 @@
 #include "Message.h"
 
 
-Message::Message(std::string to_whom, long delay)
-//: do_what{to_whom}
+Message::Message(std::string to_who, std::string do_wha, long delay)
+: to_whom{ to_who }, do_what{ to_who }, timeStamp{delay}
 {
-	timeStamp = delay;
 }
 
 Message::~Message(){}
@@ -22,8 +21,12 @@ long Message::getTimeStamp() const
 	return timeStamp;
 }
 
+std::string Message::getToWhom() const
+{
+	return to_whom;
+}
 
-std::string Message::getStringMessage() const
+std::string Message::getDoMessage() const
 {
 	return do_what;
 }
