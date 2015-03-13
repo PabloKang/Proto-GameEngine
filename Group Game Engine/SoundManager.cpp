@@ -1,7 +1,6 @@
 #include "Star Hornet.h"
 #include "SoundManager.h"
 #include <iostream>
-
 SoundManager::SoundManager()
 {
 	for (int i = 1; i < 64; i++)
@@ -79,10 +78,19 @@ Mix_Chunk* SoundManager::findSound(std::string soundname)
 	else{
 		std::cout << "mymap contains:\n";
 		for (std::map<std::string, Mix_Chunk*>::iterator it = fileMap.begin(); it != fileMap.end(); ++it)
+		{
 			std::cout << it->first << " => " << it->second << '\n';
 
-		printf("Failed to find sound effect!  %s\n", soundname.c_str());
-		//std::cout << "soundmanager error soundstring " << soundname << "\n";
+			printf("Failed to find sound effect!  %s\n", soundname.c_str());
+			//std::cout << "soundmanager error soundstring " << soundname << "\n";
+		}
+
 	}
 	return nullptr;
+}
+
+void SoundManager::freeSound(std::string soundname)
+{
+	Mix_FreeChunk(findSound(soundname));
+	fileMap.erase(soundname);
 }
