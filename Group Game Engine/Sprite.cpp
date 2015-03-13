@@ -196,7 +196,7 @@ void Sprite::draw(int frameIndex)
 void Sprite::draw(std::string sequence)
 {
 	if (sequence == "default"){
-		draw(frameSequenceMap[sequence].at(facing));
+		draw(frameSequenceMap[sequence].at(0));// .at(facing));
 	}
 	else {
 		if (sequenceIndex >= frameSequenceMap[sequence].size() - 1) {

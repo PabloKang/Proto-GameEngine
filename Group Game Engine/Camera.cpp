@@ -31,7 +31,7 @@ Camera::~Camera(){
 }
 
 
-bool Camera::isInDisplay(Sprite s){
+bool Camera::isInDisplay(Sprite& s){
 
 	int entLeft = s.spriteRect.x,
 		entRight = s.spriteRect.x + s.spriteRect.w,
@@ -70,29 +70,31 @@ void Camera::update(){
 
 
 //add sprite to queue with priority based on Sprite.layer. low priority (lower number for layer) gets precidence
-void Camera::queueSprite(Sprite s){
+void Camera::queueSprite(Sprite& s){
 	if (isInDisplay(s)) {
 		drawQueue.push(s);
 	}
 }
 
 
-//returns top sprite in queue, else returns NULL if queue is empty
-Sprite Camera::popSprite(){
-	Sprite temp;
-	if (!drawQueue.empty()){
-		Sprite temp = drawQueue.top();
-		drawQueue.pop();
-	}
-	return temp;
-}
+////returns top sprite in queue, else returns NULL if queue is empty
+//Sprite& Camera::popSprite(){
+//	Sprite temp;
+//	if (!drawQueue.empty()){
+//		Sprite temp = drawQueue.top();
+//		drawQueue.pop();
+//	}
+//	return temp;
+//}
 
 
 //DONT KNOW WHAT TO PUT FOR 3RD VARIABLE. DESTINATION RECTANGLE PLEASE FILL IN
 //NEED SPRIET CLASS TO ADD getTexture, getRenderer, getRect, 
 void Camera::draw(){
 	while (!drawQueue.empty()){
-		popSprite().draw();
+		Sprite& temp = drawQueue.top();
+		temp.draw();
+		drawQueue.pop();
 	}
 }
 

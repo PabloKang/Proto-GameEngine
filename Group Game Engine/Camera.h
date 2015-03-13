@@ -24,9 +24,9 @@ public:
 	void setCameraPos(int x, int y);
 
 	void setTarget(Sprite* target);
-	bool isInDisplay(Sprite s);
-	void queueSprite(Sprite s);
-	Sprite popSprite();
+	bool isInDisplay(Sprite& s);
+	void queueSprite(Sprite& s);
+	//Sprite& popSprite();
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
