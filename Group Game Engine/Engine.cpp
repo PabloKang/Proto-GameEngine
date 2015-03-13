@@ -38,7 +38,11 @@ bool Engine::init()
 		return false;
 	}
 
-	// TODO - Load protoScene into sceneManager here.
+	// TODO - Load Scene into sceneManager here.
+	Scene scene = Scene(&camera);
+
+	sceneManager.addScene(&scene);
+	currentScene = &scene;
 
 	return true;
 }
@@ -69,6 +73,8 @@ int Engine::exec()
 		}
 
 		//Render the scene
+
+
 		SDL_RenderClear(camera.renderer);
 		SDL_RenderPresent(camera.renderer);
 	}

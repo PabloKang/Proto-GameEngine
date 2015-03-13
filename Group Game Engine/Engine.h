@@ -14,7 +14,7 @@ public:
 	// Engine State Data
 	Camera			camera;
 	SceneManager	sceneManager;
-	Scene			currentScene;
+	Scene*			currentScene;
 	std::string		resPath;
 
 	// Engine Constructors

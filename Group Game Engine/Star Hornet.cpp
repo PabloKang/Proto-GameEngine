@@ -23,22 +23,6 @@ int main(int argc, char **argv)
 }
 
 
-
-
-
-//// HARDWARE FUNCTIONS
-//Hardware::Hardware(){}
-//Hardware::Hardware(SDL_Window* win, SDL_Renderer* ren, std::string res, int width, int height)
-//{
-//	window = win;
-//	renderer = ren;
-//	resPath = res;
-//	screenWidth = width;
-//	screenHeight = height;
-//}
-//Hardware::~Hardware(){}
-
-
 // SDL ERROR FUNCTION
 void logSDLError(std::ostream &os, const std::string &msg){
 	os << msg << " error: " << SDL_GetError() << std::endl;

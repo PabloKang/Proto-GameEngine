@@ -13,7 +13,11 @@ Camera::Camera()
 	SDL_Window		*win = SDL_CreateWindow("Star Hornet", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 	SDL_Renderer	*ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	Camera(win, ren, screenWidth, screenHeight);
+	//Camera(win, ren, screenWidth, screenHeight);
+
+	displayArea = { 0, 0, screenWidth, screenHeight };
+	window = win;
+	renderer = ren;
 }
 
 Camera::Camera(SDL_Window* win, SDL_Renderer* ren, int w, int h)
