@@ -2,7 +2,7 @@
 
 
 Message::Message(std::string to_whom, long delay)
-: do_what{to_whom}
+//: do_what{to_whom}
 {
 	timeStamp = delay;
 }

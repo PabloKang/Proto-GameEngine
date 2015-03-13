@@ -14,11 +14,9 @@
 #include <SDL.h>
 
 // SDL includes
-//#include "res_path.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
-
 
 #define RESOURCE_PATH	"Group Game Engine"
 #define WIDTH_RATIO		0.75
@@ -27,7 +25,6 @@
 
 enum directions { LEFT, RIGHT, UP, DOWN };
 enum message_type {USER_INPUT, COLLISION, INTERACTION};
-
 
 /**
 * Log an SDL error with some error message to the output stream of our choice
