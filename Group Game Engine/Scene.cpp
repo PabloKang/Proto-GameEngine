@@ -36,12 +36,12 @@ void Scene::init(Camera* cam)
 {
 	camera = cam;
 	// Initialize all textures:
-	//spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer));
+	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
 
 
 	//// Initialize all entities:
-	//Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-	Player hornet = Player(0, 1, "Ship", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer), SDL_Rect{ 300, 300, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	Player hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width/2, camera->height/2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	//Player hornet = Player(0, 1, "Ship", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer), SDL_Rect{ 300, 300, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
 
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 }
@@ -71,11 +71,9 @@ std::string Scene::exec()
 		}
 		// Clear the renderer
 		SDL_RenderClear(camera->renderer);
+
 		// Render the scene
 		update();
-
-		std::cout << sprites.at(0).getX() << " " << sprites.at(0).getY() << std::endl;
-
 		SDL_RenderPresent(camera->renderer);
 	}
 	return "NULL";
