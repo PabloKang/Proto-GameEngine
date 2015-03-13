@@ -19,8 +19,6 @@ public:
 	int maxBoost;
 	int curBoost;
 	float boostTime;
-
-	Sprite sprite;
 };
 
 #endif

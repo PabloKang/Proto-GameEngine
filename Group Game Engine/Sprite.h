@@ -58,6 +58,8 @@ public:
 	directions	facing;
 	SDL_RendererFlip flip;
 
+	sprite_type type;
+
 	// OVERLOADED OPERATORS
 	virtual bool operator == (const Sprite& rhs) const;
 	virtual bool operator != (const Sprite& rhs) const;

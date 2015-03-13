@@ -13,12 +13,11 @@ public:
 	~Player();
 
 	void initFrames();
-	void control();
-	void update();
+	void control(const Uint8* currentKeyStates);
+	void update(const Uint8* currentKeyStates);
 	void draw();
 
-	Sprite sprite_hull;
-	Sprite sprite_turret;
+	Sprite turret;
 };
 
 #endif

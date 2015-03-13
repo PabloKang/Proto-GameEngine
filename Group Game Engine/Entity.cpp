@@ -24,6 +24,8 @@ Entity::Entity(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SD
 	center.y = spriteRect.h / 2.0;
 
 	renderer = ren;
+
+	type = ENTITY;
 }
 
 
@@ -32,10 +34,12 @@ Entity::~Entity()
 }
 
 
-void Entity::move(double deltaX, double deltaY, double deltaAngle){
-	moveX(deltaX * speed);
-	moveY(deltaY * speed);
-	rotate(deltaAngle);
+void Entity::move(){
+	float angleRad = M_PI * (angle / 180);
+
+	moveX(cos(angleRad) * speed);
+	moveY(sin(angleRad) * speed);
+	rotate(angle);
 }
 
 

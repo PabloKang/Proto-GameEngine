@@ -27,18 +27,12 @@ public:
 	Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Entity();
 
-	// Overridden Functions
+	void move();
 	void draw(std::string sequence);
-
-	// Unique Functions
 	void playSound(std::string sound);
-	void move(double deltaX, double deltaY, double deltaAngle);
 
 	// Virtual Functions
 	virtual void initFrames();
-
-	// Gets and Sets
-
 
 	SDL_Texture* spritesheet;
 };
