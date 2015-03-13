@@ -3,7 +3,6 @@
 
 #include "Star Hornet.h"
 
-
 class SpriteManager{
 public:
 	SpriteManager();
@@ -17,7 +16,6 @@ public:
 private:
 	SDL_Renderer* renderer;
 	std::map<std::string, SDL_Texture*> textureMap; //types of sprite : Sprite class . /// Map of textures
-
 };
 
 #endif

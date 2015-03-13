@@ -5,7 +5,6 @@
 #include "SpriteManager.h"
 #include "Entity.h"
 
-
 class Scene
 {
 public:
