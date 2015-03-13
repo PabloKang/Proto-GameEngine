@@ -9,7 +9,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(int sID, int lvl, SDL_Rect rect, Camera* cam);
+	Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren);
 	~Sprite();
 
 	// Sprite position
@@ -40,13 +40,14 @@ public:
 	int makeFrame(SDL_Texture* texture, int x, int y);
 	int addFrameToSequence(std::string seqName, int frameIndex);
 	virtual void update();
+	void draw();
 	void draw(int frameIndex);
 	void draw(std::string sequence);
 	void addToCamera();
 
 
 	// PUBLIC VARIABLES //////////////////////////////////////
-	Camera*		camera;		// Camera access
+	SDL_Renderer* renderer;		// Renderer access
 	int			id;
 	SDL_Rect	spriteRect;	// The rectangle bounding the sprite and defining its position
 	SDL_Point	center;

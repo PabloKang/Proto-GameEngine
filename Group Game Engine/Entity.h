@@ -24,7 +24,7 @@ public:
 
 	// Constructor/Destructor
 	Entity();
-	Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam);
+	Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Entity();
 
 	// Overridden Functions
@@ -37,7 +37,7 @@ public:
 	// Virtual Functions
 	virtual void initFrames();
 
-private:
+
 	SDL_Texture* spritesheet;
 };
 

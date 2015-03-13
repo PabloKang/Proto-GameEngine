@@ -6,6 +6,7 @@
 Ship::Ship()
 {
 	Entity();
+
 	curHealth = 100;
 	maxHealth = 100;
 
@@ -15,9 +16,9 @@ Ship::Ship()
 }
 
 
-Ship::Ship(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam)
+Ship::Ship(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
-	Entity(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, cam);
+	Entity(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, ren);
 
 	curHealth = 100;
 	maxHealth = 100;

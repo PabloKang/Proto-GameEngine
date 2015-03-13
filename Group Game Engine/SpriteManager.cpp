@@ -27,8 +27,10 @@ SDL_Texture* SpriteManager::get_texture(std::string type)
 * @param ren The renderer to load the texture onto
 * @return the loaded texture, or nullptr if something went wrong.
 */
-SDL_Texture* SpriteManager::loadTexture(const std::string &file, SDL_Renderer *ren)
+SDL_Texture* SpriteManager::loadTexture(const std::string &name, SDL_Renderer *ren)
 {
+	const std::string file = exePath() + "\\Resources\\Sprites\\" + name;
+
 	SDL_Texture *texture = IMG_LoadTexture(ren, file.c_str());
 	if (texture == nullptr){
 		std::cout << "LoadTexture" << " error: " << SDL_GetError() << std::endl;
@@ -38,3 +40,5 @@ SDL_Texture* SpriteManager::loadTexture(const std::string &file, SDL_Renderer *r
 	}
 	return texture;
 }
+
+

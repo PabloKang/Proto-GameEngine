@@ -12,11 +12,10 @@ public:
 	// Constructors & Destructors
 	Scene();
 	Scene(Camera* cam);
-
 	~Scene();
 
 	// Functions
-	void init();
+	void init(Camera* cam);
 	std::string exec();
 
 	void	update();

@@ -38,10 +38,8 @@ bool Engine::init()
 	}
 
 	// TODO - Load Scene into sceneManager here.
-	Scene scene = Scene(&camera);
-
+	Scene scene = Scene();
 	sceneManager.addScene(&scene);
-	currentScene = &scene;
 
 	return true;
 }
@@ -49,7 +47,7 @@ bool Engine::init()
 
 int Engine::exec()
 {
-	std::string sceneName = "NULL";
+	std::string sceneName = "Scene";
 
 
 	SDL_Event e;
@@ -57,27 +55,11 @@ int Engine::exec()
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
 	// MAIN GAME LOOP -----------------------------------------
-	while (!quit){
+	while (sceneName != "NULL"){
+		currentScene = sceneManager.getScene(sceneName);
+		currentScene->init(&camera);
 
-		// Poll all events in event queue
-		while (SDL_PollEvent(&e)){
-			if (e.type == SDL_QUIT){
-				quit = true;
-				break;
-			}
-			// Check all one-time keypress events
-			if (e.type == SDL_KEYDOWN){
-				if (e.key.keysym.sym == SDLK_ESCAPE){
-					quit = true;
-				}
-			}
-		}
-
-		//Render the scene
-
-
-		SDL_RenderClear(camera.renderer);
-		SDL_RenderPresent(camera.renderer);
+		sceneName = currentScene->exec();
 	}
 	cleanup(camera.renderer, camera.window);
 	Mix_Quit();

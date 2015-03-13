@@ -3,8 +3,10 @@
 #include "Player.h"
 
 
-Scene::Scene(){
-	//local declarations if that's better. I declared it in the .h though. 
+Scene::Scene()
+{
+	sceneName = "Scene";
+
 	std::vector<Entity*> shipEnts;
 	std::vector<Entity*> bulEnts;
 
@@ -13,9 +15,15 @@ Scene::Scene(){
 }
 
 //change everytyhing to using a map.
-Scene::Scene(Camera* cam) : sceneName("Scene"), camera(cam)
+Scene::Scene(Camera* cam) : camera(cam)
 {
-	Scene();
+	sceneName = "Scene";
+
+	std::vector<Entity*> shipEnts;
+	std::vector<Entity*> bulEnts;
+
+	collidables.insert(std::pair<std::string, std::vector<Entity*>>("Ship", shipEnts));
+	collidables.insert(std::pair<std::string, std::vector<Entity*>>("Bullet", bulEnts));
 }
 
 
@@ -24,14 +32,17 @@ Scene::~Scene(){
 }
 
 
-void Scene::init()
+void Scene::init(Camera* cam)
 {
+	camera = cam;
+
 	// Initialize all textures:
-	spriteManager.add_texture("hornet", spriteManager.loadTexture("Resources//Sprites//hornet_body_small.gif", camera->renderer));
+	//spriteManager.add_texture("hornet", spriteManager.loadTexture("C://Users//Big//Documents//_Class Material//ICS 161//SDL//MyProjects//Group Game Engine//Resources//Sprites//hornet_body_small.gif", camera->renderer));
+	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer));
+
 
 	// Initialize all entities:
-	Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera);
-
+	Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 }
 
@@ -60,7 +71,8 @@ std::string Scene::exec()
 		}
 
 		//Render the scene
-
+		update();
+	
 		SDL_RenderClear(camera->renderer);
 		SDL_RenderPresent(camera->renderer);
 	}
@@ -124,11 +136,15 @@ void Scene::collisionDetection()
 
 void Scene::update()//goes through the sprites map and calls draw on it. 
 {//goes through the sprites and calls all of the updates for them. call the updates for entities instead?
-	for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
-	{
-		it->second.update();
+	if (sprites.size() > 0) {
+		collisionDetection();
+		for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
+		{
+			it->second.update();
+			camera->queueSprite(it->second);
+		}
+		camera->draw();
 	}
-	collisionDetection();
 }
 
 

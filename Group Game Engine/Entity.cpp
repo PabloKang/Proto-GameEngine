@@ -1,23 +1,15 @@
 #include "Entity.h"
 
 
-
 Entity::Entity()
 {
-	id = -1;
-	entityType = "null";
-
-	spritesheet = NULL;
-	spriteRect.w = hitBox.w = 0;
-	spriteRect.h = hitBox.h = 0;
-	spriteRect.x = hitBox.x = 0;
-	spriteRect.y = hitBox.y = 0;
+	Sprite();
 }
 
 
-Entity::Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam)//Sprite sprite;
+Entity::Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)//Sprite sprite;
 {
-	Sprite(entID, lvl, spriteR, cam);
+	Sprite(entID, lvl, spriteR, ren);
 
 	entityType = type;
 

@@ -2,8 +2,7 @@
 #include "Camera.h"
 
 
-// Sprite object constructors
-Sprite::Sprite()
+Sprite::Sprite() 
 {
 	sequenceIndex = 0;
 	angle = 0;
@@ -12,7 +11,10 @@ Sprite::Sprite()
 	flip = SDL_FLIP_NONE;
 	facing = DOWN;
 }
-Sprite::Sprite(int sID, int lvl, SDL_Rect rect, Camera* cam)
+
+
+// Sprite object constructors
+Sprite::Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(ren)
 {
 	Sprite();
 
@@ -25,8 +27,6 @@ Sprite::Sprite(int sID, int lvl, SDL_Rect rect, Camera* cam)
 	spriteRect.y = rect.y;
 	center.x = rect.w / 2.0;
 	center.y = rect.h / 2.0;
-
-	camera = cam;
 }
 
 Sprite::~Sprite()
@@ -166,6 +166,12 @@ int Sprite::addFrameToSequence(std::string seqName, int frameIndex)
 }
 
 
+void Sprite::draw()
+{
+	draw("default");
+}
+
+
 // show(int) renders the frame with the specified frameIndex
 void Sprite::draw(int frameIndex)
 {
@@ -181,7 +187,7 @@ void Sprite::draw(int frameIndex)
 	clip.x = frames[frameIndex].x; 
 	clip.y = frames[frameIndex].y;
 
-	SDL_RenderCopyEx(camera->renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
+	SDL_RenderCopyEx(renderer, frames[frameIndex].texture, &clip, &dst, angle, &center, flip);
 }
 
 

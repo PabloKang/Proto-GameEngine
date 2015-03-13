@@ -3,24 +3,25 @@
 
 Player::Player()
 {
-	Entity();
-	curHealth = 100;
-	maxHealth = 100;
-
-	maxBoost = 100;
-	curBoost = 0;
-	boostTime = 0;
+	Ship();
 }
 
 
-Player::Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam)
+Player::Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
-	Ship(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, cam);
+	Ship(entityID, lvl, entityType, sprtsht, spriteR, hitBoxR, ren);
+	initFrames();
 }
 
 
 Player::~Player()
 {
+}
+
+
+void Player::initFrames()
+{
+	addFrameToSequence("default", makeFrame(spritesheet, 0, 0));	// Default left
 }
 
 

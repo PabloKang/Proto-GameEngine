@@ -30,3 +30,11 @@ void logSDLError(std::ostream &os, const std::string &msg){
 	errMsg << " error: " << SDL_GetError() << std::endl;
 	OutputDebugString(errMsg.str().c_str());
 }
+
+
+std::string exePath() {
+	char buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+	return std::string(buffer).substr(0, pos);
+}

@@ -9,9 +9,10 @@ class Player :
 {
 public:
 	Player();
-	Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam);
+	Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Player();
 
+	void initFrames();
 	void control();
 	void update();
 	void draw();

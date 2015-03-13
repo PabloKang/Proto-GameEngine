@@ -36,4 +36,7 @@ enum message_type {USER_INPUT, COLLISION, INTERACTION};
 */
 void logSDLError(std::ostream &os, const std::string &msg);
 
+
+std::string exePath();
+
 #endif
