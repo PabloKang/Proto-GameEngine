@@ -38,8 +38,8 @@ bool Engine::init()
 	}
 
 	// TODO - Load Scene into sceneManager here.
-	Scene scene = Scene();
-	sceneManager.addScene(&scene);
+	Scene* scene = new Scene();
+	sceneManager.addScene(scene);
 
 	return true;
 }

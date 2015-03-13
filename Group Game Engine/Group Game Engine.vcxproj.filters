@@ -115,52 +115,55 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\Sprites\cloudy_starfield_bg.jpg">
+    <Image Include="..\Debug\Resources\Sprites\background.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\explosion.png">
+    <Image Include="..\Debug\Resources\Sprites\cloudy_starfield_bg.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_body.gif">
+    <Image Include="..\Debug\Resources\Sprites\explosion.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_body_large.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_body.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_body_small.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_large.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_body_spritesheet.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_small.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_thrust_spritesheet.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_spritesheet.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_turret.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_thrust_spritesheet.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\hornet_turret_small.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_turret.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\rocket.gif">
+    <Image Include="..\Debug\Resources\Sprites\hornet_turret_small.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\rocket_spritesheet.gif">
+    <Image Include="..\Debug\Resources\Sprites\rocket.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\rocket_trail.gif">
+    <Image Include="..\Debug\Resources\Sprites\rocket_spritesheet.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\rocketLock.png">
+    <Image Include="..\Debug\Resources\Sprites\rocket_trail.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\smoke.gif">
+    <Image Include="..\Debug\Resources\Sprites\rocketLock.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\SpaceHolder.gif">
+    <Image Include="..\Debug\Resources\Sprites\smoke.gif">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\Sprites\turret_bullet.gif">
+    <Image Include="..\Debug\Resources\Sprites\SpaceHolder.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Debug\Resources\Sprites\turret_bullet.gif">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

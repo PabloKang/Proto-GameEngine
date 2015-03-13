@@ -108,22 +108,23 @@
     <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\Sprites\cloudy_starfield_bg.jpg" />
-    <Image Include="..\Resources\Sprites\explosion.png" />
-    <Image Include="..\Resources\Sprites\hornet_body.gif" />
-    <Image Include="..\Resources\Sprites\hornet_body_large.gif" />
-    <Image Include="..\Resources\Sprites\hornet_body_small.gif" />
-    <Image Include="..\Resources\Sprites\hornet_body_spritesheet.gif" />
-    <Image Include="..\Resources\Sprites\hornet_thrust_spritesheet.gif" />
-    <Image Include="..\Resources\Sprites\hornet_turret.gif" />
-    <Image Include="..\Resources\Sprites\hornet_turret_small.gif" />
-    <Image Include="..\Resources\Sprites\rocket.gif" />
-    <Image Include="..\Resources\Sprites\rocketLock.png" />
-    <Image Include="..\Resources\Sprites\rocket_spritesheet.gif" />
-    <Image Include="..\Resources\Sprites\rocket_trail.gif" />
-    <Image Include="..\Resources\Sprites\smoke.gif" />
-    <Image Include="..\Resources\Sprites\SpaceHolder.gif" />
-    <Image Include="..\Resources\Sprites\turret_bullet.gif" />
+    <Image Include="..\Debug\Resources\Sprites\background.gif" />
+    <Image Include="..\Debug\Resources\Sprites\cloudy_starfield_bg.jpg" />
+    <Image Include="..\Debug\Resources\Sprites\explosion.png" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_body.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_large.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_small.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_body_spritesheet.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_thrust_spritesheet.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_turret.gif" />
+    <Image Include="..\Debug\Resources\Sprites\hornet_turret_small.gif" />
+    <Image Include="..\Debug\Resources\Sprites\rocket.gif" />
+    <Image Include="..\Debug\Resources\Sprites\rocketLock.png" />
+    <Image Include="..\Debug\Resources\Sprites\rocket_spritesheet.gif" />
+    <Image Include="..\Debug\Resources\Sprites\rocket_trail.gif" />
+    <Image Include="..\Debug\Resources\Sprites\smoke.gif" />
+    <Image Include="..\Debug\Resources\Sprites\SpaceHolder.gif" />
+    <Image Include="..\Debug\Resources\Sprites\turret_bullet.gif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
