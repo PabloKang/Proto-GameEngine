@@ -33,7 +33,7 @@ std::string Message::getDoMessage() const
 
 
 bool Message::operator == (const Message& rhs) const{
-	if (do_what != rhs.getStringMessage())
+	if (do_what != rhs.getDoMessage())
 		return false;
 	if (timeStamp != rhs.getTimeStamp())
 		return false;

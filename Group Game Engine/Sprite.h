@@ -69,7 +69,7 @@ public:
 	virtual bool operator >  (const Sprite& rhs) const;
 
 	// PRIVATE VARIABLES ////////////////////////////////////
-private:
+
 	struct frame
 	{
 		SDL_Texture* texture;

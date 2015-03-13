@@ -35,7 +35,6 @@ Scene::~Scene(){
 void Scene::init(Camera* cam)
 {
 	camera = cam;
-	std::cout << sprites.size();
 	// Initialize all textures:
 	//spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer));
 
