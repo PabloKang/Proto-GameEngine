@@ -26,8 +26,13 @@ Scene::~Scene(){
 
 void Scene::init()
 {
-	//Player hornet = Player(0, 1, "Ship", SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, Camera* cam);
-	//sprites.insert
+	// Initialize all textures:
+	spriteManager.add_texture("hornet", spriteManager.loadTexture("Resources//Sprites//hornet_body_small.gif", camera->renderer));
+
+	// Initialize all entities:
+	Sprite hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ 0, 0, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera);
+
+	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 }
 
 
