@@ -37,12 +37,17 @@ void Scene::init(Camera* cam)
 	camera = cam;
 	// Initialize all textures:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
+	spriteManager.add_texture("background", spriteManager.loadTexture("cloudy_starfield_bg.jpg", camera->renderer));
 
+	Sprite background = Sprite(0, 1, SDL_Rect{ 0, 0, camera->width, camera->height },camera->renderer);
+	background.makeFrame(spriteManager.get_texture("background"), -1, 1);
+	background.addFrameToSequence("default", 0);
 
 	//// Initialize all entities:
-	Player hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width/2, camera->height/2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	Player hornet = Player(1, 0, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width/2, camera->height/2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
 	//Player hornet = Player(0, 1, "Ship", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer), SDL_Rect{ 300, 300, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-
+	
+	sprites.insert(std::pair<int, Sprite>(background.id, background));
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 }
 
@@ -69,12 +74,15 @@ std::string Scene::exec()
 				}
 			}
 		}
-		// Clear the renderer
-		SDL_RenderClear(camera->renderer);
 
 		// Render the scene
 		update();
 		SDL_RenderPresent(camera->renderer);
+
+		// Clear the renderer
+		SDL_RenderClear(camera->renderer);
+
+
 	}
 	return "NULL";
 }
