@@ -36,23 +36,24 @@ void Scene::init(Camera* cam)
 {
 	camera = cam;
 
-	// Initialize all textures:
+	// LOAD TEXTURES:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
-	//spriteManager.add_texture("turret", spriteManager.loadTexture("hornet_turret.gif", camera->renderer));
-	//spriteManager.add_texture("thrust", spriteManager.loadTexture("hornet_thrust.gif", camera->renderer));
-	spriteManager.add_texture("background", spriteManager.loadTexture("cloudy_starfield_bg.jpg", camera->renderer));
+	spriteManager.add_texture("background", spriteManager.loadTexture("background.gif", camera->renderer));
+	spriteManager.add_texture("turret", spriteManager.loadTexture("hornet_turret_small.gif", camera->renderer));
 
-	Sprite background = Sprite(0, 1, SDL_Rect{ 0, 0, camera->width, camera->height },camera->renderer);
-	background.makeFrame(spriteManager.get_texture("background"), -1, 1);
-	background.addFrameToSequence("default", 0);
+	// INITIALIZE SPRITES:
+	//background
+	Sprite background = Sprite(0, 3, SDL_Rect{ 0, 0, camera->width, camera->height }, camera->renderer);
+	background.addFrameToSequence("default", background.makeFrame(spriteManager.get_texture("background"), -1, 1));
+	//player
+	Player hornet = Player(1.0, 2, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	hornet.turret = Sprite(1.1, 1, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
+	hornet.turret.addFrameToSequence("default", hornet.turret.makeFrame(spriteManager.get_texture("turret"), 0, 0));
 
-	//// Initialize all entities:
-	Player hornet = Player(1.0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-	hornet.turret = Sprite(1.1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
-
-	sprites.insert(std::pair<int, Sprite>(background.id, background));
-	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
-	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet.turret));
+	// INSERT SPRITES
+	sprites.insert(std::pair<float, Sprite>(background.id, background));
+	sprites.insert(std::pair<float, Sprite>(hornet.id, hornet));
+	sprites.insert(std::pair<float, Sprite>(hornet.turret.id, hornet.turret));
 }
 
 
@@ -150,21 +151,16 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 		collisionDetection();
 		for (std::map<float, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 		{
-
 			if (it->second.type == PLAYER) {
 				Sprite * sprite = &it->second;
 				Player * player = static_cast<Player*>(sprite);
 				player->update(currentKeyStates);
 				camera->queueSprite(*player);
-				camera->queueSprite(player->turret);
 			}
-
 			else {
 				it->second.update();
 				camera->queueSprite(it->second);
-
 			}
-
 		}
 		camera->draw();
 	}

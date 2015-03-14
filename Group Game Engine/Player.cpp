@@ -49,6 +49,7 @@ void Player::update(const Uint8* currentKeyStates)
 	// Get movement input
 	control(currentKeyStates);
 	move();
+	turret.setPos(spriteRect.x, spriteRect.y);
 }
 
 

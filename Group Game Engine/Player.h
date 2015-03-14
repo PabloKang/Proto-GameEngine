@@ -17,6 +17,7 @@ public:
 	void update(const Uint8* currentKeyStates);
 	void draw();
 
+	// Additional sprites
 	Sprite turret;
 	//Sprite thrustFront;
 	//Sprite thrustBack;
