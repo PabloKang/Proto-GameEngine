@@ -80,7 +80,12 @@ void Camera::queueSprite(Sprite& s){
 void Camera::draw(){
 	while (!drawQueue.empty()){
 		Sprite& temp = drawQueue.top();
-		temp.draw();
+		if (temp.frames.size() > 0) {
+			temp.draw();
+		}
+		else {
+			logSDLError(std::cout, "Camera :: Sprite has no frames to draw.");
+		}
 		drawQueue.pop();
 	}
 }
