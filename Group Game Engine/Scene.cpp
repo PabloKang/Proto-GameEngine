@@ -35,15 +35,18 @@ Scene::~Scene(){
 void Scene::init(Camera* cam)
 {
 	camera = cam;
+
 	// Initialize all textures:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
-
+	//spriteManager.add_texture("turret", spriteManager.loadTexture("hornet_turret.gif", camera->renderer));
+	//spriteManager.add_texture("thrust", spriteManager.loadTexture("hornet_thrust.gif", camera->renderer));
 
 	//// Initialize all entities:
-	Player hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width/2, camera->height/2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-	//Player hornet = Player(0, 1, "Ship", spriteManager.loadTexture("hornet_body_small.gif", camera->renderer), SDL_Rect{ 300, 300, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	Player hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	//hornet.turret = Sprite(1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
 
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
+	//sprites.insert(std::pair<int, Sprite>(hornet.id, hornet.turret));
 }
 
 
@@ -69,12 +72,12 @@ std::string Scene::exec()
 				}
 			}
 		}
-		// Clear the renderer
-		SDL_RenderClear(camera->renderer);
-
-		// Render the scene
+		// Update & Render the scene
 		update();
 		SDL_RenderPresent(camera->renderer);
+
+		// Clear the renderer
+		SDL_RenderClear(camera->renderer);
 	}
 	return "NULL";
 }
@@ -144,11 +147,13 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 				Sprite * sprite = &it->second;
 				Player * player = static_cast<Player*>(sprite);
 				player->update(currentKeyStates);
+				camera->queueSprite(*player);
+				camera->queueSprite(player->turret);
 			}
 			else {
 				it->second.update();
+				camera->queueSprite(it->second);
 			}
-			camera->queueSprite(it->second);
 		}
 		camera->draw();
 	}

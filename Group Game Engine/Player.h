@@ -18,6 +18,8 @@ public:
 	void draw();
 
 	Sprite turret;
+	//Sprite thrustFront;
+	//Sprite thrustBack;
 };
 
 #endif
