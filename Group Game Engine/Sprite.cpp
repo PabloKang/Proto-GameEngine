@@ -1,6 +1,7 @@
 #include "Sprite.h"
 #include "Camera.h"
-
+#include "SoundManager.h"
+#include "SoundPlayer.h"
 
 Sprite::Sprite() 
 {
@@ -14,7 +15,7 @@ Sprite::Sprite()
 
 
 // Sprite object constructors
-Sprite::Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(ren)
+Sprite::Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* smr) : renderer(ren), sp(smr), sm(smr)
 {
 	id = sID;
 	layer = lvl;
@@ -233,4 +234,11 @@ bool Sprite::operator >= (const Sprite& rhs) const{
 }
 bool Sprite::operator >(const Sprite& rhs) const{
 	return rhs < *this;
+}
+
+
+void Sprite::playSound(std::string soundstring, int repeat)
+{
+	sp.playSound(soundstring, repeat);
+
 }

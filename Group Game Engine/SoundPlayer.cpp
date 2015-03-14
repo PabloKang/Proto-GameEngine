@@ -5,14 +5,14 @@
 SoundPlayer::SoundPlayer()
 {}
 
-SoundPlayer::SoundPlayer(SoundManager* sm) :sm(sm)
+SoundPlayer::SoundPlayer(SoundManager* smr) :sm(smr)
 {
 	soundchannel = sm->getAvailableChannel();
 	soundvolume = 255;
 }
 SoundPlayer::~SoundPlayer()
 {
-	sm->freeChannel(soundchannel);
+	//sm->freeChannel(soundchannel);
 }
 
 void SoundPlayer::playSound(std::string soundstring, int repeat)

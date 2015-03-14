@@ -14,7 +14,7 @@ public:
 	~Scene();
 
 	// Functions
-	void init(Camera* cam);
+	void init(Camera* cam, SoundManager* sm);
 	std::string exec();
 
 	void	update();
@@ -32,11 +32,14 @@ public:
 	std::map<float, Sprite> sprites;
 	std::map<std::string, std::vector<Entity*>> collidables;
 
+	void playSound(std::string soundstring, int repeat);
+
 private:
 	Camera* camera;
 	SpriteManager spriteManager;
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 	SoundManager* sm;
+	SoundPlayer sp;
 };
 
 #endif

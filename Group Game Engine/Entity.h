@@ -29,7 +29,7 @@ public:
 
 	void move();
 	void draw(std::string sequence);
-	void playSound(std::string sound);
+	
 
 	// Virtual Functions
 	virtual void initFrames();

@@ -11,8 +11,9 @@ Player::Player()
 }
 
 
-Player::Player(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* sm)
+Player::Player(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* smr) 
 {
+	Sprite(entID, lvl, spriteR, ren, smr);
 	id = entID;
 	layer = lvl;
 	entityType = entType;
@@ -89,4 +90,7 @@ void Player::control(const Uint8* currentKeyStates)
 	}
 	else if (curBoost > 0) { curBoost = curBoost - 0.25f; }
 	if (boostTime < maxBoost) boostTime += 0.2f;
+
+
+
 }

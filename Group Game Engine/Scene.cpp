@@ -15,7 +15,7 @@ Scene::Scene()
 }
 
 //change everytyhing to using a map.
-Scene::Scene(Camera* cam, SoundManager* sm) : camera(cam), sm(sm)
+Scene::Scene(Camera* cam, SoundManager* smr) : camera(cam), sp(smr), sm(smr)
 {
 	sceneName = "Scene";
 
@@ -32,10 +32,10 @@ Scene::~Scene(){
 }
 
 
-void Scene::init(Camera* cam)
+void Scene::init(Camera* cam,SoundManager* sm)
 {
 	camera = cam;
-
+	sm->loadSound("shot", exePath() + "\\Resources\\Audio\\shot.wav");
 	// LOAD TEXTURES:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
 	spriteManager.add_texture("background", spriteManager.loadTexture("background.gif", camera->renderer));
@@ -43,11 +43,11 @@ void Scene::init(Camera* cam)
 
 	// INITIALIZE SPRITES:
 	//background
-	Sprite background = Sprite(0, 3, SDL_Rect{ 0, 0, camera->width, camera->height }, camera->renderer);
+	Sprite background = Sprite(0, 3, SDL_Rect{ 0, 0, camera->width, camera->height }, camera->renderer,sm);
 	background.addFrameToSequence("default", background.makeFrame(spriteManager.get_texture("background"), -1, 1));
 	//player
-	Player hornet = Player(1.0, 2, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-	hornet.turret = Sprite(1.1, 1, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
+	Player hornet = Player(1.0, 2, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer,sm);
+	hornet.turret = Sprite(1.1, 1, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer,sm);
 	hornet.turret.addFrameToSequence("default", hornet.turret.makeFrame(spriteManager.get_texture("turret"), 0, 0));
 
 	// INSERT SPRITES
@@ -77,6 +77,9 @@ std::string Scene::exec()
 				if (e.key.keysym.sym == SDLK_ESCAPE){
 					quit = true;
 				}
+			}
+			if (currentKeyStates[SDL_SCANCODE_SPACE]){
+				playSound("shot", 0);
 			}
 		}
 		update();
@@ -183,3 +186,11 @@ Sprite& Scene::getSprite(float id)
 {
 	return sprites.at(id);
 }//get a sprite given it's ID in the mapping
+
+
+void Scene::playSound(std::string soundstring, int repeat)
+{
+
+	sp.playSound(soundstring, repeat);
+
+}

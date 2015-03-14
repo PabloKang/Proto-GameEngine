@@ -8,11 +8,17 @@
 Engine::Engine()
 {
 	resPath = RESOURCE_PATH;
-	SoundManager* sndMgr = new SoundManager();
-	sceneManager = SceneManager(&camera,sndMgr);
+	sndMgr = new SoundManager;
+	sceneManager = SceneManager(&camera, sndMgr);
 
 }
 
+Engine::Engine(SoundManager* sm)
+{
+	resPath = RESOURCE_PATH;
+	sndMgr = sm;
+	sceneManager = SceneManager(&camera, sndMgr);
+}
 
 Engine::~Engine() {}
 
@@ -38,9 +44,15 @@ bool Engine::init()
 		SDL_Quit();
 		return false;
 	}
+	//Initialize SDL_mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		std::cout << "SDL_mixer could not initialize!" << std::endl;
+	}
+
 
 	// TODO - Load Scene into sceneManager here.
-	Scene* scene = new Scene();
+	Scene* scene = new Scene(&camera,sndMgr);
 	sceneManager.addScene(scene);
 
 	return true;
@@ -50,7 +62,7 @@ bool Engine::init()
 int Engine::exec()
 {
 	std::string sceneName = "Scene";
-
+	
 
 	SDL_Event e;
 	bool quit = false;
@@ -59,7 +71,7 @@ int Engine::exec()
 	// MAIN GAME LOOP -----------------------------------------
 	while (sceneName != "NULL"){
 		currentScene = sceneManager.getScene(sceneName);
-		currentScene->init(&camera);
+		currentScene->init(&camera,sndMgr);
 
 		sceneName = currentScene->exec();
 	}

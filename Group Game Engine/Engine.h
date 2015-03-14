@@ -5,7 +5,7 @@
 #include "Camera.h"
 #include "SceneManager.h"
 #include "Scene.h"
-
+#include "SoundManager.h"
 
 // ENGINE CLASS
 class Engine
@@ -20,6 +20,7 @@ public:
 
 	// Engine Constructors
 	Engine();
+	Engine(SoundManager* sm);
 	~Engine();
 
 	// Engine Functions

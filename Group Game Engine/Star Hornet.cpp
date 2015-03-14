@@ -1,7 +1,6 @@
 #include "Star Hornet.h"
 #include "Engine.h"
 
-
 void fillDisplayMode(SDL_DisplayMode& currDis);
 
 
@@ -13,8 +12,9 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	
-	Engine game = Engine();
 
+	Engine game = Engine();
+	std::cout << "this should work" << game.sndMgr->getAvailableChannel() << std::endl;
 	// If everything checks out, execute the game
 	if ( !game.init() )
 		return 1; 

@@ -2,6 +2,9 @@
 #define SPRITE_H
 
 #include "Star Hornet.h"
+#include "SoundManager.h"
+#include "SoundPlayer.h"
+
 class Camera;
 
 
@@ -9,7 +12,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren);
+	Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* sm);
 	~Sprite();
 
 	// Sprite position
@@ -45,6 +48,9 @@ public:
 	void draw(std::string sequence);
 	void addToCamera();
 
+
+	// Sound //////////////////////////////////////////
+	void playSound(std::string soundstring, int repeat);
 
 	// PUBLIC VARIABLES //////////////////////////////////////
 	SDL_Renderer* renderer;		// Renderer access
@@ -82,6 +88,10 @@ public:
 
 	int sequenceIndex;		// shared by all sequences; it would be better to have
 							// one for each sequence
+private:
+	SoundPlayer sp;
+	SoundManager* sm;
+
 };
 
 
