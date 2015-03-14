@@ -63,21 +63,35 @@ void SoundManager::loadSound(std::string soundname, std::string filename)
 	}
 	else
 	{
-		fileMap.emplace(std::pair<std::string, Mix_Chunk*>(soundname, soundchunk));
+		soundMap.emplace(std::pair<std::string, Mix_Chunk*>(soundname, soundchunk));
 	}
 }
 
+void SoundManager::loadMusic(std::string musicname, std::string filename)
+{
+	Mix_Music* musicchunk = Mix_LoadMUS(filename.c_str());
+	if (musicchunk == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+	else
+	{
+		musicMap.emplace(std::pair<std::string, Mix_Music*>(musicname, musicchunk));
+	}
+}
+
+
 Mix_Chunk* SoundManager::findSound(std::string soundname)
 {
-	std::cout << "fileMap size " << fileMap.size() << std::endl;
+	std::cout << "fileMap size " << soundMap.size() << std::endl;
 	//std::cout << "soundmanager soundstring " << soundname << "\n";
-	if (fileMap.find(soundname) != fileMap.end())
+	if (soundMap.find(soundname) != soundMap.end())
 	{
-		return fileMap.find(soundname)->second;
+		return soundMap.find(soundname)->second;
 	}
 	else{
 		std::cout << "mymap contains:\n";
-		for (std::map<std::string, Mix_Chunk*>::iterator it = fileMap.begin(); it != fileMap.end(); ++it)
+		for (std::map<std::string, Mix_Chunk*>::iterator it = soundMap.begin(); it != soundMap.end(); ++it)
 		{
 			std::cout << it->first << " => " << it->second << '\n';
 
@@ -89,8 +103,42 @@ Mix_Chunk* SoundManager::findSound(std::string soundname)
 	return nullptr;
 }
 
+Mix_Music* SoundManager::findMusic(std::string musicname)
+{
+
+
+	std::cout << "fileMap size " << musicMap.size() << std::endl;
+
+	if (musicMap.find(musicname) != musicMap.end())
+	{
+		return musicMap.find(musicname)->second;
+	}
+	else{
+		std::cout << "mymap contains:\n";
+		for (std::map<std::string, Mix_Music*>::iterator it = musicMap.begin(); it != musicMap.end(); ++it)
+		{
+			std::cout << it->first << " => " << it->second << '\n';
+
+			printf("Failed to find music!  %s\n", musicname.c_str());
+
+		}
+
+	}
+	return nullptr;
+}
+
+
 void SoundManager::freeSound(std::string soundname)
 {
 	Mix_FreeChunk(findSound(soundname));
-	fileMap.erase(soundname);
+	soundMap.erase(soundname);
 }
+
+void SoundManager::freeMusic(std::string musicname)
+{
+	Mix_FreeMusic(findMusic(musicname));
+	musicMap.erase(musicname);
+
+}
+
+

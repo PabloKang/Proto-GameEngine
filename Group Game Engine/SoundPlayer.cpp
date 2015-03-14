@@ -63,6 +63,13 @@ void SoundPlayer::playSound(std::string soundstring, float left, float right, in
 }
 
 
+void SoundPlayer::playMusic(std::string musicstring, int repeat)
+{
+	Mix_Music* musicfile = sm->findMusic(musicstring);
+	Mix_PlayMusic(musicfile, repeat);
+	
+}
+
 void SoundPlayer::changeVolume(int volume)
 {
 	soundvolume = volume;

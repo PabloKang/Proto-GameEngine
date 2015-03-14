@@ -190,7 +190,14 @@ Sprite& Scene::getSprite(float id)
 
 void Scene::playSound(std::string soundstring, int repeat)
 {
-
 	sp.playSound(soundstring, repeat);
+}
 
+void Scene::loadMusic(std::string musicname, std::string filename)
+{
+	sm->loadMusic(musicname, filename);
+}
+void Scene::playMusic(std::string musicstring, int repeat)
+{
+	sp.playMusic(musicstring, repeat);
 }

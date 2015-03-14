@@ -29,6 +29,11 @@ public:
 	//This will stop all sounds
 	void stopAllSound();
 
+	// playMusic takes a soundfile string as argument
+	// the integer repeat is the number of times the sound file will play
+	// a negative value will for loop infinitely
+	void playMusic(std::string musicstring, int repeat);
+
 private:
 	int soundchannel;
 	int soundvolume;

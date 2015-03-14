@@ -33,6 +33,8 @@ public:
 	std::map<std::string, std::vector<Entity*>> collidables;
 
 	void playSound(std::string soundstring, int repeat);
+	void loadMusic(std::string musicname, std::string filename);
+	void playMusic(std::string musicstring, int repeat);
 
 private:
 	Camera* camera;
