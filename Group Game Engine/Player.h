@@ -9,7 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(int entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
+	Player(float entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Player();
 
 	void initFrames();

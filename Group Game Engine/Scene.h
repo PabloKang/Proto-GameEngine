@@ -19,17 +19,17 @@ public:
 
 	void	update();
 	void	addSprite(Sprite sprite);
-	void	delSprite(int id);
-	Sprite& getSprite(int id); 
+	void	delSprite(float id);
+	Sprite& getSprite(float id); 
 	void	collisionDetection();
 	void	addCollidable(Entity* entity);
-	void	delCollidable(std::string type, int entID);
+	void	delCollidable(std::string type, float entID);
 
 	// Public Variables
 	std::string sceneName;
 
 	// Map of all entities in the scene
-	std::map<int, Sprite> sprites;
+	std::map<float, Sprite> sprites;
 	std::map<std::string, std::vector<Entity*>> collidables;
 
 private:

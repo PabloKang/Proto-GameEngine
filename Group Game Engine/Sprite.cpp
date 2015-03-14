@@ -14,7 +14,7 @@ Sprite::Sprite()
 
 
 // Sprite object constructors
-Sprite::Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(ren)
+Sprite::Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) : renderer(ren)
 {
 	id = sID;
 	layer = lvl;

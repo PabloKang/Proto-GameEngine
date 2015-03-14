@@ -24,7 +24,7 @@ public:
 
 	// Constructor/Destructor
 	Entity();
-	Entity(int entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
+	Entity(float entID, int lvl, std::string type, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Entity();
 
 	void move();

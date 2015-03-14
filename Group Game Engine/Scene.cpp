@@ -42,11 +42,11 @@ void Scene::init(Camera* cam)
 	//spriteManager.add_texture("thrust", spriteManager.loadTexture("hornet_thrust.gif", camera->renderer));
 
 	//// Initialize all entities:
-	Player hornet = Player(0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
-	//hornet.turret = Sprite(1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
+	Player hornet = Player(1.0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	hornet.turret = Sprite(1.1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
 
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
-	//sprites.insert(std::pair<int, Sprite>(hornet.id, hornet.turret));
+	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet.turret));
 }
 
 
@@ -91,7 +91,7 @@ void Scene::addCollidable(Entity* entity)
 }
 
 
-void Scene::delCollidable(std::string type, int entID)
+void Scene::delCollidable(std::string type, float entID)
 {
 	for (unsigned int i = 0; i < collidables.at(type).size(); i++)
 	{
@@ -141,7 +141,7 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 {//goes through the sprites and calls all of the updates for them. call the updates for entities instead?
 	if (sprites.size() > 0) {
 		collisionDetection();
-		for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
+		for (std::map<float, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 		{
 			if (it->second.type == PLAYER) {
 				Sprite * sprite = &it->second;
@@ -166,13 +166,13 @@ void Scene::addSprite(Sprite sprite)
 }//adds a sprite into the mapping. Uses it's spriteID in order to map it. 
 
 
-void Scene::delSprite(int id)
+void Scene::delSprite(float id)
 {
 	sprites.erase(id);
 }//removes a sprite based on it's ID in the mapping.
 
 
-Sprite& Scene::getSprite(int id)
+Sprite& Scene::getSprite(float id)
 {
 	return sprites.at(id);
 }//get a sprite given it's ID in the mapping

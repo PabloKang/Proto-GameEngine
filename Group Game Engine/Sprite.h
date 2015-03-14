@@ -9,7 +9,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren);
+	Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren);
 	~Sprite();
 
 	// Sprite position
@@ -48,7 +48,7 @@ public:
 
 	// PUBLIC VARIABLES //////////////////////////////////////
 	SDL_Renderer* renderer;		// Renderer access
-	int			id;
+	float		id;
 	SDL_Rect	spriteRect;	// The rectangle bounding the sprite and defining its position
 	SDL_Point	center;
 	int			layer;

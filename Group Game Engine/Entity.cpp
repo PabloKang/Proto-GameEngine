@@ -12,7 +12,7 @@ Entity::Entity()
 }
 
 
-Entity::Entity(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
+Entity::Entity(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
 	id = entID;
 	layer = lvl;
