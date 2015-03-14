@@ -1,6 +1,9 @@
 #include "Player.h"
 #include <math.h>
 
+const int spriteSize = 128;
+const float rotationRatio = (70.5 / 128.f);
+
 
 Player::Player()
 {
@@ -16,14 +19,15 @@ Player::Player(int entID, int lvl, std::string entType, SDL_Texture* sprtsht, SD
 	spritesheet = sprtsht;
 	spriteRect = spriteR;
 	hitBox = hitBoxR;
-	center.x = spriteRect.w / 2.0;
-	center.y = spriteRect.h / 2.0;
+	center.x = spriteSize * rotationRatio;
+	center.y = spriteSize / 2;
 
 	renderer = ren;
 
 	type = PLAYER;
 
 	initFrames();
+	//Sprite(int sID, int lvl, SDL_Rect rect, SDL_Renderer* ren) 
 }
 
 
