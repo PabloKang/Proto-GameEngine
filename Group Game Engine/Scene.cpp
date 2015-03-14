@@ -40,11 +40,17 @@ void Scene::init(Camera* cam)
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
 	//spriteManager.add_texture("turret", spriteManager.loadTexture("hornet_turret.gif", camera->renderer));
 	//spriteManager.add_texture("thrust", spriteManager.loadTexture("hornet_thrust.gif", camera->renderer));
+	spriteManager.add_texture("background", spriteManager.loadTexture("cloudy_starfield_bg.jpg", camera->renderer));
+
+	Sprite background = Sprite(0, 1, SDL_Rect{ 0, 0, camera->width, camera->height },camera->renderer);
+	background.makeFrame(spriteManager.get_texture("background"), -1, 1);
+	background.addFrameToSequence("default", 0);
 
 	//// Initialize all entities:
 	Player hornet = Player(1.0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
 	hornet.turret = Sprite(1.1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
 
+	sprites.insert(std::pair<int, Sprite>(background.id, background));
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet));
 	sprites.insert(std::pair<int, Sprite>(hornet.id, hornet.turret));
 }
@@ -72,12 +78,13 @@ std::string Scene::exec()
 				}
 			}
 		}
-		// Update & Render the scene
 		update();
 		SDL_RenderPresent(camera->renderer);
 
 		// Clear the renderer
 		SDL_RenderClear(camera->renderer);
+
+
 	}
 	return "NULL";
 }
@@ -143,6 +150,7 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 		collisionDetection();
 		for (std::map<float, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 		{
+
 			if (it->second.type == PLAYER) {
 				Sprite * sprite = &it->second;
 				Player * player = static_cast<Player*>(sprite);
@@ -150,10 +158,13 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 				camera->queueSprite(*player);
 				camera->queueSprite(player->turret);
 			}
+
 			else {
 				it->second.update();
 				camera->queueSprite(it->second);
+
 			}
+
 		}
 		camera->draw();
 	}

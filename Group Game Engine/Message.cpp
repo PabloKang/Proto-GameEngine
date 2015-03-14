@@ -2,8 +2,10 @@
 
 
 Message::Message(std::string to_who, std::string do_wha, long delay)
-: to_whom{ to_who }, do_what{ to_who }, timeStamp{delay}
 {
+	to_whom = to_who;
+	do_what = do_wha;
+	timeStamp = delay;
 }
 
 Message::~Message(){}
