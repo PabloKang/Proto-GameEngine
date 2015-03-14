@@ -35,7 +35,7 @@ Scene::~Scene(){
 void Scene::init(Camera* cam,SoundManager* sm)
 {
 	camera = cam;
-	sm->loadSound("shot", exePath() + "\\Resources\\Audio\\shot.wav");
+	loadSound("shot", exePath() + "\\Resources\\Audio\\shot.wav");
 	loadMusic("tantrum", exePath() + "\\Resources\\Audio\\tantrum.ogg");
 	// LOAD TEXTURES:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
@@ -188,7 +188,10 @@ Sprite& Scene::getSprite(float id)
 	return sprites.at(id);
 }//get a sprite given it's ID in the mapping
 
-
+void Scene::loadSound(std::string soundname, std::string filename)
+{
+	sm->loadSound(soundname, filename);
+}
 void Scene::playSound(std::string soundstring, int repeat)
 {
 	sp.playSound(soundstring, repeat);
