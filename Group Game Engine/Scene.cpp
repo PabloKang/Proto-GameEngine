@@ -80,7 +80,8 @@ std::string Scene::exec()
 				}
 			}
 		}
-
+		update();
+		SDL_RenderPresent(camera->renderer);
 
 		// Clear the renderer
 		SDL_RenderClear(camera->renderer);
@@ -151,6 +152,7 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 		collisionDetection();
 		for (std::map<int, Sprite>::iterator it = sprites.begin(); it != sprites.end(); it++)
 		{
+
 			if (it->second.type == PLAYER) {
 				Sprite * sprite = &it->second;
 				Player * player = static_cast<Player*>(sprite);
@@ -158,10 +160,13 @@ void Scene::update()//goes through the sprites map and calls draw on it.
 				camera->queueSprite(*player);
 				camera->queueSprite(player->turret);
 			}
+
 			else {
 				it->second.update();
 				camera->queueSprite(it->second);
+
 			}
+
 		}
 		camera->draw();
 	}
