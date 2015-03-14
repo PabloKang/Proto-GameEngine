@@ -8,6 +8,7 @@
 class SoundPlayer
 {
 public:
+	SoundPlayer();
 	SoundPlayer(SoundManager* sm);
 	~SoundPlayer();
 

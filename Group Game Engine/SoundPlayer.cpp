@@ -2,6 +2,9 @@
 #include "SoundPlayer.h"
 #include "SoundManager.h"
 
+SoundPlayer::SoundPlayer()
+{}
+
 SoundPlayer::SoundPlayer(SoundManager* sm) :sm(sm)
 {
 	soundchannel = sm->getAvailableChannel();

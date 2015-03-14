@@ -11,7 +11,7 @@ Player::Player()
 }
 
 
-Player::Player(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
+Player::Player(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* sm)
 {
 	id = entID;
 	layer = lvl;

@@ -7,7 +7,7 @@ SceneManager::SceneManager()
 }
 
 
-SceneManager::SceneManager(Camera* cam) : camera(cam)
+SceneManager::SceneManager(Camera* cam, SoundManager* sm) : camera(cam), sm(sm)
 {
 
 }

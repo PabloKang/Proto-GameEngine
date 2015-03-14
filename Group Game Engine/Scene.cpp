@@ -15,7 +15,7 @@ Scene::Scene()
 }
 
 //change everytyhing to using a map.
-Scene::Scene(Camera* cam) : camera(cam)
+Scene::Scene(Camera* cam, SoundManager* sm) : camera(cam), sm(sm)
 {
 	sceneName = "Scene";
 
@@ -47,7 +47,7 @@ void Scene::init(Camera* cam)
 	background.addFrameToSequence("default", 0);
 
 	//// Initialize all entities:
-	Player hornet = Player(1.0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer);
+	Player hornet = Player(1.0, 1, "Ship", spriteManager.get_texture("hornet"), SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, SDL_Rect{ 0, 0, 128, 128 }, camera->renderer,sm);
 	hornet.turret = Sprite(1.1, 2, SDL_Rect{ camera->width / 2, camera->height / 2, 128, 128 }, camera->renderer);
 
 	sprites.insert(std::pair<int, Sprite>(background.id, background));

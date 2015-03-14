@@ -9,7 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(float entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
+	Player(float entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* sm);
 	~Player();
 
 	void initFrames();
@@ -20,6 +20,9 @@ public:
 	Sprite turret;
 	//Sprite thrustFront;
 	//Sprite thrustBack;
+private:
+	SoundPlayer sp;
+	SoundManager* sm;
 };
 
 #endif

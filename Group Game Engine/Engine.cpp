@@ -8,7 +8,9 @@
 Engine::Engine()
 {
 	resPath = RESOURCE_PATH;
-	sceneManager = SceneManager(&camera);
+	SoundManager* sndMgr = new SoundManager();
+	sceneManager = SceneManager(&camera,sndMgr);
+
 }
 
 

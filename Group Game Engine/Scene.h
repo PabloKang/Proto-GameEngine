@@ -10,7 +10,7 @@ class Scene
 public:
 	// Constructors & Destructors
 	Scene();
-	Scene(Camera* cam);
+	Scene(Camera* cam,SoundManager* sm);
 	~Scene();
 
 	// Functions
@@ -36,6 +36,7 @@ private:
 	Camera* camera;
 	SpriteManager spriteManager;
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+	SoundManager* sm;
 };
 
 #endif

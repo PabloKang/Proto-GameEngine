@@ -16,6 +16,7 @@ public:
 	SceneManager	sceneManager;
 	Scene*			currentScene;
 	std::string		resPath;
+	SoundManager*   sndMgr;
 
 	// Engine Constructors
 	Engine();
