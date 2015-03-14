@@ -36,6 +36,7 @@ void Scene::init(Camera* cam,SoundManager* sm)
 {
 	camera = cam;
 	sm->loadSound("shot", exePath() + "\\Resources\\Audio\\shot.wav");
+	loadMusic("tantrum", exePath() + "\\Resources\\Audio\\tantrum.ogg");
 	// LOAD TEXTURES:
 	spriteManager.add_texture("hornet", spriteManager.loadTexture("hornet_body.gif", camera->renderer));
 	spriteManager.add_texture("background", spriteManager.loadTexture("background.gif", camera->renderer));
@@ -61,7 +62,7 @@ std::string Scene::exec()
 {
 	SDL_Event e;
 	bool quit = false;
-
+	playMusic("tantrum",-1);
 
 	// MAIN GAME LOOP -----------------------------------------
 	while (!quit){

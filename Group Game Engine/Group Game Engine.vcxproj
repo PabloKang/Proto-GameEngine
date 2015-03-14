@@ -126,6 +126,9 @@
     <Image Include="..\Debug\Resources\Sprites\SpaceHolder.gif" />
     <Image Include="..\Debug\Resources\Sprites\turret_bullet.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Debug\Resources\Audio\tantrum.ogg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
