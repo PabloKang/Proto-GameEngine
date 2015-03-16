@@ -36,6 +36,7 @@ public:
 	//std::map<float, Sprite*> sprites;
 	Sprite background;
 	Player hornet;
+	std::map<float, Ship> enemies;
 	std::map<float, Projectile> bullets;
 	std::map<std::string, std::vector<Entity*>> collidables;
 

@@ -43,7 +43,7 @@ Ship::~Ship()
 void Ship::update()
 {
 	// Get movement input
-	control();
+	//control();
 }
 
 

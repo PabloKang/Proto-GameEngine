@@ -43,6 +43,7 @@ void Scene::init(Camera* cam, SoundManager* sm)
 	spriteManager.add_texture("background", spriteManager.loadTexture("background.gif", camera->renderer));
 	spriteManager.add_texture("turret", spriteManager.loadTexture("hornet_turret_small.gif", camera->renderer));
 	spriteManager.add_texture("bullet", spriteManager.loadTexture("turret_bullet.gif", camera->renderer));
+	spriteManager.add_texture("vanduul", spriteManager.loadTexture("vanduul.gif", camera->renderer));
 
 	// INITIALIZE SPRITES:
 	//background
@@ -94,6 +95,17 @@ std::string Scene::exec()
 					cooldown++;
 				}
 			}
+		}
+		// Randomly spawn someone
+		if ((0 + ((int)rand() % (1000 + 1 - 0)) <=5 ) && enemies.size() <= 5) {
+			int x = 0 + ((int)rand() % (1000 + 1 - 0));
+			int y  = 0 + ((int)rand() % (1000 + 1 - 0));
+			float enemyID = 2.0f + (0.0001 * (enemies.size() + 1));
+			SDL_Rect enemyRect{x, y, 128, 78 };
+			Ship* vanduul = new Ship(enemyID, 1.0f, "Enemy", spriteManager.get_texture("vanduul"), enemyRect, enemyRect, camera->renderer);
+			vanduul->addFrameToSequence("default", vanduul->makeFrame(vanduul->spritesheet, 0, 0));
+			enemies.insert(std::pair<float, Ship>(enemyID, *vanduul));
+			addCollidable(vanduul);
 		}
 
 		// Update and render the scene
@@ -153,16 +165,18 @@ void Scene::collisionDetection()
 				currAlly->curHealth -= currEnemy->maxHealth;
 				currEnemy->curHealth -= currAlly->maxHealth;
 				
-				if (currAlly->curHealth <= 0) {
-					currAlly->alive = false;
-					delCollidable(currAlly->entityType, currAlly->id);
-					// TODO - Render explosion ////////////////////////////////////////////////////////////
-				}
 				if (currEnemy->curHealth <= 0) {
 					currEnemy->alive = false;
 					delCollidable(currEnemy->entityType, currEnemy->id);
 					// TODO - Render explosion ////////////////////////////////////////////////////////////
 				}
+				if (currAlly->curHealth <= 0) {
+					currAlly->alive = false;
+					delCollidable(currAlly->entityType, currAlly->id);
+					break;
+					// TODO - Render explosion ////////////////////////////////////////////////////////////
+				}
+
 				std::cout << "OUCH!!\n";
 			}
 		}
@@ -179,10 +193,23 @@ void Scene::update()
 	// LAYER 0: Background
 	background.draw("default");
 
-	// LAYER 1: Player
+	// LAYER 1: Player and Enemies
 	if (hornet.alive) {
 		hornet.update(currentKeyStates);
 		hornet.draw();
+	}
+	if (!enemies.empty())
+	{
+		typedef std::map<float, Ship> enemyMap;
+		for (enemyMap::iterator it = enemies.begin(); it != enemies.end(); ++it) {
+			if (it->second.alive) {
+				it->second.update();
+				it->second.draw("default");
+			}
+			else {
+				int eck = 5;
+			}
+		}
 	}
 
 	// LAYER 2: Projectiles
@@ -190,8 +217,10 @@ void Scene::update()
 	{
 		typedef std::map<float, Projectile> bulletMap;
 		for (bulletMap::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-			it->second.update();
-			it->second.draw("default");
+			if (it->second.alive) {
+				it->second.update();
+				it->second.draw("default");
+			}
 		}
 	}
 

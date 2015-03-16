@@ -22,7 +22,6 @@ Player::Player(float entID, float lvl, std::string entType, SDL_Texture* sprtsht
 	hitBox = hitBoxR;
 	center.x = spriteSize * rotationRatio;
 	center.y = spriteSize / 2;
-	curHealth = 1;
 
 	renderer = ren;
 

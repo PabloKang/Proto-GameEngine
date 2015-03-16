@@ -172,6 +172,9 @@
     <Image Include="..\Debug\Resources\Sprites\turret_bullet.gif">
       <Filter>Source Files\Resource Files</Filter>
     </Image>
+    <Image Include="..\Debug\Resources\Sprites\vanduul.gif">
+      <Filter>Source Files\Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\Resources\Audio\tantrum.ogg">

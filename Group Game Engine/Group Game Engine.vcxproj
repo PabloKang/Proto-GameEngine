@@ -127,6 +127,7 @@
     <Image Include="..\Debug\Resources\Sprites\smoke.gif" />
     <Image Include="..\Debug\Resources\Sprites\SpaceHolder.gif" />
     <Image Include="..\Debug\Resources\Sprites\turret_bullet.gif" />
+    <Image Include="..\Debug\Resources\Sprites\vanduul.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\Resources\Audio\tantrum.ogg" />

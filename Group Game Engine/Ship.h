@@ -12,7 +12,7 @@ public:
 	Ship(float entityID, float lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Ship();
 
-	virtual void control();
+	void control();
 	void update();
 	//void draw();
 
