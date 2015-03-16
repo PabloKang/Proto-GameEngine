@@ -11,7 +11,7 @@ Ship::Ship()
 }
 
 
-Ship::Ship(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
+Ship::Ship(float entID, float lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren)
 {
 	id = entID;
 	layer = lvl;

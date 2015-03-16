@@ -9,7 +9,7 @@ class Ship :
 {
 public:
 	Ship();
-	Ship(float entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
+	Ship(float entityID, float lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren);
 	~Ship();
 
 	virtual void control();

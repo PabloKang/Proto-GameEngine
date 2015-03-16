@@ -1,5 +1,6 @@
-#include "Player.h"
 #include <math.h>
+#include "Player.h"
+#include "Camera.h"
 
 const int spriteSize = 128;
 const float rotationRatio = (70.5 / 128.f);
@@ -11,9 +12,8 @@ Player::Player()
 }
 
 
-Player::Player(float entID, int lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* smr) 
+Player::Player(float entID, float lvl, std::string entType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren, SoundManager* smr) 
 {
-	Sprite(entID, lvl, spriteR, ren, smr);
 	id = entID;
 	layer = lvl;
 	entityType = entType;
@@ -47,17 +47,23 @@ void Player::initFrames()
 
 void Player::update(const Uint8* currentKeyStates)
 {
-	// Get movement input
+	// Update Hull
 	control(currentKeyStates);
 	move();
-	turret.setPos(spriteRect.x, spriteRect.y);
-}
 
+	// Update Turret
+	int mx, my;
+	SDL_GetMouseState(&mx, &my);
+	float dx = mx - spriteRect.x;
+	float dy = my - spriteRect.y;
+	double turretAngle = (atan2(dy, dx)) * 180 / M_PI;
+	turret.setPos(spriteRect.x, spriteRect.y);
+	turret.angle = turretAngle;
+}
 
 
 void Player::control(const Uint8* currentKeyStates)
 {
-
 	// Forward momentum
 	if (currentKeyStates[SDL_SCANCODE_W] && !currentKeyStates[SDL_SCANCODE_S] && speed < 7){
 		speed += 0.2f;
@@ -90,7 +96,11 @@ void Player::control(const Uint8* currentKeyStates)
 	}
 	else if (curBoost > 0) { curBoost = curBoost - 0.25f; }
 	if (boostTime < maxBoost) boostTime += 0.2f;
+}
 
 
-
+void Player::addToCamera(Camera* cam)
+{
+	cam->queueSprite(*this);
+	cam->queueSprite(this->turret);
 }

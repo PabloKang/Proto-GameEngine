@@ -12,7 +12,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* sm);
+	Sprite(float sID, float lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* sm);
 	~Sprite();
 
 	// Sprite position
@@ -46,7 +46,7 @@ public:
 	void draw();
 	void draw(int frameIndex);
 	void draw(std::string sequence);
-	void addToCamera();
+	void addToCamera(Camera* cam);
 
 
 	// Sound //////////////////////////////////////////
@@ -55,9 +55,9 @@ public:
 	// PUBLIC VARIABLES //////////////////////////////////////
 	SDL_Renderer* renderer;		// Renderer access
 	float		id;
+	float		layer;
 	SDL_Rect	spriteRect;	// The rectangle bounding the sprite and defining its position
 	SDL_Point	center;
-	int			layer;
 	double		angle;
 	double		scaleX;
 	double		scaleY;

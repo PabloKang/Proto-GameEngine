@@ -15,7 +15,7 @@ Sprite::Sprite()
 
 
 // Sprite object constructors
-Sprite::Sprite(float sID, int lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* smr) : renderer(ren), sp(smr), sm(smr)
+Sprite::Sprite(float sID, float lvl, SDL_Rect rect, SDL_Renderer* ren, SoundManager* smr) : renderer(ren), sp(smr), sm(smr)
 {
 	id = sID;
 	layer = lvl;
@@ -211,9 +211,9 @@ void Sprite::draw(std::string sequence)
 }
 
 
-void Sprite::addToCamera()
+void Sprite::addToCamera(Camera* cam)
 {
-
+	cam->queueSprite(*this);
 }
 
 
@@ -224,10 +224,10 @@ bool Sprite::operator != (const Sprite& rhs) const{
 	return !(*this == rhs);
 }
 bool Sprite::operator <= (const Sprite& rhs) const{
-	return layer <= rhs.layer;
+	return layer <= -rhs.layer;
 }
 bool Sprite::operator < (const Sprite& rhs) const{
-	return layer < rhs.layer;
+	return layer < -rhs.layer;
 }
 bool Sprite::operator >= (const Sprite& rhs) const{
 	return rhs <= *this;

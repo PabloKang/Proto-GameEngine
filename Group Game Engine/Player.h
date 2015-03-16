@@ -9,13 +9,14 @@ class Player :
 {
 public:
 	Player();
-	Player(float entityID, int lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren,SoundManager* sm);
+	Player(float entityID, float lvl, std::string entityType, SDL_Texture* sprtsht, SDL_Rect spriteR, SDL_Rect hitBoxR, SDL_Renderer* ren,SoundManager* sm);
 	~Player();
 
 	void initFrames();
 	void control(const Uint8* currentKeyStates);
 	void update(const Uint8* currentKeyStates);
 	void draw();
+	void addToCamera(Camera* cam);
 
 	// Additional sprites
 	Sprite turret;
