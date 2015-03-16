@@ -29,7 +29,7 @@ public:
 
 	void update();
 	void move();
-	void draw(std::string sequence);
+	//void draw(std::string sequence);
 	
 
 	// Virtual Functions

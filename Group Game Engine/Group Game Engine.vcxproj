@@ -131,6 +131,10 @@
   <ItemGroup>
     <None Include="..\Debug\Resources\Audio\tantrum.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Debug\Resources\Audio\shot.wav" />
+    <Media Include="..\Debug\Resources\Audio\space.mp3" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

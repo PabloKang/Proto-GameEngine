@@ -22,6 +22,7 @@ Player::Player(float entID, float lvl, std::string entType, SDL_Texture* sprtsht
 	hitBox = hitBoxR;
 	center.x = spriteSize * rotationRatio;
 	center.y = spriteSize / 2;
+	curHealth = 1;
 
 	renderer = ren;
 
@@ -39,7 +40,9 @@ Player::~Player()
 
 void Player::initFrames()
 {
-	addFrameToSequence("default", makeFrame(spritesheet, 0, 0));	// Default left
+	for (int i = 0; i <= 9; i++){
+		addFrameToSequence("default", makeFrame(spritesheet, i * spriteSize, 0));
+	}
 }
 
 
@@ -96,6 +99,20 @@ void Player::control(const Uint8* currentKeyStates)
 	}
 	else if (curBoost > 0) { curBoost = curBoost - 0.25f; }
 	if (boostTime < maxBoost) boostTime += 0.2f;
+}
+
+
+void Player::draw()
+{
+	if (speed < 1.5) { Sprite::draw(8); }
+	else if (speed < 2.5) { Sprite::draw(7); }
+	else if (speed < 3.5) { Sprite::draw(6); }
+	else if (speed < 4.5) { Sprite::draw(5); }
+	else if (speed < 5.5) { Sprite::draw(4); }
+	else if (speed < 6.5) { Sprite::draw(3); }
+	else if (speed < 7.5) { Sprite::draw(2); }
+
+	turret.draw();
 }
 
 

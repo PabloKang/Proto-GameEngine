@@ -43,8 +43,12 @@ void Entity::update()
 void Entity::move(){
 	float angleRad = M_PI * (angle / 180);
 
-	moveX(cos(angleRad) * speed);
-	moveY(sin(angleRad) * speed);
+	int deltaX = cos(angleRad) * speed;
+	int deltaY = sin(angleRad) * speed;
+	moveX(deltaX);
+	moveY(deltaY);
+	hitBox.x += deltaX;
+	hitBox.y += deltaY;
 }
 
 

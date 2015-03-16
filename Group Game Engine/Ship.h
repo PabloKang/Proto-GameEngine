@@ -14,7 +14,7 @@ public:
 
 	virtual void control();
 	void update();
-	void draw();
+	//void draw();
 
 	int maxBoost;
 	int curBoost;

@@ -178,4 +178,12 @@
       <Filter>Source Files\Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Debug\Resources\Audio\space.mp3">
+      <Filter>Source Files\Resource Files</Filter>
+    </Media>
+    <Media Include="..\Debug\Resources\Audio\shot.wav">
+      <Filter>Source Files\Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>
