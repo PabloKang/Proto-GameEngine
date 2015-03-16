@@ -2,6 +2,7 @@
 #define MESSAGE_H
 
 #include <ctime>
+#include <time.h>
 #include "Star Hornet.h"
 //#include "MessageManager.h"
 

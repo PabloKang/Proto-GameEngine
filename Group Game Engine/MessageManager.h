@@ -13,7 +13,7 @@ struct MessageCompare : public std::binary_function<Message&, Message&, bool>
 {
 	bool operator()(const Message& lhs, const Message& rhs) const
 	{
-		return lhs < rhs;
+		return lhs > rhs;
 	}
 };
 
@@ -34,7 +34,9 @@ public:
 	// Queue functionality
 	void send_to(Message message);
 
-	void pop();
+	Message pop();
+
+	bool empty();
 
 private:
 	message_queue messages;

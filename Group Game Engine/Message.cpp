@@ -1,38 +1,34 @@
 #include "Message.h"
 
 
-Message::Message(std::string to_who, std::string do_wha, long delay)
-{
+Message::Message(std::string to_who, std::string do_wha, long delay){
 	to_whom = to_who;
 	do_what = do_wha;
-	timeStamp = delay;
+	time_t seconds;
+	seconds = time(NULL);
+	timeStamp = seconds + delay;
 }
 
 Message::~Message(){}
 
 // TimeStamp should equal 
 // long t = static_cast<long> time(NULL);
-void Message::setTimeStamp(long timeStam)
-{
+void Message::setTimeStamp(long timeStam){
 	timeStamp = timeStam;
 }
 
 
-long Message::getTimeStamp() const
-{
+long Message::getTimeStamp() const{
 	return timeStamp;
 }
 
-std::string Message::getToWhom() const
-{
+std::string Message::getToWhom() const{
 	return to_whom;
 }
 
-std::string Message::getDoMessage() const
-{
+std::string Message::getDoMessage() const{
 	return do_what;
 }
-
 
 bool Message::operator == (const Message& rhs) const{
 	if (do_what != rhs.getDoMessage())

@@ -7,18 +7,21 @@ MessageManager::MessageManager(){}
 MessageManager::~MessageManager(){}
 
 
-Message& MessageManager::getTopMessage()
-{
+Message& MessageManager::getTopMessage(){
 	return messages.top();
 }
 
 
-void MessageManager::send_to(Message message)
-{
+void MessageManager::send_to(Message message){
 	messages.push(message);
 }
 
-void MessageManager::pop()
-{
+Message MessageManager::pop(){
+	Message temp = messages.top();
 	messages.pop();
+	return temp;
+}
+
+bool MessageManager::empty(){
+	return messages.empty();
 }
